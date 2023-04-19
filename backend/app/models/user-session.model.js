@@ -1,5 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define('User', {
+  const User = sequelize.define("user", {
+    username: {
+      type: Sequelize.STRING, 
+      allowNull: false,
+      unique: true
+    },
     email: {
       type: Sequelize.STRING,
       allowNull: false,
@@ -11,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  const Session = sequelize.define('Session', {
+  const Session = sequelize.define("session", {
     token: {
       type: Sequelize.STRING,
       allowNull: false,

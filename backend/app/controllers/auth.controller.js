@@ -1,88 +1,88 @@
 const db = require("../models");
 const config = require("../config/auth.config");
-const User= db.user_session.User;
+const User= db.user;
 const Role= db.role;
 
-verifyToken = (req, res, next) => {
-    let token = req.headers["x-access-token"];
+const Op = db.Sequelize.Op;
 
-    if(!token){
-        return res.status(403).send({
-            message: "No token provided!"
-        })
-    }
-    jwt.verify(token, config.secret, (err, decoded) => {
-        if (err) {
-          return res.status(401).send({
-            message: "Unauthorized!"
+var jwt = require("jsonwebtoken");
+var bcrypt = require("bcryptjs");
+
+exports.signup = (req, res) => {
+  // Save User to Database
+  User.create({
+    username: req.body.username,
+    email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 8)
+  })
+    .then(user => {
+      if (req.body.roles) {
+        Role.findAll({
+          where: {
+            name: {
+              [Op.or]: req.body.roles
+            }
+          }
+        }).then(roles => {
+          user.setRoles(roles).then(() => {
+            res.send({ message: "User was registered successfully!" });
           });
-        }
-        req.userId = decoded.id;
-        next();
-      });
+        });
+      } else {
+        // user role = 1
+        user.setRoles([1]).then(() => {
+          res.send({ message: "User was registered successfully!" });
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message });
+    });
 };
 
-isAdmin = (req, res, next) => {
-    User.findByPk(req.userId).then(user => {
+exports.signin = (req, res) => {
+  User.findOne({
+    where: {
+      username: req.body.username
+    }
+  })
+    .then(user => {
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
+      }
+
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+
+      if (!passwordIsValid) {
+        return res.status(401).send({
+          accessToken: null,
+          message: "Invalid Password!"
+        });
+      }
+
+      var token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: 86400 // 24 hours
+      });
+
+      var authorities = [];
       user.getRoles().then(roles => {
         for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name === "admin") {
-            next();
-            return;
-          }
+          authorities.push("ROLE_" + roles[i].name.toUpperCase());
         }
-  
-        res.status(403).send({
-          message: "Require Admin Role!"
-        });
-        return;
-      });
-    });
-  };
-  
-  isModerator = (req, res, next) => {
-    User.findByPk(req.userId).then(user => {
-      user.getRoles().then(roles => {
-        for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name === "moderator") {
-            next();
-            return;
-          }
-        }
-  
-        res.status(403).send({
-          message: "Require Moderator Role!"
+        res.status(200).send({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          roles: authorities,
+          accessToken: token
         });
       });
+    })
+    .catch(err => {
+      res.status(500).send({ message: err.message });
     });
-  };
-  
-  isModeratorOrAdmin = (req, res, next) => {
-    User.findByPk(req.userId).then(user => {
-      user.getRoles().then(roles => {
-        for (let i = 0; i < roles.length; i++) {
-          if (roles[i].name === "moderator") {
-            next();
-            return;
-          }
-  
-          if (roles[i].name === "admin") {
-            next();
-            return;
-          }
-        }
-  
-        res.status(403).send({
-          message: "Require Moderator or Admin Role!"
-        });
-      });
-    });
-  };
-  
-  const authJwt = {
-    verifyToken: verifyToken,
-    isAdmin: isAdmin,
-    isModerator: isModerator,
-    isModeratorOrAdmin: isModeratorOrAdmin
-  };
-  module.exports = authJwt;
+};
+

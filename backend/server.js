@@ -1,16 +1,19 @@
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");  
+const bodyParser = require("body-parser");
+
+// const path = __dirname + '/app/views/';
 
 const app = express();
 
+// app.use(express.static(path));
+
 var corsOptions = {
-  origin: "https://localhost:3000"
+  origin: "https://localhost:8081"
 };
 
 app.use(cors(corsOptions));
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json());
+
 
 // parse requests of content-type - application/json
 app.use(express.json());
@@ -23,43 +26,38 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to my application." });
 });
 
-// require("./app/routes/tutorial.routes")(app);
-require("./app/routes/user-session.routes")(app);
+require("./app/routes/user.routes")(app);
+require("./app/routes/auth.routes")(app);
 
-// ``` SIgn in SIgn up 
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const { User, Session } = require("./app/models");
+// // ``` SIgn in SIgn up 
+// const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
+// const { User, Session } = require("./app/models");
 
 // Sign up
-app.post("/signup", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ email, password: hashedPassword });
-    res.status(201).json({ user });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
 
-// Sign in
-app.post("/signin", async (req, res) => {
-  try {
-    // const { email, password } = req.body;
-    const email = req.body.email;
-    const password = req.body.password;
-    const user = await User.findOne({ where: { email } });
-    if (!user) throw new Error('User not found');
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) throw new Error('Invalid password');
-    const token = jwt.sign({ userId: user.id }, 'secret-key');
-    await Session.create({ token, userId: user.id });
-    res.json({ token });
-  } catch (error) {
-    res.status(401).json({ error: error.message });
-  }
-});
+
+// set routes 
+// require("./app/routes/auth.routes")(app);
+// require("./app/routes/user.routes")(app);
+
+// // Sign in
+// app.post("/signin", async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     // const email = req.body.email;
+//     // const password = req.body.password;
+//     const user = await User.findOne({ where: { email } });
+//     if (!user) throw new Error('User not found');
+//     const isPasswordValid = await bcrypt.compare(password, user.password);
+//     if (!isPasswordValid) throw new Error('Invalid password');
+//     const token = jwt.sign({ userId: user.id }, 'secret-key');
+//     await Session.create({ token, userId: user.id });
+//     res.json({ token });
+//   } catch (error) {
+//     res.status(401).json({ error: error.message });
+//   }
+// });
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -68,12 +66,51 @@ app.listen(PORT, () => {
 });
 
 const db = require("./app/models");
+const Role = db.role;
+
 db.sequelize.sync({ force: true }).then(() => {
   console.log("Synced db.");
-})
-  .catch((err => {
+  initial();
+}).catch((err => {
     console.log("Failed to synced db: " + err.message);
   }));
+
+  
+// app.get('/', function (req,res) {
+//   res.sendFile(path + "index.html");
+// });
+
+function initial() {
+  Role.create({
+    id: 1, 
+    name: "user"
+  });
+
+  Role.create({
+    id: 2,
+    name: "moderator"
+  });
+
+  Role.create({
+    id: 3, 
+    name: "admin"
+  });
+  
+}
+
+app.post("/api/auth/signup", async (req, res) => {
+  console.log("anything");
+  try {
+    const { email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await db.user.create({ email, password: hashedPassword });
+    res.status(201).json({ user });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+
 
 
 

@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
     dialect: dbConfig.dialect,
-    operatorsAliases: false,
+    operatorsAliases: 0,
 
     pool: {
         max: dbConfig.pool.max,
@@ -20,10 +20,11 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 // db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
-db.user_session = require("./user-session.model.js")(sequelize, Sequelize);
-db.role = require("./roles.model.js")(sequelize, Sequelize);
+db.user = require("./user-session.model.js")(sequelize, Sequelize).User;
+db.role = require("./role.model.js")(sequelize, Sequelize);
 
-db.role.belongsToMany(db.user_session, {
+
+db.role.belongsToMany(db.user, {
     through: "user_roles",
     foreignKey: "roleId",
     otherKey: "userId"
@@ -34,6 +35,7 @@ db.user.belongsToMany(db.role, {
     foreignKey: "userId",
     otherKey: "roleId"
 });
+
 
 db.ROLES = ["user", "admin", "moderator"];
 
