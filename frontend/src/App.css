@@ -30,3 +30,7 @@ label {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
+
+.form-group button {
+  margin-top: 10px; /* Add some margin above the Sign Up button */
+}

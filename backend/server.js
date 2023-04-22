@@ -8,11 +8,14 @@ const app = express();
 
 // app.use(express.static(path));
 
-var corsOptions = {
-  origin: "https://localhost:8081"
-};
 
-app.use(cors(corsOptions));
+// Cái này bị lỗi, không nhận được origin
+// var corsOptions = {
+//   origin: "https://localhost:8081"
+// };
+
+// app.use(cors(corsOptions));
+app.use(cors());
 
 
 // parse requests of content-type - application/json
@@ -24,6 +27,13 @@ app.use(express.urlencoded({ extended: true }));
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to my application." });
+});
+
+// enable CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
 
 require("./app/routes/user.routes")(app);
@@ -98,17 +108,18 @@ function initial() {
   
 }
 
-app.post("/api/auth/signup", async (req, res) => {
-  console.log("anything");
-  try {
-    const { email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await db.user.create({ email, password: hashedPassword });
-    res.status(201).json({ user });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+
+// app.post("/api/auth/signup", async (req, res) => {
+//   console.log("anything");
+//   try {
+//     const { email, password } = req.body;
+//     const hashedPassword = await bcrypt.hash(password, 10);
+//     const user = await db.user.create({ email, password: hashedPassword });
+//     res.status(201).json({ user });
+//   } catch (error) {
+//     res.status(400).json({ error: error.message });
+//   }
+// });
 
 
 
