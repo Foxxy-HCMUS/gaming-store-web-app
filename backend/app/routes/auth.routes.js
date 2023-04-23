@@ -22,5 +22,7 @@ module.exports = app => {
 
     router.post("/signin", controller.signin);
 
+    router.post("/refresh-token", controller.refreshToken);
+
     app.use("/api/auth", router);
 };

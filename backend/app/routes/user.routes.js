@@ -4,13 +4,13 @@ module.exports = app => {
     var router = require("express").Router();
 
     
-    router.get("/api/test/all", controller.allAccess);
+    router.get("/all", controller.allAccess);
 
-    router.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);
+    router.get("/user", [authJwt.verifyToken], controller.userBoard);
 
-    router.get("api/test/mod", [authJwt.verifyToken], controller.moderatorBoard);
+    router.get("/mod", [authJwt.verifyToken], controller.moderatorBoard);
 
-    router.get("api/test/admin", [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
+    router.get("/admin", [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
 
     app.use(function (req, res, next) {
         res.header(
@@ -19,4 +19,6 @@ module.exports = app => {
         );
         next();
     });
+
+    app.use('/api/test', router);
 };

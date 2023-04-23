@@ -22,7 +22,7 @@ db.sequelize = sequelize;
 // db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 db.user = require("./user-session.model.js")(sequelize, Sequelize).User;
 db.role = require("./role.model.js")(sequelize, Sequelize);
-
+db.refreshToken = require("./refreshToken.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
     through: "user_roles",
@@ -34,6 +34,14 @@ db.user.belongsToMany(db.role, {
     through: "user_roles",
     foreignKey: "userId",
     otherKey: "roleId"
+});
+
+db.refreshToken.belongsTo(db.user, {
+    foreignKey: "userId", targetKey: "id"
+});
+
+db.user.belongsTo(db.refreshToken, {
+    foreignKey: "userId", targetKey: "id"
 });
 
 

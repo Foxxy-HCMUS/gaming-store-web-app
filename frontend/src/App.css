@@ -31,6 +31,98 @@ label {
   border-radius: 50%;
 }
 
+/*
+ * Thêm mới
+ */
+
 .form-group button {
   margin-top: 10px; /* Add some margin above the Sign Up button */
 }
+
+.logo {
+  /* float: left;
+  margin-left: 0.5em;
+  position: relative;
+  width: 50px;
+  border-radius: 50%;
+  height: 50px;
+  transition: transform 0.2s ease-in-out;
+  opacity: 1; */
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+}
+
+/* .searchbox {
+  color: transparent !important;
+  border-radius: 20px;
+  border:rgba(0, 0, 0, 0.3);
+  padding: 20px;
+} */
+
+.navbar {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.nav-link {
+  transition: relative;
+}
+
+.nav-link::after {
+  content: '';
+  opacity: 0;
+  transition: all 0.2s;
+  height: 2px;
+  width: 100%;
+  background-color: greenyellow;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.nav-link:hover::after {
+  opacity: 1;
+}
+
+
+.search-box {
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  width: 20%;
+  height: 40px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  padding-left: 20px; 
+}
+
+.search-box .search-btn {
+  width: 50px;
+  height: 100%;
+  background: #fff;
+  border: none;
+  color: #757575;
+  cursor: pointer;
+}
+
+.search-box .search-btn i {
+  line-height: 50px;
+  font-size: 20px;
+}
+
