@@ -13,7 +13,7 @@ const catchError = (err, res) => {
   return res.sendStatus(401).send({message: "Unauthorized!"});
 }
 
-verifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
   let token = req.headers["x-access-token"];
 
   if (!token) {
