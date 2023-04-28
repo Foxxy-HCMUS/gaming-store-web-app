@@ -3,9 +3,12 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
-import { withRouter } from '../common/with-router';
+import { withRouter } from '../../common/with-router';
+
+// import { useDispatch, useSelector } from 'react-redux';
+// import { login } from '../features/auth/authSlice';
 
 const required = value => {
   if (!value) {
@@ -154,3 +157,4 @@ class Login extends Component {
 }
 
 export default withRouter(Login);
+

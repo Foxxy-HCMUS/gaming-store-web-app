@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 
 import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 // root.render(
@@ -15,13 +16,18 @@ import { BrowserRouter } from "react-router-dom";
 // );
 // reportWebVitals();
 
-const container = document.getElementById("root");
-const root = createRoot(container);
+// const container = document.getElementById("root");
+// const root = createRoot(container);
 
-root.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
+ReactDOM.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
+  document.getElementById("root")
 );
 
 // ReactDOM.render(
