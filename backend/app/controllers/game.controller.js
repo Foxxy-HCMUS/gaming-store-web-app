@@ -1,5 +1,5 @@
 const db = require("../models");
-const Game = db.Game;
+const Game = db.game;
 const Op = db.Sequelize.Op;
 
 
@@ -17,7 +17,7 @@ exports.create = (req, res) => {
     const game = {
         title: req.body.title,
         description: req.body.description,
-        pubplished: req.body.pubplished ? req.body.pubplished : false
+        // pubplished: req.body.pubplished ? req.body.pubplished : false
     };
 
     // Save game in the database 
@@ -28,7 +28,7 @@ exports.create = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Tutorial"
+                    err.message || "Some error occurred while creating the Game"
             });
         });
 };
@@ -45,7 +45,7 @@ exports.findAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while retrieving tutorials."
+                    err.message || "Some error occurred while retrieving games."
             });
         });
 };
@@ -110,7 +110,7 @@ exports.delete = (req, res) => {
                 });
             } else {
                 res.send({
-                    message: `Cannot delete Game with id=${id}. Maybe Tutorial was not found!`
+                    message: `Cannot delete Game with id=${id}. Maybe Game was not found!`
                 });
             }
         })

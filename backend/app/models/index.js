@@ -23,6 +23,7 @@ db.sequelize = sequelize;
 db.user = require("./user-session.model.js")(sequelize, Sequelize).User;
 db.role = require("./role.model.js")(sequelize, Sequelize);
 db.refreshToken = require("./refreshToken.model.js")(sequelize, Sequelize);
+db.game = require("./game.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
     through: "user_roles",

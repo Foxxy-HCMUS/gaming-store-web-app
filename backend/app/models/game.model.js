@@ -2,6 +2,7 @@ module.exports = (sequelize, Sequelize) => {
     const Game = sequelize.define("game", {
       id: {
         type: Sequelize.INTEGER,
+        autoIncrement: true,
         primaryKey: true
       },
       title: {
@@ -38,28 +39,28 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       platform: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.JSON       
       },
       genres: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.JSON
       },
       features: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.JSON
       },
       tags: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.JSON
       },
       aboutGame: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT  
       },
       gameFeatures: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.JSON
       },
       heroImages: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.JSON
       },
       images: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.JSON
       },
       criticRecommend: {
         type: Sequelize.FLOAT
@@ -71,7 +72,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       reviews: {
-        type: Sequelize.JSONB
+        type: Sequelize.JSON
       }
     });
   

@@ -1,10 +1,10 @@
 module.exports = app => {
     const games = require("../controllers/game.controller.js");
 
-    var router = require("express").Router();
+    const router = require("express").Router();
 
     // Create a new Game
-    router.post("/", games.create);
+    router.post("/create", games.create);
 
     // Retrieve all Games 
     router.get("/", games.findAll);
@@ -24,6 +24,6 @@ module.exports = app => {
     // Delete all Games
     router.delete("/", games.deleteAll);
 
-    app.use('/api/game', router);
+    app.use('/games', router);
 
 }
