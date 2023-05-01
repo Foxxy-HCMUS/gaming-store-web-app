@@ -6,7 +6,10 @@ module.exports = app => {
     // Create a new Game
     router.post("/create", games.create);
 
-    // Retrieve all Games 
+    // Retrieve all Games with title
+    router.get("/", games.findAllWithTitle);
+
+    // Retrieve all Games
     router.get("/", games.findAll);
 
     // Retrieve all published Games
