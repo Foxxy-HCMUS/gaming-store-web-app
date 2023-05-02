@@ -12,4 +12,6 @@ Using mysql database:
 mysql -u root -p
 ```
 
-Server chạy trên port 8080 (http://localhost:8080/), client chạy trên port 8081 (http://localhost:8081/)
+Server chạy trên port 8080 (http://localhost:8080), client chạy trên port 8081 (http://localhost:8081)
+
+Sử dụng redux để quản lý các state của ứng dụng.
