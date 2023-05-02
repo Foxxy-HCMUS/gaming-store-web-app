@@ -4,13 +4,13 @@ import { MdOutlineCheckCircleOutline } from "react-icons/md";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import styles from "./sub-navbar.styles.css";
+import styles from "./sub-navbar.module.css";
 
 const SubNavbar = () => {
     const [accoridanText, setAccoridanText] = useState("Discover");
   
     const [isAccordianOpen, setAccordianState] = useState(false);
-    const user = useSelector((state) => state.user);
+    const user = useSelector((state) => state.auth.user);
   
     return (
       <>
@@ -76,7 +76,7 @@ const SubNavbar = () => {
           <div className={styles.left}>
             <div className={styles.search_box}>
               <BiSearch />
-              <input type="text" placeholder="Search" />
+              <input type="text" placeholder="Search Store" />
             </div>
             <Link to="/">
               <div className={styles.option_desktop}>Discover</div>
@@ -88,7 +88,7 @@ const SubNavbar = () => {
               <div className={styles.option_desktop}>News</div>
             </Link>
           </div>
-          {user.displayName ? (
+          {user ? (
             <Link to="/wishlist">
               <div className={styles.wishlist}>Wishlist</div>
             </Link>
