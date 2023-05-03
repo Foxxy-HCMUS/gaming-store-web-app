@@ -109,11 +109,18 @@
         color: var(--gray-text);
     }
 
+    .left_items a {
+        padding-left: 40px;
+        display: inline-block;
+    }
+
+    .cart,
     .wishlist {
         cursor: pointer;
         color: var(--gray-text);
     }
 
+    .cart:hover,
     .wishlist:hover {
         color: #fff;
     }
