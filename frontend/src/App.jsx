@@ -1,24 +1,25 @@
-import React, { Component } from "react";
-import { Routes, Route, Link, Switch } from "react-router-dom";
+import React, { Component, useEffect, useState } from "react";
+import { Routes, Route, Link, Switch, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+// import "./App.css";
+import "./App.module.css";
 
 import AuthService from "./services/auth.service";
 
-import Login from "./pages/SigninPage/signPage";
+import Login from "./pages/SigninPage/SigninPage";
 import Register from "./pages/SignupPage/register.component";
 import SignupPage from "./pages/SignupPage";
-import Home from "./pages/HomePage/homePage";
+import HomePage from "./pages/HomePage";
 import Profile from "./pages/ProfilePage/profile.component";
 import BoardUser from "./pages/ProfilePage/board-user.component";
 import BoardModerator from "./pages/ProfilePage/board-moderator.component";
 import BoardAdmin from "./pages/ProfilePage/board-admin.component";
 
 import SubNavbar from "./components/subNavbar/sub-navbar.component";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import Search from "./components/search.component";
-import logo from "./assets/icons/play archive.svg";
+// import { fetchGames, fetchUser } from "./store/actions";
+import { fetchGames } from "./store/slices/dataSlice";
 
 // class App extends Component {
 //   constructor(props) {
@@ -59,7 +60,7 @@ import logo from "./assets/icons/play archive.svg";
 //     return (
 //       <>
 //         <header className="navbar navbar-expand-lg navbar-dark bg-dark">
-//           <nav className="container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation"> 
+//           <nav className="container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
 //             <Link to={"/"} className="navbar-brand">
 //               <div className="logo">
 //                 <img src={logo} alt="logo" />
@@ -151,34 +152,86 @@ import logo from "./assets/icons/play archive.svg";
 
 // export default App;
 
+import axios from "axios";
+import DistributionPage from "./pages/DistributionPage";
+import SupportPage from "./pages/SupportPage";
+import SigninPage from "./pages/SigninPage";
+import NavBar from "./components/navBar";
 
+import LanguageContext from "./LanguageContext";
+
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const theme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 export default function App() {
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+  const showNavBar = pathname !== "/signin";
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  useEffect(() => {
+    // dispatch(fetchUser());
+    dispatch(fetchGames());
+  }, [dispatch]);
+
+  const landingPageData = useSelector((state) => state.landingPageData);
+
+  // const [language, setLanguage] = useState("en");
+
+  // const handleLanguageChange = () => {
+  //   if (language === "en") {
+  //     setLanguage("fr");
+  //   } else {
+  //     setLanguage("en");
+  //   }
+  // };
+
+  // console.log(LanguageContext)
 
   return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />} />
+    // <ThemeProvider theme={theme}>
+    <>
+      <div className="App">
+        {showNavBar && <NavBar />}
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
 
-        <Route path="/register" element={<SignupPage />} />
+          <Route path="/distribution" element={<DistributionPage />} />
 
-        {/* <Route exact path="/signup/display-name">
+          <Route path="/support" element={<SupportPage />} />
+
+          <Route path="/signin" element={<SigninPage />} />
+
+          <Route path="/logout" element={<SigninPage />} />
+
+          {/* <Route path="/register" element={<SignupPage />} /> */}
+
+          {/* <Route exact path="/signup/display-name">
           <SignupPage />
         </Route> */}
 
-        {/* <Route exact path="/browse">
+          {/* <Route exact path="/browse">
           <BrowsePage />
         </Route> */}
 
-        {/* <Route exact path="/games/:id">
+          {/* <Route exact path="/games/:id">
           <GamePage />
         </Route> */}
 
-        {/* <Route exact path="/wishlist">
+          {/* <Route exact path="/wishlist">
           <WishlistPage />
         </Route> */}
-      </Routes>
-    </div>
+        </Routes>
+      </div>
+    </>
+    // </ThemeProvider>
   );
-};
-
+}
