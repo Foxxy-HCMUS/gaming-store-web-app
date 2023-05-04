@@ -1,4 +1,4 @@
-import styles from "./FreeCardContainer.styles.css";
+import styles from "./FreeCardContainer.module.css";
 
 const FreeCardContainer = () => {
     return (
