@@ -1,0 +1,74 @@
+.card {
+  height: 100%;
+}
+
+.image_div {
+  position: relative;
+  display: inline-block;
+}
+
+.icon {
+  padding-top: 4px;
+  padding-right: 4px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.image_div > img {
+  width: 100%;
+  border-radius: 4px;
+  /* opacity: 1;
+  transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -webkit-transition: opacity 1s ease-in-out; */
+}
+
+.image_div:hover > img {
+  opacity: 0.8;
+  /* transition: opacity 0.55s ease-in-out;
+  -moz-transition: opacity 0.55s ease-in-out;
+  -webkit-transition: opacity 0.55s ease-in-out; */
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tagline_cont {
+  width: 100%;
+}
+
+.tagline {
+  color: var(--gray-text);
+  font-size: 12px;
+  margin-bottom: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis !important;
+}
+
+.price {
+  margin-top: 10px;
+}
+
+.title {
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+@media (min-width: 768px) {
+  .icon {
+    display: none;
+  }
+
+  .image_div:hover .icon {
+    display: block;
+  }
+}
