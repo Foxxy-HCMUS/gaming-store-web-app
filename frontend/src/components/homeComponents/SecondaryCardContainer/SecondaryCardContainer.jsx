@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import SecondaryCard from "../SecondaryCard/SecondaryCard";
-import styles from "./SecondaryCardContainer.styles.css";
+import styles from "./SecondaryCardContainer.module.css";
 
 const SecondaryCardContainer = ({ data, title }) => {
     return (
@@ -8,14 +8,15 @@ const SecondaryCardContainer = ({ data, title }) => {
             <div className={styles.container}>
                 {data.map((val, i) => {
                     return (
-                        <Link key={i} to={`/games/${val?._id}`}>
+                        <Link key={i} to={`/games/${val?.id}`} className={styles.link}>
                             <div className={styles.card}>
-                                <SecondaryCard>
-                                    image={val?.thumbnail}
+                                <SecondaryCard
+                                    image={val?.thumbnails}
                                     title={val?.title}
                                     description={val?.description}
-                                    price={val?.mainPrice}
-                                </SecondaryCard>
+                                    mainPrice={val?.mainPrice}
+                                    discountPercentage={val?.discountPercentage}
+                                />
                             </div>
                         </Link>
                     );
