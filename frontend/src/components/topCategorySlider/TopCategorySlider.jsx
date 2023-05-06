@@ -2,7 +2,7 @@ import { RiArrowLeftSLine, RiArrowRightSLine } from "react-icons/ri";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import styles from "./TopCategorySlider.module.css";
 
-const TopCategorySlider = ({ text }) => {
+const TopCategorySlider = ({ text, onPrevClick, onNextClick }) => {
     return (
         <>
             <div className={styles.top}>
@@ -11,10 +11,10 @@ const TopCategorySlider = ({ text }) => {
                     <MdOutlineKeyboardArrowRight className={styles.arrow} />
                 </div>
                 <div className={styles.icons}>
-                    <div className={styles.icon}>
+                    <div className={styles.icon} onClick={onPrevClick}>
                         <RiArrowLeftSLine />
                     </div>
-                    <div className={styles.icon}>
+                    <div className={styles.icon} onClick={onNextClick}>
                         <RiArrowRightSLine />
                     </div>
                 </div>

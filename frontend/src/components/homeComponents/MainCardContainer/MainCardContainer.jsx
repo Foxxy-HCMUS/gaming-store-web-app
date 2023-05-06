@@ -59,7 +59,7 @@ import Slider from "react-slick";
 import "./styles.css"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-const MainCardContainer = ({ data, title, onPrevClick, onNextClick }) => {
+const MainCardContainer = ({ data, title }) => {
   const ref = useRef(null);
 
   const handleNextSlide = () => {
