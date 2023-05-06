@@ -207,11 +207,11 @@ function initial() {
     id: 3,
     title: "Hades",
     description:
-    "Hades is an action-packed roguelike game developed and published by Supergiant Games. The game is set in the underworld of Greek mythology, where the player takes on the role of Zagreus, son of Hades. The objective is to fight your way through the various levels of the underworld, battling a variety of monsters and bosses. The game features a unique progression system, where the player can upgrade their abilities and weapons as they progress through the game. With its engaging story, fast-paced combat, and beautiful art style, Hades has received critical acclaim and numerous awards.",
+      "Hades is an action-packed roguelike game developed and published by Supergiant Games. The game is set in the underworld of Greek mythology, where the player takes on the role of Zagreus, son of Hades. The objective is to fight your way through the various levels of the underworld, battling a variety of monsters and bosses. The game features a unique progression system, where the player can upgrade their abilities and weapons as they progress through the game. With its engaging story, fast-paced combat, and beautiful art style, Hades has received critical acclaim and numerous awards.",
     thumbnails:
-    "https://cdn.vox-cdn.com/thumbor/2aFzFz4lGjWQ4ri8lN3SRvZpGfQ=/0x0:1920x1080/920x613/filters:focal(811x299:1111x599):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332773/Hades_Keyart.0.png",
+      "https://cdn2.unrealengine.com/hades-eventcover-01-800x450-983740629.png?h=270&quality=medium&resize=1&w=480",
     cardImage:
-    "https://cdn1.epicgames.com/min/offer/1200x1600-1200x1600-e92fa6b99bb20c9edee19c361b8853b9.jpg?h=480&quality=medium&resize=1&w=360",
+      "https://cdn1.epicgames.com/min/offer/1200x1600-1200x1600-e92fa6b99bb20c9edee19c361b8853b9.jpg?h=480&quality=medium&resize=1&w=360",
     cardTagline: "Escape the underworld and defy the gods",
     mainPrice: 24.99,
     discountPercentage: 0,
@@ -219,33 +219,44 @@ function initial() {
     developer: "Supergiant Games",
     publisher: "Supergiant Games",
     releaseDate: "2020-09-17",
-    platform: ["PC", "Nintendo Switch", "PlayStation 4", "PlayStation 5", "Xbox One", "Xbox Series X/S"],
+    platform: [
+      "PC",
+      "Nintendo Switch",
+      "PlayStation 4",
+      "PlayStation 5",
+      "Xbox One",
+      "Xbox Series X/S",
+    ],
     genres: ["Action", "Roguelike", "Indie"],
-    features: ["Single-player", "Fast-paced combat", "Upgradeable abilities and weapons"],
+    features: [
+      "Single-player",
+      "Fast-paced combat",
+      "Upgradeable abilities and weapons",
+    ],
     tags: ["Greek mythology", "Beautiful art style", "Critically acclaimed"],
     aboutGame:
-    "Hades is an action-packed roguelike game set in the underworld of Greek mythology. The player takes on the role of Zagreus, son of Hades, as he battles his way through the various levels of the underworld. The game features fast-paced combat, upgradeable abilities and weapons, and a unique progression system that keeps the gameplay fresh and exciting. With its engaging story, beautiful art style, and critically acclaimed gameplay, Hades is a must-play for fans of action and roguelike games.",
+      "Hades is an action-packed roguelike game set in the underworld of Greek mythology. The player takes on the role of Zagreus, son of Hades, as he battles his way through the various levels of the underworld. The game features fast-paced combat, upgradeable abilities and weapons, and a unique progression system that keeps the gameplay fresh and exciting. With its engaging story, beautiful art style, and critically acclaimed gameplay, Hades is a must-play for fans of action and roguelike games.",
     gameFeatures: [
-    "Action-packed gameplay: Battle your way through the underworld of Greek mythology, fighting a variety of monsters and bosses.",
-    "Upgradeable abilities and weapons: Upgrade your character's abilities and weapons as you progress through the game.",
-    "Unique progression system: The game features a unique progression system that keeps the gameplay fresh and exciting.",
-    "Fast-paced combat: The combat in Hades is fast-paced and exhilarating, with a variety of weapons and abilities to choose from.",
-    "Engaging story: Follow the story of Zagreus, son of Hades, as he battles his way through the underworld.",
-    "Beautiful art style: The game features a beautiful art style inspired by Greek mythology.",
-    "Critically acclaimed: Hades has received critical acclaim and numerous awards since its release in 2020.",
-    "Single-player: The game is a single-player experience.",
+      "Action-packed gameplay: Battle your way through the underworld of Greek mythology, fighting a variety of monsters and bosses.",
+      "Upgradeable abilities and weapons: Upgrade your character's abilities and weapons as you progress through the game.",
+      "Unique progression system: The game features a unique progression system that keeps the gameplay fresh and exciting.",
+      "Fast-paced combat: The combat in Hades is fast-paced and exhilarating, with a variety of weapons and abilities to choose from.",
+      "Engaging story: Follow the story of Zagreus, son of Hades, as he battles his way through the underworld.",
+      "Beautiful art style: The game features a beautiful art style inspired by Greek mythology.",
+      "Critically acclaimed: Hades has received critical acclaim and numerous awards since its release in 2020.",
+      "Single-player: The game is a single-player experience.",
     ],
     heroImages: [
-    "https://cdn.vox-cdn.com/thumbor/2aFzFz4lGjWQ4ri8lN3SRvZpGfQ=/0x0:1920x1080/920x613/filters:focal(811x299:1111x599):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332773/Hades_Keyart.0.png",
-    "https://cdn.vox-cdn.com/thumbor/8QzRZl6fS0-9FbM5R5hH1yDwJrQ=/0x0:1920x1080/920x613/filters:focal(892x245:1228x581):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332774/gameplay_screenshot_16.0.png",
-    "https://cdn.vox-cdn.com/thumbor/4OaR9n0V5QnZMf3Tg3YmVW-D5i4=/0x0:1920x1080/920x613/filters:focal(858x205:1194x541):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332775/gameplay_screenshot_15.0.png",
+      "https://cdn.vox-cdn.com/thumbor/2aFzFz4lGjWQ4ri8lN3SRvZpGfQ=/0x0:1920x1080/920x613/filters:focal(811x299:1111x599):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332773/Hades_Keyart.0.png",
+      "https://cdn.vox-cdn.com/thumbor/8QzRZl6fS0-9FbM5R5hH1yDwJrQ=/0x0:1920x1080/920x613/filters:focal(892x245:1228x581):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332774/gameplay_screenshot_16.0.png",
+      "https://cdn.vox-cdn.com/thumbor/4OaR9n0V5QnZMf3Tg3YmVW-D5i4=/0x0:1920x1080/920x613/filters:focal(858x205:1194x541):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332775/gameplay_screenshot_15.0.png",
     ],
     images: [
-    "https://cdn.vox-cdn.com/thumbor/2aFzFz4lGjWQ4ri8lN3SRvZpGfQ=/0x0:1920x1080/920x613/filters:focal(811x299:1111x599):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332773/Hades_Keyart.0.png",
-    "https://cdn.vox-cdn.com/thumbor/8QzRZl6fS0-9FbM5R5hH1yDwJrQ=/0x0:1920x1080/920x613/filters:focal(892x245:1228x581):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332774/gameplay_screenshot_16.0.png",
-    "https://cdn.vox-cdn.com/thumbor/4OaR9n0V5QnZMf3Tg3YmVW-D5i4=/0x0:1920x1080/920x613/filters:focal(858x205:1194x541):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332775/gameplay_screenshot_15.0.png",
+      "https://cdn.vox-cdn.com/thumbor/2aFzFz4lGjWQ4ri8lN3SRvZpGfQ=/0x0:1920x1080/920x613/filters:focal(811x299:1111x599):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332773/Hades_Keyart.0.png",
+      "https://cdn.vox-cdn.com/thumbor/8QzRZl6fS0-9FbM5R5hH1yDwJrQ=/0x0:1920x1080/920x613/filters:focal(892x245:1228x581):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332774/gameplay_screenshot_16.0.png",
+      "https://cdn.vox-cdn.com/thumbor/4OaR9n0V5QnZMf3Tg3YmVW-D5i4=/0x0:1920x1080/920x613/filters:focal(858x205:1194x541):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/67332775/gameplay_screenshot_15.0.png",
     ],
-    });
+  });
 
   Game.create({
     id: 4,
@@ -253,7 +264,7 @@ function initial() {
     description:
       "An online and local party game of teamwork and betrayal for 4-15 players...in space!",
     thumbnails:
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/header.jpg",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g1a-00-1920x1080-3c552a5212ff.jpg",
     cardImage:
       "https://cdn1.epicgames.com/salesEvent/salesEvent/amogusportrait_1200x1600-66ad0e4d363e1c92f9f8aae67a96dd31?h=480&quality=medium&resize=1&w=360",
     cardTagline:
@@ -353,7 +364,7 @@ function initial() {
     description:
       "Embark on the craziest journey of your life in It Takes Two, a genre-bending platform adventure created purely for co-op. Invite a friend to join for free with Friend’s Pass and work together across a huge variety of gleefully disruptive gameplay challenges.",
     thumbnails:
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/1426210/header.jpg",
+      "https://variety.com/wp-content/uploads/2022/01/It-Takes-Two-e1643647274115.jpg?w=1024",
     cardImage:
       "https://cdn1.epicgames.com/offer/8ae7b3c0f490471b967ce26cc2f6e0e6/EGS_ItTakesTwo_Hazelight_S2_1200x1600-5c82de2d2e21a841dd06ec27e082777e_1200x1600-5c82de2d2e21a841dd06ec27e082777e?h=480&quality=medium&resize=1&w=360",
     cardTagline: "Pure co-op perfection",
@@ -397,7 +408,7 @@ function initial() {
     description:
       "Fortnite is a free-to-play Battle Royale game developed by Epic Games. Jump into the action with the Solo, Duo, or Squad mode and be the last one standing. Build your own structures and use your creativity to outwit your opponents. With constant updates, new weapons, and special events, Fortnite is always fresh and exciting.",
     thumbnails:
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/1316990/header.jpg",
+      "https://cdn2.unrealengine.com/en-24br-zerobuild-egs-landscape-2560x1440-2560x1440-ca0c0d6529a4.jpg",
     cardImage:
       "https://cdn1.epicgames.com/offer/fn/24BR_Nocturnal_EGS_Launcher_Blade_1200x1600_1200x1600-9407c2e8f7ea1de7a00bf29bf58ef35a?h=480&quality=medium&resize=1&w=360",
     cardTagline: "Jump in and be the last one standing",
@@ -500,7 +511,7 @@ function initial() {
     description:
       'Genshin Impact is a free-to-play open-world action RPG that brings players to the visually stunning world of Teyvat. The player takes on the role of the mysterious "Traveler", who sets off on a journey to discover the fate of their lost sibling and unveils the mysterious secrets of Teyvat along the way.',
     thumbnails:
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/1366540/header.jpg",
+      "https://cdn2.unrealengine.com/en-3-6update-1920x1080-cff2ac310eda.jpg",
     cardImage:
       "https://cdn1.epicgames.com/salesEvent/salesEvent/EGS_GenshinImpact_miHoYoLimited_S2_1200x1600-c12cdcc2cac330df2185aa58c508e820?h=480&quality=medium&resize=1&w=360",
     cardTagline: "A world all your own",
@@ -579,6 +590,206 @@ function initial() {
       "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_2f0c8b4a1a8f6e0c0c9a7f9b6d1e8b1a4f4a7d0c.1920x1080.jpg",
       "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_2b2d5e6f1f8b5c6a9f7d3d9a3c8e3e2c5d7b4e6a.1920x1080.jpg",
       "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/ss_7d5e6f1b8c1f4b9c7a2d5b2f8e9a6c5d6b4a3d2c.1920x1080.jpg",
+    ],
+  });
+
+  Game.create({
+    id: 11,
+    title: "Dead Island 2",
+    description:
+      "Dead Island 2 is an action role-playing survival horror video game developed by Dambuster Studios and published by Deep Silver. The game takes place in an open world environment and features cooperative multiplayer.",
+    thumbnails:
+      "https://cdn2.unrealengine.com/egs-deadisland2-deepsilverdambusterstudios-g1a-01-1920x1080-c99de7f0e62a.jpg",
+    cardImage:
+      "https://cdn1.epicgames.com/offer/236c74b4cd2e4e3099cbe2ebdc9686fd/EGS_DeadIsland2_DeepSilverDambusterStudios_S2_1200x1600-efc5201842cf642eb45f73227cd0789b?h=480&quality=medium&resize=1&w=360",
+    cardTagline: "Welcome to the zombie apocalypse",
+    mainPrice: 59.99,
+    discountPercentage: 0,
+    discountedPrice: 59.99,
+    developer: "Dambuster Studios",
+    publisher: "Deep Silver",
+    releaseDate: "2023-04-21",
+    platform: ["Windows", "PlayStation", "Xbox"],
+    genres: ["Action", "RPG", "Survival Horror"],
+    features: [
+      "Single-player",
+      "Multiplayer",
+      "Co-op",
+      "Steam Achievements",
+      "Full controller support",
+    ],
+    tags: ["Zombies", "Open World", "Action", "RPG", "Survival Horror"],
+    aboutGame:
+      "Dead Island 2 is an action role-playing survival horror video game developed by Dambuster Studios and published by Deep Silver. The game takes place in an open world environment and features cooperative multiplayer.",
+    gameFeatures: [
+      "Explore a massive open world",
+      "Fight for survival against hordes of zombies",
+      "Join forces with other players in co-op multiplayer",
+    ],
+    heroImages: [
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/383150/ss_7d5a25d6b",
+    ],
+    images: [
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/383150/ss_7d5a25d6b",
+    ],
+  });
+
+  Game.create({
+    id: 12,
+    title: "Honkai: Star Rail",
+    description:
+      "Honkai: Star Rail is an action role-playing game developed by miHoYo. In the game, players control a group of Valkyries as they battle against the Honkai and explore a vast open world.",
+    thumbnails: "https://cdn2.unrealengine.com/01-1920x1080-e138e4b3b2d6.jpg",
+    cardImage:
+      "https://cdn1.epicgames.com/offer/a2dcbb9e34204bda9da8415f97b3f4ea/EPIC1200x1600-EN_1200x1600-655b26e317c90057d360900063f9be22?h=480&quality=medium&resize=1&w=360",
+    cardTagline: "Embark on an epic adventure",
+    mainPrice: 59.99,
+    discountPercentage: 0,
+    discountedPrice: 59.99,
+    developer: "miHoYo",
+    publisher: "miHoYo",
+    releaseDate: "2023-04-25",
+    platform: ["Windows"],
+    genres: ["Action", "RPG"],
+    features: [
+      "Single-player",
+      "Multiplayer",
+      "Co-op",
+      "Steam Achievements",
+      "Full controller support",
+    ],
+    tags: ["Action", "RPG", "Open World"],
+    aboutGame:
+      "Honkai: Star Rail is an action role-playing game developed by miHoYo. In the game, players control a group of Valkyries as they battle against the Honkai and explore a vast open world.",
+    gameFeatures: [
+      "Explore a vast open world",
+      "Fight against the Honkai with a group of powerful Valkyries",
+      "Join forces with other players in co-op multiplayer",
+    ],
+    heroImages: [
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/1284410/ss_7d5a25d6b",
+    ],
+    images: [
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/1284410/ss_7d5a25d6b",
+    ],
+  });
+
+  Game.create({
+    id: 13,
+    title: "Crime Boss: Rockay City",
+    description:
+      "Crime Boss: Rockay City is an action-adventure game developed and published by Rockstar Games. In the game, players control a character who must rise through the ranks of the criminal underworld to become the ultimate crime boss.",
+    thumbnails:
+      "https://cdn2.unrealengine.com/egs-crimebossrockaycity-ingamestudios-g1a-07-1920x1080-656cc3020208.jpg",
+    cardImage:
+      "https://cdn1.epicgames.com/offer/af0ea01162704696bebf8633a52a7a6d/EGS_CrimeBossRockayCity_INGAMESTUDIOS_S2_1200x1600-589327a4d212fe00efed9cbf7fd5841e_1200x1600-589327a4d212fe00efed9cbf7fd5841e?h=480&quality=medium&resize=1&w=360",
+    cardTagline: "Become the ultimate crime boss",
+    mainPrice: 39.99,
+    discountPercentage: 0,
+    discountedPrice: 39.99,
+    developer: "Rockstar Games",
+    publisher: "Rockstar Games",
+    releaseDate: "2023-04-28",
+    platform: ["Windows", "PlayStation", "Xbox"],
+    genres: ["Action", "Adventure"],
+    features: [
+      "Single-player",
+      "Multiplayer",
+      "Steam Achievements",
+      "Full controller support",
+    ],
+    tags: ["Action", "Adventure", "Open World", "Crime"],
+    aboutGame:
+      "Crime Boss: Rockay City is an action-adventure game developed and published by Rockstar Games. In the game, players control a character who must rise through the ranks of the criminal underworld to become the ultimate crime boss.",
+    gameFeatures: [
+      "Explore a vast open world",
+      "Rise through the ranks of the criminal underworld",
+      "Join forces with other players in multiplayer",
+    ],
+    heroImages: [
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_7d5a25d6b",
+    ],
+    images: [
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/ss_7d5a25d6b",
+    ],
+  });
+
+  Game.create({
+    id: 14,
+    title: "STAR WARS Jedi: Survivor™",
+    description:
+      "STAR WARS Jedi: Survivor™ is an action-adventure game developed by Respawn Entertainment and published by Electronic Arts. In the game, players control a Jedi Padawan who must complete his training and rebuild the Jedi Order.",
+    thumbnails:
+      "https://cdn2.unrealengine.com/egs-starwarsjedisurvivorstandardedition-respawnentertainment-g1a-04-1920x1080-113398136c5d.jpg",
+    cardImage:
+      "https://cdn1.epicgames.com/offer/5a2ea5980ac147c195775039195a3081/EGS_STARWARSJediSurvivorStandardEdition_RespawnEntertainment_S2_1200x1600-fd090aecb23a065b29ea101939798edd?h=480&quality=medium&resize=1&w=360",
+    cardTagline: "Become a Jedi",
+    mainPrice: 69.99,
+    discountPercentage: 0,
+    discountedPrice: 69.99,
+    developer: "Respawn Entertainment",
+    publisher: "Electronic Arts",
+    releaseDate: "2023-04-28",
+    platform: ["Windows", "PlayStation", "Xbox"],
+    genres: ["Action", "Adventure"],
+    features: [
+      "Single-player",
+      "Steam Achievements",
+      "Full controller support",
+    ],
+    tags: ["Action", "Adventure", "Star Wars"],
+    aboutGame:
+      "STAR WARS Jedi: Survivor™ is an action-adventure game developed by Respawn Entertainment and published by Electronic Arts. In the game, players control a Jedi Padawan who must complete his training and rebuild the Jedi Order.",
+    gameFeatures: [
+      "Explore a galaxy far, far away",
+      "Complete your training and become a Jedi",
+      "Rebuild the Jedi Order",
+    ],
+    heroImages: [
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/1172380/ss_7d5a25d6b",
+    ],
+    images: [
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/1172380/ss_7d5a25d6b",
+    ],
+  });
+
+  Game.create({
+    id: 15,
+    title: "The Settlers®: New Allies",
+    description:
+      "The Settlers®: New Allies is a real-time strategy game developed by Blue Byte and published by Ubisoft. In the game, players must build and manage a medieval settlement while competing against other players for resources and territory.",
+    thumbnails:
+      "https://cdn2.unrealengine.com/egst-edition-thumbnail-1920x1080-1920x1080-e15fd8a2889d.jpg?h=270&quality=medium&resize=1&w=480",
+    cardImage:
+      "https://cdn1.epicgames.com/offer/84f45b7676af47d9adecd3b636466f89/EGST_StorePortrait_1200x1600_1200x1600-adc3de9f03faba15cc9ef7e5762ad96d?h=480&quality=medium&resize=1&w=360",
+    cardTagline: "Build your kingdom",
+    mainPrice: 59.99,
+    discountPercentage: 25,
+    discountedPrice: 44.99,
+    developer: "Blue Byte",
+    publisher: "Ubisoft",
+    releaseDate: "2023-04-28",
+    platform: ["Windows"],
+    genres: ["Strategy"],
+    features: [
+      "Single-player",
+      "Multiplayer",
+      "Steam Achievements",
+      "Full controller support",
+    ],
+    tags: ["Strategy", "Real-Time", "Medieval", "City Builder"],
+    aboutGame:
+      "The Settlers®: New Allies is a real-time strategy game developed by Blue Byte and published by Ubisoft. In the game, players must build and manage a medieval settlement while competing against other players for resources and territory.",
+    gameFeatures: [
+      "Build and manage a medieval settlement",
+      "Compete against other players for resources and territory",
+      "Experience a rich and detailed world",
+    ],
+    heroImages: [
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/1394460/ss_7d5a25d6b",
+    ],
+    images: [
+      "https://cdn.cloudflare.steamstatic.com/steam/apps/1394460/ss_7d5a25d6b",
     ],
   });
 }

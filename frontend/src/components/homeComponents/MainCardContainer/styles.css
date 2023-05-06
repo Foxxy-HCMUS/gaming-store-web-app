@@ -1,0 +1,55 @@
+
+  .slick-track {
+    display: flex;
+    /* padding: 20px !important; */
+    /* gap: 1rem !important; */
+  }
+
+  .slick-track:before {
+    gap: 4px !important;
+  }
+  
+
+  .slick-slider {
+    display: flex;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  .slick-slide  {
+    padding: 0 10px !important;
+  }
+  
+  .slick-slide:last-child {
+    padding-right: 0;
+  }
+  .slick-slide img {
+    display: block;
+  }
+  /* .slick-list {
+    padding: 0px !important;
+  } */
+
+  .slick-prev:focus,
+  .slick-prev:hover,
+  .slick-next:hover,
+  .slick-next:focus {
+    color: transparent;
+    outline: none;
+    background: tomato;
+  }
+  /* .card {
+    display: flex;
+    justify-content: space-between;
+  } */
+
+  /* .hidden {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+  } */
+  
