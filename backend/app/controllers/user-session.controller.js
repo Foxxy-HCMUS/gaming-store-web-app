@@ -151,21 +151,7 @@
 //         });
 // };
 
-// exports.allAccess = (req, res) => {
-//     res.status(200).send("Public content.");
-// };
-
-// exports.userBoard = (req, res) => {
-//     res.status(200).send("User Content.");
-// };
-
-// exports.adminBoard = (req, res) => {
-//     res.status(200).send("Admin Content.");
-// };
-
-// exports.moderatorBoard = (req, res) => {
-//     res.status(200).send("Moderator Content.");
-// };
+const db = require("../models");
 
 exports.allAccess = (req, res) => {
   res.status(200).send("Public Content.");
@@ -181,4 +167,16 @@ exports.adminBoard = (req, res) => {
   
 exports.moderatorBoard = (req, res) => {
     res.status(200).send("Moderator Content.");
+};
+
+// check username availability
+exports.checkUsernameAvailability = async (req, res) => {
+  const { username } = req.body;
+
+  const existingUser = await db.user.findOne({ where: { username } });
+  if (existingUser) {
+    res.json({ status: false, message: 'Username is already taken' });
+  } else {
+    res.json({ status: true, message: 'Username is available' });
+  }
 };

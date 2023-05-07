@@ -8,6 +8,8 @@ module.exports = app => {
 
     router.get("/user", [authJwt.verifyToken], controller.userBoard);
 
+    router.post("/user/username-availability", controller.checkUsernameAvailability);
+
     router.get("/mod", [authJwt.verifyToken], controller.moderatorBoard);
 
     router.get("/admin", [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
@@ -20,5 +22,5 @@ module.exports = app => {
         next();
     });
 
-    app.use('/api/test', router);
+    app.use('/', router);
 };
