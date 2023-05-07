@@ -1,0 +1,72 @@
+/* .card {
+  background-color: #f7f7f7;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile_img_card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.login_form {
+  max-width: 350px;
+  margin: auto;
+}
+
+.form_group {
+    color: black;
+}
+
+.btn span{
+    margin-top: 10px;
+} */
+
+/* .main {
+    color: black;
+}
+
+.container {
+
+} */
+
+.container {
+  display: flex;
+  /* background-color: var(--light-black); */
+  flex-direction: column;
+  background-color: var(--light-black);
+  /* padding: 50px 15px; */
+  /* align-items: center; */
+  /* gap: 30px; */
+}
+
+.main {
+  display: flex;
+  /* background-color: var(--light-black); */
+  /* height: 80vh; */
+  flex-direction: column;
+  /* gap: 30px; */
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 470px;
+    margin: 50px auto;
+    /* padding: 45px 60px 20px; */
+    border-radius: 4px;
+  }
+}
+
+
