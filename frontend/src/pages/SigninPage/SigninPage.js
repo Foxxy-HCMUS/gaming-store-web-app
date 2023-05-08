@@ -3,8 +3,6 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
-import AuthService from "../../services/auth.service";
-
 import { withRouter } from '../../common/with-router';
 
 import { useState } from "react";
@@ -29,6 +27,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { StyledEngineProvider } from "@mui/material/styles";
 import theme from "../../components/customTheme/customTheme";
+import { Alert, Snackbar } from "@mui/material";
+// import MuiAlert from '@material-ui/lab/Alert';
 
 
 // import { createMuiTheme, MuiThemeProvider } from '@mui/core/styles';
@@ -54,18 +54,51 @@ function Copyright(props) {
 // });
 
 
-export default function SignInPage() {
+export default function SignInPage(props) {
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
+  const [errors, setErrors] = useState({
+    username: '',
+    password: ''
+  });
+
+  const [loginError, setLoginError] = useState('');
+
+  // const [open, setOpen] = useState(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // console.log({
     //   username: data.get('username'),
     //   password: data.get('password'),
     // });
-    dispatch(login({
-      'username': data.get('username'), 'password': data.get('password')}));
+    let usernameError = '';
+    let passwordError = '';
+
+    if (data.get('username').length < 4) {
+      usernameError = 'Username must be at least 4 characters';
+    }
+
+    if (data.get('password').length < 1) {
+      passwordError = 'Password must not be left blank';
+    }
+
+    setErrors({ username: usernameError, password: passwordError });
+
+    if (usernameError !== '' || passwordError !== '') {
+      console.log('There are errors in the form');
+      return;
+    }
+
+    try {
+      await dispatch(login({
+        'username': data.get('username'), 'password': data.get('password')
+      }));
+      props.setSnackbarOpen(true);
+    } catch (error) {
+      setLoginError('Failed to login. Please check your credentials and try again.');
+    }
   };
 
 
@@ -74,6 +107,14 @@ export default function SignInPage() {
       return <Navigate to="/" />;
   }
 
+  // handle close for snackbar
+  // const handleClose = (event, reason) => {
+  //   if (reason === 'clickaway') {
+  //     return;
+  //   }
+
+  //   setOpen(false);
+  // };
 
   return (
     <div className={styles.container}>
@@ -96,9 +137,11 @@ export default function SignInPage() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {loginError && <Alert severity="error">{loginError}</Alert>}
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <ThemeProvider theme={theme}>
           <TextField
+              className={styles.textfield}
               margin="normal"
               required
               fullWidth
@@ -107,10 +150,15 @@ export default function SignInPage() {
               name="username"
               autoComplete="username"
               autoFocus
+              // onChange={UserNameInputHandler}
+              error={!!errors.username}
+              helperText={errors.username}
+              sx={{ input: { cursor: 'pointer' } }}
             />
             </ThemeProvider>
             <ThemeProvider theme={theme}>
             <TextField
+              className={styles.textfield}
               margin="normal"
               required
               fullWidth
@@ -119,6 +167,9 @@ export default function SignInPage() {
               type="password"
               id="password"
               autoComplete="current-password"
+              // onChange={PasswordInputHandler}
+              error={!!errors.password}
+              helperText={errors.password}
             />
             </ThemeProvider>
             <ThemeProvider theme={theme}>
@@ -149,6 +200,19 @@ export default function SignInPage() {
             </Grid>
           </Box>
         </Box>
+        {/* <ThemeProvider theme={theme}>
+          <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+            <Alert onClose={handleClose} severity="success" variant="filled">
+              Login successful!
+            </Alert>
+          </Snackbar>
+        </ThemeProvider>  */}
+        <ThemeProvider theme={theme}>
+          <Typography variant="body2" color="error">
+            {loginError}
+          </Typography>
+        </ThemeProvider>
+
         <ThemeProvider theme={theme}>
         <Copyright sx={{ mt: 8, mb: 4 }} />
         </ThemeProvider>

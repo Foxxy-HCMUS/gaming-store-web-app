@@ -155,34 +155,39 @@ import { fetchGames } from "./store/slices/dataSlice";
 import axios from "axios";
 import DistributionPage from "./pages/DistributionPage";
 import SupportPage from "./pages/SupportPage";
-import SigninPage from "./pages/SigninPage";
 import NavBar from "./components/navBar";
 
 import LanguageContext from "./LanguageContext";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-});
+import SigninPage from './pages/SigninPage';
+import { fetchUser } from "./store/actions";
+import { Alert, Snackbar } from "@mui/material";
+// import theme from "./components/customTheme/customTheme";
 
 export default function App() {
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
-  const showNavBar = pathname !== "/signin";
+  const location = useLocation();
+  const [showNavBar, setShowNavBar ] = useState(true);
+  // console.log(location.pathname)
+  const notShow = ["/signin", "/register", "/forgot-password", "/reset-password", "/verify-email"]
+
+  useEffect(() => {
+    if (notShow.includes(location.pathname)) {
+      setShowNavBar(false);
+    } else {
+      setShowNavBar(true);
+    }
+  }, [location]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [location.pathname]);
 
   useEffect(() => {
     // dispatch(fetchUser());
     dispatch(fetchGames());
   }, [dispatch]);
-
-  const landingPageData = useSelector((state) => state.landingPageData);
 
   // const [language, setLanguage] = useState("en");
 
@@ -195,12 +200,30 @@ export default function App() {
   // };
 
   // console.log(LanguageContext)
+  // const data = AuthService.login("mod", "modtest");
+  // console.log(data);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setSnackbarOpen(false);
+  };
   return (
     // <ThemeProvider theme={theme}>
     <>
       <div className="App">
-        {showNavBar && <NavBar />}
+        <NavBar/>
+        {showNavBar && <SubNavbar/>} 
+        {/* <ThemeProvider theme={theme}> */}
+          <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+            <Alert onClose={handleSnackbarClose} severity="success">
+              Login successful!
+            </Alert>
+          </Snackbar>
+        {/* </ThemeProvider> */}
         <Routes>
           <Route exact path="/" element={<HomePage />} />
 
@@ -208,11 +231,11 @@ export default function App() {
 
           <Route path="/support" element={<SupportPage />} />
 
-          <Route path="/signin" element={<SigninPage />} />
+          <Route path="/signin" element={<SigninPage setSnackbarOpen={setSnackbarOpen}/>} />
 
-          <Route path="/logout" element={<SigninPage />} />
+          {/* <Route path="/logout" element={<SigninPage />} /> */}
 
-          {/* <Route path="/register" element={<SignupPage />} /> */}
+          <Route path="/register" element={<Register />} />
 
           {/* <Route exact path="/signup/display-name">
           <SignupPage />
