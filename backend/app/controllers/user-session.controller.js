@@ -2,10 +2,9 @@
 // const User_session = db.user_session;
 // const Op = db.Sequelize.Op;
 
-
 // // Create and Save a new user
 // exports.create = (req, res) => {
-//     // Validate request 
+//     // Validate request
 //     if (!req.body.email) {
 //         res.status(400).send(
 //             {
@@ -20,7 +19,7 @@
 //         password: req.body.password,
 //     };
 
-//     // Save user in the database 
+//     // Save user in the database
 //     User_session.User.create(user_session)
 //         .then(data => {
 //             res.send(data);
@@ -145,38 +144,132 @@
 //         })
 //         .catch(err => {
 //             res.status(500).send({
-//                 message:   
+//                 message:
 //                     err.message || "Some error occurred while retrieving users."
 //             });
 //         });
 // };
 
 const db = require("../models");
+const Wishlist = db.wishlist;
+const User = db.user;
+const Game = db.game;
+const sequelize = require("sequelize");
 
 exports.allAccess = (req, res) => {
   res.status(200).send("Public Content.");
 };
-  
+
 exports.userBoard = (req, res) => {
   res.status(200).send("User Content.");
 };
-  
+
 exports.adminBoard = (req, res) => {
-    res.status(200).send("Admin Content.");
+  res.status(200).send("Admin Content.");
 };
-  
+
 exports.moderatorBoard = (req, res) => {
-    res.status(200).send("Moderator Content.");
+  res.status(200).send("Moderator Content.");
+};
+
+exports.fetchUser = async (req, res) => {
+  User.findByPk(req.userId).then((user) => {
+    res.status(200).send({
+      "id": user.id,
+      "username": user.username,
+      "email": user.email,
+      "cart": user.cart,
+      "order": user.order,
+      "wishlist": user.wishlist,
+      "firstName": user.firstName,
+      "lastName": user.lastName,
+    });
+  });
 };
 
 // check username availability
 exports.checkUsernameAvailability = async (req, res) => {
   const { username } = req.body;
 
-  const existingUser = await db.user.findOne({ where: { username } });
+  const existingUser = await User.findOne({ where: { username } });
   if (existingUser) {
-    res.json({ status: false, message: 'Username is already taken' });
+    res.json({ status: false, message: "Username is already taken" });
   } else {
-    res.json({ status: true, message: 'Username is available' });
+    res.json({ status: true, message: "Username is available" });
+  }
+};
+
+exports.getWishlist = async (req, res) => {
+  const userId = req.userId;
+  try {
+    const user = await User.findOne({
+      where: { id: userId },
+    });
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+
+    res.status(200).json(user.wishlist);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.addToWishlist = async (req, res) => {
+  const userId = req.userId;
+  const { gameId } = req.body;
+
+  try {
+    const user = await User.findOne({
+      where: { id: userId },
+    });
+    if (!user){
+      return res.status(404).json({ message: "User not found" });
+    }
+    // parse user.wishlist to turn it into array before appendding new game
+    const wishlist = JSON.parse(user.wishlist || "[]");
+    if (wishlist.includes(gameId)) {
+      return res.status(400).json({ message: "Product already in wishlist." });
+    }
+    const updatedWishlist = [...wishlist, gameId];
+    const updatedUser = await user.update({ wishlist: JSON.stringify(updatedWishlist)}, { returning: true });
+
+    // another way to update
+    // await user.addToWishlist(gameId);
+    res.status(200).json({ message: 'Product added to wishlist.', user: updatedUser });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+exports.removeFromWishlist = async (req, res) => {
+  const userId = req.userId;
+  const { gameId } = req.body;
+
+  try {
+    const user = await User.findOne({
+      where: { id: userId },
+    });
+    if (!user){
+      return res.status(404).json({ message: "User not found" });
+    }
+    // parse user.wishlist to turn it into array before appendding new game
+    const wishlist = JSON.parse(user.wishlist || "[]");
+    if (!wishlist.includes(gameId)) {
+      return res.status(400).json({ message: "Game is not in wishlist." });
+    }
+    const updatedWishlist = wishlist.filter((id) => id !== gameId);
+    const updatedUser = await user.update({ 
+      wishlist: JSON.stringify(updatedWishlist)}, 
+    { returning: true });
+
+    // another way to update
+    // await user.addToWishlist(gameId);
+    res.status(200).json({ message: 'Product added to wishlist.', user: updatedUser });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
   }
 };

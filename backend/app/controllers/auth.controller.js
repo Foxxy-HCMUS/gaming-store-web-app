@@ -81,6 +81,11 @@ exports.signin = (req, res) => {
           id: user.id,
           username: user.username,
           email: user.email,
+          // firstName: user.firstName,
+          // lastName: user.lastName,
+          // wishlist: user.wishlist,
+          // cart: user.cart,
+          // order: user.order,
           roles: authorities,
           accessToken: token,
           refreshToken: refreshToken,
@@ -102,7 +107,7 @@ exports.refreshToken = async (req, res) => {
   try {
     let refreshToken = await RefreshToken.findOne({ where: { token: requestToken } });
 
-    console.log(refreshToken)
+    // console.log(refreshToken)
 
     if (!refreshToken) {
       res.status(403).json({ message: "Refresh token is not in database!" });

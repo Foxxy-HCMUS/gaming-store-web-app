@@ -1,28 +1,42 @@
 module.exports = (sequelize, Sequelize) => {
-  const User = sequelize.define("user", {
-    username: {
-      type: Sequelize.STRING, 
-      allowNull: false,
-      unique: true
+  const User = sequelize.define(
+    "user",
+    {
+      username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      password: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      firstName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      wishlist: {
+        type: Sequelize.JSON,
+        // defaultValue: [],
+      },
+      cart: {
+        type: Sequelize.JSON,
+        // defaultValue: [],
+      },
+      order: {
+        type: Sequelize.JSON,
+      },
     },
-    email: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true,
-    },
-    password: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    firstName: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    lastName: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    }
-  });
+  );
 
   const Session = sequelize.define("session", {
     token: {
@@ -35,4 +49,4 @@ module.exports = (sequelize, Sequelize) => {
   Session.belongsTo(User);
 
   return { User, Session };
-}
+};

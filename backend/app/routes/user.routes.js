@@ -8,11 +8,19 @@ module.exports = app => {
 
     router.get("/user", [authJwt.verifyToken], controller.userBoard);
 
+    router.get("/user/profile", [authJwt.verifyToken], controller.fetchUser);
+
     router.post("/user/username-availability", controller.checkUsernameAvailability);
 
-    router.get("/mod", [authJwt.verifyToken], controller.moderatorBoard);
+    router.get("/mod", [authJwt.verifyToken, authJwt.isModerator], controller.moderatorBoard);
 
     router.get("/admin", [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
+
+    router.get("/wishlist", [authJwt.verifyToken], controller.getWishlist);
+
+    router.post("/wishlist", [authJwt.verifyToken], controller.addToWishlist);
+
+    router.delete("/wishlist", [authJwt.verifyToken], controller.removeFromWishlist);
 
     app.use(function (req, res, next) {
         res.header(
@@ -22,5 +30,5 @@ module.exports = app => {
         next();
     });
 
-    app.use('/', router);
+    app.use('', router);
 };
