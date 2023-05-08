@@ -1,3 +1,3 @@
-import SignupPage from "./signupOptions.component";
+import Register from './register.component';
 
-export default SignupPage;
+export default Register;

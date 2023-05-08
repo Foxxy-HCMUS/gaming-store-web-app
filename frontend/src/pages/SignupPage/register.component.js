@@ -223,14 +223,26 @@ import { useNavigate } from "react-router-dom";
 import theme from "../../components/customTheme/customTheme";
 import styles from "./register.module.css";
 import { postUser } from "../../store/actions";
+import { register } from "../../store/slices/authSlice";
+import { FormControlLabel } from "@mui/material";
+import AuthService from "../../services/auth.service";
 
 const Register = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.auth.user);
   const [data, setData] = useState({
-    displayName: "",
+    username: "",
     email: "",
     firstName: "",
     lastName: "",
+    password: "",
+  });
+
+  const [errors, setErrors] = useState({
+    username: "",
+    email: "",
+    firstName: "",
+    lastName: "",
+    password: "",
   });
 
   const handleInput = (e) => {
@@ -240,17 +252,55 @@ const Register = () => {
         [e.target.name]: e.target.value,
       };
     });
+
+    // Add validation for each field
+    const name = e.target.name;
+    const value = e.target.value;
+    switch (name) {
+      case "email":
+        if (!value.match(/^\S+@\S+\.\S+$/)) {
+          setErrors((prev) => ({ ...prev, email: "Email must be valid." }));
+        } else {
+          setErrors((prev) => ({ ...prev, email: "" }));
+        }
+        break;
+      case "firstName":
+        if (value.length < 2) {
+          setErrors((prev) => ({ ...prev, firstName: "First name must be at least 2 characters long." }));
+        } else {
+          setErrors((prev) => ({ ...prev, firstName: "" }));
+        }
+        break;
+      case "lastName":
+        if (value.length < 2) {
+          setErrors((prev) => ({ ...prev, lastName: "Last name must be at least 2 characters long." }));
+        } else {
+          setErrors((prev) => ({ ...prev, lastName: "" }));
+        }
+        break;
+      case "password":
+        if (value.length < 8) {
+          setErrors((prev) => ({ ...prev, password: "Password must be at least 8 characters long." }));
+        } else {
+          setErrors((prev) => ({ ...prev, password: "" }));
+        }
+        break;
+      default:
+        break;
+    }
   };
 
   useEffect(() => {
-    setData({
-      email: user.email,
-      lastName: user.lastName,
-      firstName: user.firstName,
-    });
+    if (user) {
+      setData({
+        email: user.email,
+        lastName: user.lastName,
+        firstName: user.firstName,
+      });
+    }
   }, [user]);
 
-  const [displayNameAvailabilty, setDisplayNameAvailabilty] = useState({
+  const [UserNameAvailability, setUserNameAvailability] = useState({
     message: "",
     status: false,
     loading: false,
@@ -258,55 +308,61 @@ const Register = () => {
 
   const [error, setError] = useState(false);
 
-  const checkDisplayNameAvailability = async () => {
-    setDisplayNameAvailabilty((prev) => ({ ...prev, loading: true }));
+  const checkUserNameAvailability = async () => {
+    setUserNameAvailability((prev) => ({ ...prev, loading: true }));
     try {
-      const { data: displayNameData } = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/user/display-name-availability`,
+      const { data: UserNameAvailability } = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/user/username-availability`,
         {
-          displayName: data.displayName,
+          username: data.username,
         },
-        {
-          withCredentials: true,
-        }
       );
 
-      setDisplayNameAvailabilty({ ...displayNameData, loading: false });
-      setError(!displayNameData.status);
+      // console.log(UserNameAvailability)
+
+      setUserNameAvailability({ ...UserNameAvailability, loading: false });
+      setError(!UserNameAvailability.status);
+      if (data.username.length < 4 || data.username.length > 24) {
+        setErrors((prev) => ({ ...prev, username: "Username must be 4-20 characters long." }));
+      } else {
+        setErrors((prev) => ({ ...prev, username: "" }));
+      }
     } catch (err) {
-      setDisplayNameAvailabilty((prev) => ({ ...prev, loading: false }));
+      setUserNameAvailability((prev) => ({ ...prev, loading: false }));
     }
   };
 
-  const debounced = useDebouncedCallback(checkDisplayNameAvailability, 500);
+  const debounced = useDebouncedCallback(checkUserNameAvailability, 500);
 
-  // Debouncing for displayName input
-  const displayNameInputHandler = (e) => {
+  // Debouncing for userName input
+  const UserNameInputHandler = (e) => {
     const { value } = e.target;
 
     setData((prev) => {
       return {
         ...prev,
-        displayName: value,
+        username: value,
       };
     });
     if (value.length > 0) debounced();
   };
 
   const dispatch = useDispatch();
-  let history = useNavigate();
+  let navigate = useNavigate();
+  // console.log(test);
+  // dispatch(register(test));
   const postUserData = () => {
-    dispatch(postUser(data));
-    history.push("/");
+    // dispatch(postUser(data));
+    dispatch(register(data));
+    navigate("/");
   };
+
+  const [checked, setChecked] = useState(false);
 
   return (
     <div className={styles.container}>
-      <div className={styles.icon}>
-        <img src="/icons/Epic_Games_white.svg" alt="logo" />
-      </div>
       <div className={styles.form}>
-        <p>Sign Up</p>
+        <p className={styles.signup_text}>Sign Up</p>
         <div className={styles.names}>
           <ThemeProvider theme={theme}>
             <TextField
@@ -316,7 +372,10 @@ const Register = () => {
               value={data.firstName}
               onChange={handleInput}
               name="firstName"
-              defaultValue={user.firstName}
+              defaultValue={user ? data.firstName : ''}
+              autoFocus
+              error={errors.firstName !== ""}
+              helperText={errors.firstName}
             />
           </ThemeProvider>
           <ThemeProvider theme={theme}>
@@ -324,35 +383,57 @@ const Register = () => {
               required
               style={{ width: "100%" }}
               label="Last Name"
-              defaultValue={user.lastName}
+              defaultValue={user ? user.lastName : ''}
               name="lastName"
               value={data.lastName}
               onChange={handleInput}
+              error={errors.lastName !== ""}
+              helperText={errors.lastName}
             />
           </ThemeProvider>
         </div>
         <ThemeProvider theme={theme}>
           <TextField
-            error={error}
+            // disabled
             required
             style={{ width: "100%" }}
-            label="Display Name"
-            value={data.displayName}
-            name="displayName"
-            onChange={displayNameInputHandler}
-            helperText={displayNameAvailabilty.message}
+            label="Email"
+            value={data.email}
+            onChange={handleInput}
+            defaultValue={user ? user.email : ''}
+            name="email"
+            error={errors.email !== ""}
+            helperText={errors.email}
+          />
+        </ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <TextField
+            required
+            style={{ width: "100%" }}
+            label="Username"
+            value={data.username}
+            defaultValue={user ? user.username : ''}
+            name="username"
+            onChange={UserNameInputHandler}
+            error={errors.username !== '' || error}
+            helperText={errors.username !== '' ? errors.username : error ? UserNameAvailability.message : ''}
             autoComplete={false}
           />
         </ThemeProvider>
         <ThemeProvider theme={theme}>
           <TextField
-            disabled
+            // disabled
             required
             style={{ width: "100%" }}
-            label="email"
-            value={data.email}
-            defaultValue={user.email}
-            name="email"
+            label="Password"
+            value={data.password}
+            defaultValue={user ? user.password : ''}
+            name="password"
+            type="password"
+            id="password"
+            onChange={handleInput}
+            error={errors.password !== ""}
+            helperText={errors.password}
           />
         </ThemeProvider>
         <div className={styles.checkboxes}>
@@ -362,12 +443,11 @@ const Register = () => {
                 padding: 0,
 
                 color: "gray",
-                "& .MuiSvgIcon-root": { fontSize: 28 },
+                "& .MuiSvgIcon-root": { fontSize: 22 },
               }}
             />
             <p>
-              I would like to receive news, surveys and special offers from Epic
-              Games.
+              I would like to receive news, surveys and special offers from Play Archive.
             </p>
           </div>
 
@@ -376,8 +456,9 @@ const Register = () => {
               sx={{
                 padding: 0,
                 color: "gray",
-                "& .MuiSvgIcon-root": { fontSize: 28 },
+                "& .MuiSvgIcon-root": { fontSize: 22 },
               }}
+              onClick={() => setChecked(!checked)}
             />
             <p>
               I have read and agree to the{" "}
@@ -387,8 +468,8 @@ const Register = () => {
         </div>
         <div>
           <button
-            onClick={displayNameAvailabilty.status ? postUserData : null}
-            style={!displayNameAvailabilty.status ? { opacity: "0.5" } : null}
+            onClick={(UserNameAvailability.status && checked) ? postUserData : null}
+            style={(!UserNameAvailability.status || Object.values(errors).some((error) => error !== "") || !checked) ? { opacity: "0.5" } : null}
             className={styles.button}
           >
             CONTINUE

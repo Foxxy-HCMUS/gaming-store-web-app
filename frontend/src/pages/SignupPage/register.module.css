@@ -1,7 +1,7 @@
 .container {
   display: flex;
   background-color: var(--light-black);
-  height: 100vh;
+  /* height: 100vh; */
   flex-direction: column;
   padding: 50px 15px;
   align-items: center;
@@ -15,9 +15,14 @@
 .form {
   display: flex;
   background-color: var(--light-black);
-  height: 100vh;
+  /* height: 80vh; */
   flex-direction: column;
   gap: 30px;
+}
+
+.signup_text {
+  font-size: 1.5rem;
+  margin: 0 auto;
 }
 
 .names {
@@ -28,7 +33,7 @@
 .checkboxes {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .checkbox {
@@ -38,6 +43,11 @@
   gap: 15px;
   line-height: 1.25rem;
   letter-spacing: 0.1px;
+}
+
+.checkbox p {
+  margin-bottom: 0;
+  /* display: inline-block; */
 }
 
 .underline {
