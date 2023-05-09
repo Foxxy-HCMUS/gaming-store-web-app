@@ -25,11 +25,12 @@
   background: rgba(255, 255, 255, 0.1);
   padding: 6px;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .icon:hover {
   background-color: #444343;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .heading_cont {
