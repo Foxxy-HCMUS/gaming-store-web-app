@@ -5,41 +5,42 @@ import { useNavigate } from "react-router-dom";
 import styles from "./GameCard.module.css";
 
 import PriceComponent from "../../priceComponent/PriceComponent";
-import rootReducer from './../../../store/reducer';
+// import rootReducer from './../../../store/reducer';
 
 const GameCard = (props) => {
   const dispatch = useDispatch();
 
-  // const user = useSelector((state) => state.rootReducer.user);
-  // const wishlist = user.wishlist;
-  // const [isWishlisted, setWishlisted] = useState(false);
+  const user = useSelector((state) => state.user);
+  const wishlist = ( user !== undefined && user.wishlist !== null ) ? user.wishlist : [];
+  const [isWishlisted, setWishlisted] = useState(false);
 
+  // console.log(wishlist)
   // useEffect(() => {
   //     if (wishlist.includes(props.id)) {
   //         setWishlisted(true);
   //     }
-  // }, [user.displayName]);
+  // }, [user.wishlist]);
 
-  // const history = useNavigate();
+  const navigate = useNavigate();
 
-  // const handleWishlist = (e) => {
-  //     e.preventDefault();
-  //     if (!wishlist) {
-  //         history.push("/signin");
-  //     }
-  //     setWishlisted(true);
-
-  //     dispatch(addToWishlist(props.id));
-  // };
+  const handleWishlist = (e) => {
+      e.preventDefault();
+      if (!wishlist) {
+          navigate("/signin");
+      }
+      setWishlisted(true);
+      
+      dispatch(addToWishlist(props.id));
+  };
 
   return (
     <div className={styles.card}>
       <div className={styles.image_div}>
         <img src={props.image} alt={props.title} />
-        {/* <div onClick={handleWishlist} className={styles.icon}>
-                <img src={isWishlisted ? "/icons/add_to_wishlist.svg" :
+        <div onClick={handleWishlist} className={styles.icon}>
+                <img src={!isWishlisted ? "/icons/add_to_wishlist.svg" :
                         "/icons/already_in_wishlist.svg" } alt="icon" />
-                </div> */}
+                </div>
       </div>
       <div className={styles.info}>
         <p className={styles.title}>{props.title}</p>
