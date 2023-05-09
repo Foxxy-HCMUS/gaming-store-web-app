@@ -1,8 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./navBar.module.css";
-import { register, signin, logout } from "../../store/slices/authSlice";
+import { register, signin } from "../../store/slices/authSlice";
+import { setUser, logout } from "../../store/slices/authSlice";
+
 
 // const NavBar = () => {
 //   const dispatch = useDispatch();
@@ -220,6 +222,8 @@ import { StyledEngineProvider } from "@mui/material/styles";
 import AddBusinessRoundedIcon from "@mui/icons-material/AddBusinessRounded";
 // import NavLink from "./navLinkComponent";
 import LanguageIcon from "@mui/icons-material/Language";
+import { withRouter } from "../../common/with-router";
+import { logoutUser } from "../../store/actions";
 // import LanguageContext from "../../LanguageContext";
 
 // const LanguageButton = ({ onClick }) => {
@@ -239,7 +243,7 @@ const NavBar = () => {
   const location = useLocation(); // setting the default active tab in navbar
   const navigate = useNavigate();
 
-  const [value, setValue] = useState(location.pathname);
+  const [value, setValue] = useState('/');
   // const theme = useTheme();
   // console.log(theme);
   // const isMatch = useMediaQuery(theme.breakpoints.down("md"));
@@ -249,11 +253,17 @@ const NavBar = () => {
     setValue(value);
   };
 
+  useEffect(() => {
+    setValue(location.pathname);
+  });
+
   // const { language } = useContext(LanguageContext);
 
   const dispatch = useDispatch();
 
+  // const currentUser = useSelector((state) => state.auth.user);
   const currentUser = useSelector((state) => state.auth.user);
+  console.log(currentUser); 
 
   const [logoutModal, setLogOutModal] = useState(false);
 
@@ -267,9 +277,11 @@ const NavBar = () => {
     setToggle(false);
   };
 
+  // handle Sign in
 
   const handleSignin = () => {
     navigate("/singin");
+    setValue("/singin");
   };
 
   // handle logout action
@@ -287,11 +299,10 @@ const NavBar = () => {
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
-    console.log(event.currentTarget);
   };
 
   const handleMenuClose = () => {
-    console.log("close menu");
+    // console.log("close menu");
     setAnchorEl(null);
   };
 
@@ -304,6 +315,7 @@ const NavBar = () => {
           sx={[{ background: "#2a2a2a" }, { textAlign: "center" }]}
           position="static"
           className={styles.navbar}
+          id="navbar"
         >
           <Toolbar className={styles.toolbar} variant="dense">
             {/* <AddBusinessRoundedIcon sx={{ transform: "scale(2)" }} /> */}
@@ -469,4 +481,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default withRouter(NavBar);

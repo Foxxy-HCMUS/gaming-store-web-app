@@ -10,6 +10,7 @@ const SubNavbar = () => {
   const [accoridanText, setAccoridanText] = useState("Discover");
 
   const [isAccordianOpen, setAccordianState] = useState(false);
+  // const user = useSelector((state) => state.auth.user);
   const user = useSelector((state) => state.auth.user);
 
   return (
@@ -90,14 +91,14 @@ const SubNavbar = () => {
         </div>
         {user ? (
           <>
-          <div className={styles.left_items}>
-            <Link to="/wishlist">
-              <div className={styles.wishlist}>Wishlist</div>
-            </Link>
-            <Link to="/cart">
-              <div className={styles.cart}>Cart</div>
-            </Link>
-          </div>
+            <div className={styles.left_items}>
+              <Link to="/wishlist">
+                <div className={styles.wishlist}>Wishlist</div>
+              </Link>
+              <Link to="/cart">
+                <div className={styles.cart}>Cart</div>
+              </Link>
+            </div>
           </>
         ) : null}
       </div>
