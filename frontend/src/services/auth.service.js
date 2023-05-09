@@ -10,23 +10,36 @@ class AuthService {
         password
       })
       .then(response => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
-
+        // if (response.data.accessToken) {
+        //   localStorage.setItem("user", JSON.stringify(response.data));
+        // }
+        // console.log(response.data);
         return response.data;
       });
+  }
+
+  async fetchUser(token) {
+    const response = await axios.get(`${API_URL}/users/me`, {
+      headers: { "x-access-token": token },
+    });
+    return response.data;
   }
 
   logout() {
     localStorage.removeItem("user");
   }
 
-  register(username, email, password) {
+  register(username, email, password, firstName, lastName) {
+    // console.log(username, email, password, firstName, lastName);
     return axios.post(API_URL + "signup", {
       username,
       email,
-      password
+      password,
+      firstName,
+      lastName
+    })
+    .then(response => {
+      return response.data;
     });
   }
 

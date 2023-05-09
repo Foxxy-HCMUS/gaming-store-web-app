@@ -95,7 +95,6 @@ export default function SignInPage(props) {
       await dispatch(login({
         'username': data.get('username'), 'password': data.get('password')
       }));
-      props.setSnackbarOpen(true);
     } catch (error) {
       setLoginError('Failed to login. Please check your credentials and try again.');
     }
@@ -104,8 +103,10 @@ export default function SignInPage(props) {
 
   const { isLoggedIn } = useSelector(state => state.auth);
   if (isLoggedIn) {
-      return <Navigate to="/" />;
+    props.setSnackbarOpen(true);
+    return <Navigate to="/" />;
   }
+  console.log('isLoggedIn', !loginError);
 
   // handle close for snackbar
   // const handleClose = (event, reason) => {
@@ -137,7 +138,6 @@ export default function SignInPage(props) {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          {loginError && <Alert severity="error">{loginError}</Alert>}
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <ThemeProvider theme={theme}>
           <TextField
@@ -207,6 +207,7 @@ export default function SignInPage(props) {
             </Alert>
           </Snackbar>
         </ThemeProvider>  */}
+        {(loginError) && <Alert severity="error">{loginError}</Alert>}
         <ThemeProvider theme={theme}>
           <Typography variant="body2" color="error">
             {loginError}

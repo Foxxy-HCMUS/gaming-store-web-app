@@ -279,8 +279,8 @@ const Register = () => {
         }
         break;
       case "password":
-        if (value.length < 8) {
-          setErrors((prev) => ({ ...prev, password: "Password must be at least 8 characters long." }));
+        if (value.length < 1) {
+          setErrors((prev) => ({ ...prev, password: "Password must not be left blank." }));
         } else {
           setErrors((prev) => ({ ...prev, password: "" }));
         }
