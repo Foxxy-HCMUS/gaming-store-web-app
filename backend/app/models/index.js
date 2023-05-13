@@ -24,6 +24,9 @@ db.user = require("./user-session.model.js")(sequelize, Sequelize).User;
 db.role = require("./role.model.js")(sequelize, Sequelize);
 db.refreshToken = require("./refreshToken.model.js")(sequelize, Sequelize);
 db.game = require("./game.model.js")(sequelize, Sequelize);
+db.order = require("./order.model.js")(sequelize, Sequelize);
+db.order_games = require("./order_games.model.js")(sequelize, Sequelize);
+// db.user_roles = require("./user_roles.model.js")(sequelize, Sequelize);
 // db.wishlist = require("./wishlist.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
@@ -42,13 +45,30 @@ db.refreshToken.belongsTo(db.user, {
     foreignKey: "userId", targetKey: "id"
 });
 
-db.user.belongsTo(db.refreshToken, {
-    foreignKey: "userId", targetKey: "id"
+db.user.hasOne(db.refreshToken, {
+    foreignKey: "userId", sourceKey: "id"
 });
 
 // db.wishlist.belongsTo(db.user);
 // db.wishlist.belongsTo(db.game);
+db.order.belongsTo(db.user, {
+    foreignKey: "userId", targetKey: "id"
+});
+db.user.hasMany(db.order, {
+    foreignKey: "userId", 
+    sourceKey: "id"
+});
 
+// db.order.belongsToMany(db.game, { 
+//     through: 'OrderGames',
+//     foreignKey: 'orderId',
+//     otherKey: 'gameId',
+// });
+// db.game.belongsToMany(db.order, { 
+//     through: 'OrderGames',
+//     foreignKey: 'gameId',
+//     otherKey: 'orderId',
+// });
 
 
 db.ROLES = ["user", "admin", "moderator"];

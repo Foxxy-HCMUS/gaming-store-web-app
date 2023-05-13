@@ -32,9 +32,9 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.JSON,
         // defaultValue: [],
       },
-      order: {
-        type: Sequelize.JSON,
-      },
+      // order: {
+      //   type: Sequelize.JSON,
+      // },
     },
   );
 

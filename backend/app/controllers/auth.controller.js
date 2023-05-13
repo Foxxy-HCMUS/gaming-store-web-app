@@ -78,15 +78,10 @@ exports.signin = (req, res) => {
           authorities.push("ROLE_" + roles[i].name.toUpperCase());
         }
         res.status(200).send({
-          id: user.id,
+          // id: user.id,
           username: user.username,
           email: user.email,
-          // firstName: user.firstName,
-          // lastName: user.lastName,
-          // wishlist: user.wishlist,
-          // cart: user.cart,
-          // order: user.order,
-          roles: authorities,
+          // roles: authorities,
           accessToken: token,
           refreshToken: refreshToken,
         });

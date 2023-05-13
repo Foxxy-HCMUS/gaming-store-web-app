@@ -237,7 +237,7 @@ exports.addToWishlist = async (req, res) => {
 
     // another way to update
     // await user.addToWishlist(gameId);
-    res.status(200).json({ message: 'Product added to wishlist.', user: updatedUser });
+    res.status(200).json({ message: 'Product added to wishlist.', wishlist: updatedWishlist });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
@@ -267,7 +267,7 @@ exports.removeFromWishlist = async (req, res) => {
 
     // another way to update
     // await user.addToWishlist(gameId);
-    res.status(200).json({ message: 'Product added to wishlist.', user: updatedUser });
+    res.status(200).json({ message: 'Product removed from wishlist.', wishlist: updatedWishlist });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
