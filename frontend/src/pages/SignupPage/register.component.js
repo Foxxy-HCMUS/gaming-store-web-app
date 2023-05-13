@@ -354,7 +354,7 @@ const Register = () => {
   const postUserData = () => {
     // dispatch(postUser(data));
     dispatch(register(data));
-    navigate("/");
+    navigate("/signin");
   };
 
   const [checked, setChecked] = useState(false);

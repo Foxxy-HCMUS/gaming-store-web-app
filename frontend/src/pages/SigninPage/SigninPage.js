@@ -28,6 +28,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { StyledEngineProvider } from "@mui/material/styles";
 import theme from "../../components/customTheme/customTheme";
 import { Alert, Snackbar } from "@mui/material";
+import { fetchUserData } from "../../store/slices/rootSlice";
 // import MuiAlert from '@material-ui/lab/Alert';
 
 
@@ -101,9 +102,11 @@ export default function SignInPage(props) {
   };
 
 
-  const { isLoggedIn } = useSelector(state => state.auth);
+  const { isLoggedIn, user } = useSelector(state => state.auth);
   if (isLoggedIn) {
+    sessionStorage.setItem('user', JSON.stringify(user));
     props.setSnackbarOpen(true);
+    dispatch(fetchUserData());
     return <Navigate to="/" />;
   }
   console.log('isLoggedIn', !loginError);

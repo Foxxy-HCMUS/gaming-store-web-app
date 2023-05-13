@@ -263,7 +263,7 @@ const NavBar = () => {
 
   // const currentUser = useSelector((state) => state.auth.user);
   const currentUser = useSelector((state) => state.auth.user);
-  console.log(currentUser); 
+  // console.log(currentUser); 
 
   const [logoutModal, setLogOutModal] = useState(false);
 
