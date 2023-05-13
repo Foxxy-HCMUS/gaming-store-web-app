@@ -12,7 +12,7 @@
 
 export default function authHeader(state) {
   const user = state.auth.user;
-  if (user && user.token) {
+  if (user && user.accessToken) {
     return { "x-access-token": user.accessToken };
   } else {
     return {};

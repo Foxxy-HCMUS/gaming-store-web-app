@@ -1,11 +1,9 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/auth/";
-
 class AuthService {
   login(username, password) {
     return axios
-      .post(API_URL + "signin", {
+      .post(`${process.env.REACT_APP_API_URL}/signin`, {
         username,
         password
       })
@@ -19,19 +17,19 @@ class AuthService {
   }
 
   async fetchUser(token) {
-    const response = await axios.get(`${API_URL}/users/me`, {
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/user/profile`, {
       headers: { "x-access-token": token },
     });
     return response.data;
   }
 
   logout() {
-    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
   }
 
   register(username, email, password, firstName, lastName) {
     // console.log(username, email, password, firstName, lastName);
-    return axios.post(API_URL + "signup", {
+    return axios.post(`${process.env.REACT_APP_API_URL}/signup`, {
       username,
       email,
       password,
@@ -44,7 +42,7 @@ class AuthService {
   }
 
   getCurrentUser() {
-    return JSON.parse(localStorage.getItem('user'));;
+    return JSON.parse(sessionStorage.getItem('user'));;
   }
 }
 

@@ -3,13 +3,13 @@ import { setMessage } from "./message";
 
 import AuthService from "../../services/auth.service";
 
-const user = JSON.parse(localStorage.getItem("user"));
+const user = JSON.parse(sessionStorage.getItem("user"));
 
 export const register = createAsyncThunk(
   "auth/register",
-  async ({ username, email, password }, thunkAPI) => {
+  async ({ username, email, password, firstName, lastName }, thunkAPI) => {
     try {
-      const response = await AuthService.register(username, email, password);
+      const response = await AuthService.register(username, email, password, firstName, lastName);
       thunkAPI.dispatch(setMessage(response.data.message));
       return response.data;
     } catch (error) {
@@ -28,6 +28,7 @@ export const login = createAsyncThunk(
   async ({ username, password }, thunkAPI) => {
     try {
       const data = await AuthService.login(username, password);
+      // console.log(data);
       return { user: data };
     } catch (error) {
       const message =
@@ -46,13 +47,35 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   await AuthService.logout();
 });
 
+export const fetchUser = createAsyncThunk(
+  'auth/fetchUser', 
+  async (_, { getState }) => {
+  const { user } = getState().auth;
+  const response = await AuthService.fetchUser(user.accessToken);
+  return response;
+});
+
 const initialState = user
   ? { isLoggedIn: true, user }
   : { isLoggedIn: false, user: null };
 
+// const initialState = {
+//   user: null,
+//   isLoggedIn: false,
+// };
+
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    setUser: (state, action) => {
+      state.user = action.payload;
+    },
+    // logout: (state) => {
+    //   state.isLoggedIn = false;
+    //   state.user = null;
+    // },
+  },
   extraReducers: (builder) => {
     // Use builder.addCase() to handle each action type
     builder
@@ -70,12 +93,31 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.user = null;
       })
+      .addCase(fetchUser.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+        state.user = action.payload;
+      })
+      .addCase(fetchUser.rejected, (state, action) => {
+        state.isLoggedIn = false;
+        state.user = null;
+      })
       .addCase(logout.fulfilled, (state, action) => {
         state.isLoggedIn = false;
         state.user = null;
-      });
+      })
+      // .addCase(logout.fulfilled, (state, action) => {
+      //   state.isLoggedIn = false;
+      //   state.user = null;
+      // });
   },
 });
+
+// export const { setUser, logout } = authSlice.actions;
+export const { setUser } = authSlice.actions;
+
+export const selectUser = (state) => state.auth.user;
+export const selectAuthStatus = (state) => state.auth.status;
+export const selectAuthError = (state) => state.auth.error;
 
 const { reducer } = authSlice;
 export default reducer;

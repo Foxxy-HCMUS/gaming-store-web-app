@@ -8,10 +8,11 @@ import {
   const initState = {
     user: {}, // user details
     games: [], // browse page data, will be included filters
-    landingPageData: [], // data will be divided in deifferent sections
+    landingPageData: [], // data will be divided in different sections
+    wishlist: [], // wishlist data
   };
   
-  const reducer = (state = initState, { type, payload }) => {
+  const rootReducer = (state = initState, { type, payload }) => {
     switch (type) {
       case GET_USER: {
         return {
@@ -46,5 +47,5 @@ import {
     }
   };
   
-  export default reducer;
+  export default rootReducer;
   

@@ -1,17 +1,18 @@
 import axios from "axios";
 
 import { FETCH_GAMES, GET_USER, FETCH_LANDING_PAGE_DATA } from "./actionTypes";
+import authHeader from "../services/auth-header";
 
 // User fetching in useEffect
 const fetchUser = () => async (dispatch) => {
   try {
     const { data } = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/user`,
+      `${process.env.REACT_APP_BACKEND_URL}/user/profile`,
       {
-        withCredentials: true,
+        headers: authHeader(),
       }
     );
-    dispatch(getUser(data.user));
+    dispatch(getUser(data));
   } catch (err) {
     console.log(err);
   }
@@ -25,32 +26,32 @@ const getUser = (data) => {
   };
 };
 
-// logout user and clearinh user from state
-const logoutUser = () => async (dispatch) => {
+// logout user and clearing user from state
+const logoutUser = () => (dispatch) => {
   try {
-    await axios.get(`${process.env.REACT_APP_BACKEND_URL}/logout`, {
-      withCredentials: true,
-    });
+    // await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/logout`, {
+    //   withCredentials: true,
+    // });
     dispatch(getUser({}));
   } catch (err) {
     console.log(err);
   }
 };
 
-// user data post on signup-display-name page
-const postUser = (data) => async (dispatch) => {
-  try {
-    await axios.post(
-      `${process.env.REACT_APP_BACKEND_URL}/user/display-name`,
-      { ...data },
-      { withCredentials: true }
-    );
+// // user data post 
+// const postUser = (data) => async (dispatch) => {
+//   try {
+//     await axios.post(
+//       `${process.env.REACT_APP_BACKEND_URL}/user/display-name`,
+//       { ...data },
+//       { withCredentials: true }
+//     );
 
-    dispatch(fetchUser());
-  } catch (err) {
-    console.log(err);
-  }
-};
+//     dispatch(fetchUser());
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 
 // browse page games
 const getGames = (data) => {
@@ -107,13 +108,13 @@ const sortGames = (data) => (dispatch) => {
 // Add to wishlist
 const addToWishlist = (id) => async (dispatch) => {
   try {
-    await axios.patch(
-      `${process.env.REACT_APP_BACKEND_URL}/user/add-wishlist`,
+    await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/wishlist`,
       {
         gameId: id,
       },
       {
-        withCredentials: true,
+        headers: authHeader(),
       }
     );
     dispatch(fetchUser());
@@ -143,13 +144,13 @@ const addToOrders = (id) => async (dispatch) => {
 // remove from wishlist
 const removeFromWishlist = (id) => async (dispatch) => {
   try {
-    await axios.patch(
-      `${process.env.REACT_APP_BACKEND_URL}/user/remove-wishlist`,
+    await axios.delete(
+      `${process.env.REACT_APP_BACKEND_URL}/wishlist`,
       {
         gameId: id,
       },
       {
-        withCredentials: true,
+        headers: authHeader(),
       }
     );
     dispatch(fetchUser());
@@ -164,7 +165,7 @@ export {
   getUser,
   fetchUser,
   getLandingPageData,
-  postUser,
+  // postUser,
   logoutUser,
   filterData,
   sortGames,
