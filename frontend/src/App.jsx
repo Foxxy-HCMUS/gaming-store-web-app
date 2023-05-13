@@ -161,9 +161,12 @@ import LanguageContext from "./LanguageContext";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SigninPage from './pages/SigninPage';
-import { fetchUser } from "./store/actions";
+// import { fetchUser } from "./store/actions";
+import { fetchUserData } from "./store/slices/rootSlice";
+import { fetchUser } from "./store/slices/authSlice";
 import { Alert, Snackbar } from "@mui/material";
 // import theme from "./components/customTheme/customTheme";
+import BrowsePage from './pages/BrowsePage/BrowsePage';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -184,8 +187,13 @@ export default function App() {
     window.scrollTo(0, 0);
   }, [location.pathname]);
 
+  // const { isLoggedIn } = useSelector((state) => state.auth);
+  // console.log(isLoggedIn);
   useEffect(() => {
     // dispatch(fetchUser());
+    // if (isLoggedIn) {
+    //   dispatch(fetchUserData());  
+    // }
     dispatch(fetchGames());
   }, [dispatch]);
 
@@ -236,15 +244,9 @@ export default function App() {
           {/* <Route path="/logout" element={<SigninPage />} /> */}
 
           <Route path="/register" element={<Register />} />
-
-          {/* <Route exact path="/signup/display-name">
-          <SignupPage />
-        </Route> */}
-
-          {/* <Route exact path="/browse">
-          <BrowsePage />
-        </Route> */}
-
+        
+          <Route exact path="/browse" element={<BrowsePage />} />
+          
           {/* <Route exact path="/games/:id">
           <GamePage />
         </Route> */}

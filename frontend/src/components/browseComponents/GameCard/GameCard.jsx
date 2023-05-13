@@ -1,6 +1,7 @@
 import { useEffect, useInsertionEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addToWishlist } from "../../../store/actions";
+// import { addToWishlist } from "../../../store/actions";
+import { addToWishlist, fetchUserData, removeFromWishlist } from "../../../store/slices/rootSlice";
 import { useNavigate } from "react-router-dom";
 import styles from "./GameCard.module.css";
 
@@ -10,27 +11,45 @@ import PriceComponent from "../../priceComponent/PriceComponent";
 const GameCard = (props) => {
   const dispatch = useDispatch();
 
-  const user = useSelector((state) => state.user);
-  const wishlist = ( user !== undefined && user.wishlist !== null ) ? user.wishlist : [];
+  // const user = useSelector((state) => state.user.userData);
+  // const wishlist = (!user || !user.wishlist) ? [] : user.wishlist; 
   const [isWishlisted, setWishlisted] = useState(false);
+  const [wishlist, setWishlist] = useState([]);
 
-  // console.log(wishlist)
-  // useEffect(() => {
-  //     if (wishlist.includes(props.id)) {
-  //         setWishlisted(true);
-  //     }
-  // }, [user.wishlist]);
+  const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(fetchUserData()).then((userData) => {
+        setWishlist(userData.payload.wishlist || []);
+        // console.log(isAuthenticated);
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+  }, [dispatch]); 
+  // console.log(wishlist);
+
+  useEffect(() => {
+      if (wishlist.includes(props.id)) {
+          setWishlisted(true);
+      }
+  }, [wishlist]);
 
   const navigate = useNavigate();
 
   const handleWishlist = (e) => {
       e.preventDefault();
-      if (!wishlist) {
+      if (!isAuthenticated) {
           navigate("/signin");
       }
-      setWishlisted(true);
-      
-      dispatch(addToWishlist(props.id));
+      // console.log(props.id, " before: " ,isWishlisted)
+      if (!isWishlisted){
+        dispatch(addToWishlist(props.id));
+      }
+      else {
+        dispatch(removeFromWishlist(props.id));
+      }
+      setWishlisted((prev) => !prev);
   };
 
   return (

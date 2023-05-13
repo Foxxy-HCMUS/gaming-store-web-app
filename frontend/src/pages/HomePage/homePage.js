@@ -42,36 +42,41 @@
 //   }
 // }
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./homePage.module.css";
 import MainCardContainer from "../../components/homeComponents/MainCardContainer/MainCardContainer";
 import SecondaryCardContainer from "../../components/homeComponents/SecondaryCardContainer";
 import FreeCardContainer from "../../components/homeComponents/FreeCardContainer";
-// import MiniCardContainer from "../../components/homeComponents/MiniCardContainer/MiniCardContainer";
 // import BrowseLink from "../../components/homeComponents/BrowseLink/BrowseLink";
 // import Header from "../../components/header";
 import SubNavbar from "../../components/subNavbar";
-// import CarouselMain from "../../components/homeComponents/CarouselMain";
-// import Footer from "../../components/Footer";
+import NavBar from "../../components/navBar";
+import CarouselMain from "../../components/homeComponents/CarouselMain/CarouselMain";
 // import LoadingPage from "../../components/LoadingPage";
+import rootReducer from './../../store/reducer';
+import Footer from "../../components/footer";
+import MiniCardContainer from './../../components/homeComponents/MiniCardContainer/index';
 
-const Home = () => {
-  const landingPageData = useSelector((state) => state.landingPageData);
-  const saleData = landingPageData.slice(0, 5);
+const HomePage = () => {
+  // const landingPageData = useSelector((state) => state.data.landingPageData);
+  const landingPageData = useSelector((state) => state.data.landingPageData);
+  const saleData = landingPageData.slice(0, 10);
   const recentlyUpdatedData = landingPageData.slice(5, 10);
+  const newToStoreData = landingPageData.slice(10, 15);
   const mostPopularData = landingPageData.slice(10, 15);
-  const newToStoreData = landingPageData.slice(15, 20);
 
   const secondaryCardData1 = landingPageData.filter((el) => {
-    if (el.title === "Corruption 2029" || el.title === "Anno 1701") {
+    if (el.title === "Genshin Impact" || el.title === "Among Us" || el.title === "Fortnite") {
       return el;
     }
     return false;
   });
 
+  // console.log(secondaryCardData1);
+
   const secondaryCardData2 = landingPageData.filter((el) => {
-    if (el.title === "Tribes of Midgard" || el.title === "One Hand Clapping") {
+    if (el.title === "It Takes Two" || el.title === "Genshin Impact" || el.title === "Honkai: Star Rail") {
       return el;
     }
     return false;
@@ -79,16 +84,13 @@ const Home = () => {
 
   return (
     <>
-      {/* <Header /> */}
-      <SubNavbar />
+      {/* <NavBar /> */}
+      {/* <SubNavbar /> */}
       <div className={styles.main}>
         <div className={styles.landing_container}>
           <div className={styles.main_container}>
-            {/* {!landingPageData.length ? (
-              <LoadingPage />
-            ) : ( */}
               <>
-                {/* <CarouselMain /> */}
+              <CarouselMain data={newToStoreData} />
                 <div className={styles.mainCardContainer}>
                   <div className={styles.data_cont}>
                     <MainCardContainer data={saleData} title="Game On Sale" />
@@ -96,32 +98,32 @@ const Home = () => {
                 </div>
 
                 <div className={styles.secondaryCardContainer}>
-                  <SecondaryCardContainer data={secondaryCardData1} />
+                  <SecondaryCardContainer data={secondaryCardData1}/>
                 </div>
 
                 <div className={styles.freeCardContainer}>
                   <FreeCardContainer />
                 </div>
 
-                {/* <div className={styles.minicard}>
-                  <div className={styles.miniCardContainer}>
-                    <MiniCardContainer data={saleData} heading="New Releases" />
-                  </div>
+                <ul className={styles.minicard}>
+                  <li className={styles.miniCardContainer}>
+                    <MiniCardContainer data={newToStoreData} heading="New Releases" />
+                  </li>
 
-                  <div className={styles.miniCardContainer}>
+                  <li className={styles.miniCardContainer}>
                     <MiniCardContainer
-                      data={newToStoreData}
+                      data={mostPopularData}
                       heading="Top Sellers"
                     />
-                  </div>
+                  </li>
 
-                  <div className={styles.miniCardContainer}>
+                  <li className={styles.miniCardContainer}>
                     <MiniCardContainer
                       data={mostPopularData}
                       heading="Holiday Sale"
                     />
-                  </div>
-                </div> */}
+                  </li>
+                </ul>
 
                 <div className={styles.secondaryCardContainer}>
                   <SecondaryCardContainer data={secondaryCardData2} />
@@ -144,15 +146,13 @@ const Home = () => {
                     />
                   </div>
                 </div>
-                {/* <BrowseLink /> */}
               </>
-            {/* )} */}
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer/>
     </>
   );
 };
 
-export default Home;
+export default HomePage
