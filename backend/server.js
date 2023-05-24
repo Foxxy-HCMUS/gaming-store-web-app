@@ -299,9 +299,12 @@ function initial() {
       "Vote to eliminate the most suspicious Crewmate.",
     ],
     heroImages: [
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_9f4a3c6b8f3a2c8f2c1d4f6b9a9b4e8d7c6e5d2a.1920x1080.jpg",
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_3a9b3c8f7d1b2c1e2f4d5f1e9a6b4e8d7c6e5d2a.1920x1080.jpg",
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_1a9b3c8f7d1b2c1e2f4d5f1e9a6b4e8d7c6e5d2a.1920x1080.jpg",
+      // "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_9f4a3c6b8f3a2c8f2c1d4f6b9a9b4e8d7c6e5d2a.1920x1080.jpg",
+      // "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_3a9b3c8f7d1b2c1e2f4d5f1e9a6b4e8d7c6e5d2a.1920x1080.jpg",
+      // "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_1a9b3c8f7d1b2c1e2f4d5f1e9a6b4e8d7c6e5d2a.1920x1080.jpg",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g1a-00-1920x1080-3c552a5212ff.jpg",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g1a-02-1920x1080-0729ec4e1291.jpg",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g1a-03-1920x1080-2b74d07d4ea1.jpg",
     ],
     images: [
       "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_9f4a3c6b8f3a2c8f2c1d4f6b9a9b4e8d7c6e5d2a.600x338.jpg",

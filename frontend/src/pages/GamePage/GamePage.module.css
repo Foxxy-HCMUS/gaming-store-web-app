@@ -1,0 +1,17 @@
+.container{
+    margin: auto;
+    max-width: 1600px;
+    padding: 35px 132px;
+}
+
+.title{
+    font-size: 50px;
+    line-height: 50px;
+    letter-spacing: -1px;
+}
+
+@media (min-width = 1120px) {
+    .container{
+        margin: 0 132px;
+    }
+}
