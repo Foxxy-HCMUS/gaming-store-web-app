@@ -1,63 +1,74 @@
-.product-images-slider{
+.product-images-slider-container{
     width: 100%;
-    height: 65vh;
-    margin: 0;  
+    padding-top: 20px;
 
-    .swiper-slide{
-        padding-top: 70%;
-        overflow: hidden;
-        position: relative;
-    }
-
-    img{
-        position: absolute;
-        top: 0;
-        left: 0;
+    .product-images-slider{
         width: 100%;
-    }
-
-    .swiper-button-prev{
-        left: 30;
-        color: #fff;
+        height: 65vh;
+        margin: 0;  
+        border-radius: 10px;
     
-    }
-
-    .swiper-button-next{
-        right: 30;
-        color: #fff;
-    }
-}
-
-.product-images-thumbs-wrapper{
-    padding-top: 10px;
-}
-
-.product-images-thumb{
-    .swiper-slide{
-        cursor: pointer;
-        border: 1px solid #dddbdb;
-
-        &-thumb-active{
-            border-color: #00d6dd;
-
-            img{
-                opacity: 100%;
-            }
+        .swiper-slide{
+            overflow: hidden;
+            position: relative;
         }
-    }
-
-    &-wrapper{
-        width: 100%;
-        padding-top: 60%;
-        overflow: hidden;
-        position: relative;
-
+    
         img{
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            opacity: 50%;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    
+        .swiper-button-prev{
+            left: 30;
+            color: #fff;
+        
+        }
+    
+        .swiper-button-next{
+            right: 30;
+            color: #fff;
+        }
+    }
+    
+    .product-images-thumbs-wrapper{
+        padding-top: 0px;
+    
+        .product-images-thumb{
+            .swiper-slide{
+                cursor: pointer;
+                border: 1px solid #dddbdb;
+                border-radius: 10px;
+                align-items: center;
+                &-thumb-active{
+                    border-color: #00d6dd;
+                    border-radius: 10px;
+                    img{
+                        opacity: 100%;
+                    }
+                }
+            }
+        
+            &-wrapper{
+                width: 100%;
+                padding-top: 60%;
+                overflow: hidden;
+                position: relative;
+        
+                img{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    opacity: 50%;
+                    border-radius: 10px;
+                }
+            }
         }
     }
 }
+
+

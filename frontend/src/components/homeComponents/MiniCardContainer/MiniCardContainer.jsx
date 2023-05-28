@@ -19,7 +19,7 @@ const MiniCardContainer = ({ data, heading }) => {
 
           {data.map((val, i) => {
             return (
-              <Link key={i} to={`/games/${val?.id}`}>
+              <Link key={i} to={`/${val?.id}`}>
                 <div className={styles.card}>
                   <MiniCard
                     banner={val?.cardImage}
