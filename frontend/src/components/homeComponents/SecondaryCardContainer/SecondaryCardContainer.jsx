@@ -8,7 +8,7 @@ const SecondaryCardContainer = ({ data, title }) => {
             <div className={styles.container}>
                 {data.map((val, i) => {
                     return (
-                        <Link key={i} to={`/games/${val?.id}`} className={styles.link}>
+                        <Link key={i} to={`/${val?.id}`} className={styles.link}>
                             <div className={styles.card}>
                                 <SecondaryCard
                                     image={val?.thumbnails}

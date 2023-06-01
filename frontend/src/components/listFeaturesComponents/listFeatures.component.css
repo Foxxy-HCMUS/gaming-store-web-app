@@ -1,11 +1,19 @@
 .features__container{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     margin: 0;
     padding: 0;
     list-style-type: none;
     flex-flow: row wrap;
 }
+
 .features__item{
     display: inline;
+    margin-right: 0.5em;
+    &:after{
+        content: ",";
+    }
+    &:last-child:after{
+        content: " ";
+    }
 }
