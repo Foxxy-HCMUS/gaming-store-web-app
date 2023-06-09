@@ -60,7 +60,7 @@ import MiniCardContainer from './../../components/homeComponents/MiniCardContain
 
 const HomePage = () => {
   // const landingPageData = useSelector((state) => state.data.landingPageData);
-  const landingPageData = useSelector((state) => state.data.landingPageData);
+  const landingPageData = useSelector((state) => state.games);
   const saleData = landingPageData.slice(0, 10);
   const recentlyUpdatedData = landingPageData.slice(5, 10);
   const newToStoreData = landingPageData.slice(10, 15);
