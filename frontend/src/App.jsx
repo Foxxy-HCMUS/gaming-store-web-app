@@ -18,8 +18,8 @@ import BoardAdmin from "./pages/ProfilePage/board-admin.component";
 import SubNavbar from "./components/subNavbar/sub-navbar.component";
 import { useDispatch, useSelector } from "react-redux";
 
-// import { fetchGames, fetchUser } from "./store/actions";
-import { fetchGames } from "./store/slices/dataSlice";
+// import { fetchGames } from "./store/slices/dataSlice";
+import { fetchGames } from "./store/slices/rootSlice";
 
 // class App extends Component {
 //   constructor(props) {

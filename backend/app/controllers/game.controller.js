@@ -1,6 +1,7 @@
 const db = require("../models");
 const Game = db.game;
 const Op = db.Sequelize.Op;
+const Sequelize = require("sequelize");
 
 
 exports.create = (req, res) => {
@@ -63,6 +64,81 @@ exports.findAll = (req, res) => {
             });
         });
 };
+
+
+// Find all published game  
+exports.findAllPublished = (req, res) => {
+    Game.findAll({limit: 2, offset: 1, where: {published: true}})
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message:   
+                    err.message || "Some error occurred while retrieving games."
+            });
+        });
+};
+
+function parseQuery(query) {
+    const params = new URLSearchParams(query);
+    const filter = {};
+
+    // Extract the "price" property from the query string
+    const price = params.get("price");
+    let maxPrice = parseFloat(price) || 10e9;
+    if (price) {
+        filter.discountedPrice = {
+        [Op.lte]: maxPrice,
+        };
+    }
+
+    // Extract the "features" property from the query string
+    const features = params.get("features");    
+    if (features) {
+        features = features.split(",");
+        filter.features = {
+            [Op.and]: [Sequelize.literal(`JSON_CONTAINS(features, '${JSON.stringify(features)}')`)],
+        };
+    }
+
+    // Extract the "genres" property from the query string
+    const genres = params.get("genres");
+    if (genres) {
+        genres = genres.split(",");
+        filter.genres = {
+            [Op.and]: [Sequelize.literal(`JSON_CONTAINS(genres, '${JSON.stringify(genres)}')`)],
+        };
+    }
+
+    // Extract the "platform" property from the query string
+    let platform = params.get("platform");
+    if (platform) {
+        platform = platform.split(",");
+        // console.log(`'${JSON.stringify(platform)}'`)
+        filter.platform = {
+            [Op.and]: [Sequelize.literal(`JSON_CONTAINS(platform, '${JSON.stringify(platform)}')`)],
+        };
+    };
+
+    return filter;
+};
+
+exports.fiterGames = async (req, res) => {
+    const { query } = req;
+    const where = parseQuery(query);
+    try {
+        // console.log(where)
+        const data = await Game.findAll({where});
+        res.send(data);
+    } 
+    catch (err) {
+        res.status(500).send({
+            message:   
+                err.message || "Some error occurred while retrieving games."
+        });
+    }
+}
 
 // Find a single game with an id
 exports.findOne = (req, res) => {
@@ -147,20 +223,6 @@ exports.deleteAll = (req, res) => {
         .catch(err => {
             res.status(500).send({
                 message: err.message || "Some error occurred while removing all games."
-            });
-        });
-};
-
-// Find all published game  
-exports.findAllPublished = (req, res) => {
-    Game.findAll({limit: 2, offset: 1, where: {published: true}})
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message:   
-                    err.message || "Some error occurred while retrieving games."
             });
         });
 };
