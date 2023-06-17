@@ -1,0 +1,33 @@
+ul{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+
+.configuration{
+    margin-top: 30px;
+}
+
+.configuration__container{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+}
+
+.configuration__wrapper{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* margin: 0 100px; */
+}
+
+.configuration__recommended{
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #b9b9b9;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+

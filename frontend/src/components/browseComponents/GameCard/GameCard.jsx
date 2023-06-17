@@ -1,4 +1,4 @@
-import { useEffect, useInsertionEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { addToWishlist } from "../../../store/actions";
 import { addToWishlist, fetchUserData, removeFromWishlist } from "../../../store/slices/rootSlice";
@@ -36,7 +36,7 @@ const GameCard = (props) => {
   }, [wishlist]);
 
   const navigate = useNavigate();
-
+  
   const handleWishlist = (e) => {
       e.preventDefault();
       if (!isAuthenticated) {

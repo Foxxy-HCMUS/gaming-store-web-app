@@ -41,9 +41,14 @@
     font-size: 16px;
     border: none;
     border-radius: 5px;
+
     &:before{
         content: "Show More";
     }
+}
+
+.showmore__btn:hover{
+    background: #989898;
 }
 
 .showmore__card.active .showmore__btn{

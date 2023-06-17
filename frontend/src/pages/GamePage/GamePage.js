@@ -9,6 +9,9 @@ import ProductSlider from "../../components/swiperSliderComponent/productSlider.
 import ListFeatures from "../../components/listFeaturesComponents/listFeatures.component";
 import ShowMore from "../../components/showmoreComponent";
 import PictureShowMore from "../../components/showmoreComponent/pictureShowMore/pictureShowMore";
+import SpecificationTable from "../../components/specificationComponents/specificationComponents";
+import Footer from "../../components/footer/Footer";
+import PaymentComponent from "../../components/gameComponent/paymentComponent";
 
 const GamePage = ({_id}) =>{
     const dispatch = useDispatch();
@@ -24,78 +27,98 @@ const GamePage = ({_id}) =>{
         setSaleData(filteredData);
       }, [dataGetter, _id]);
 
-    if(saleData.length === 0){
+    if(saleData.length === 0 || saleData == null){
         return (
         <>
             <div></div>
         </>
         )
     }
-
     // Initialize value
     const sliderImage = saleData[0]?.heroImages
     const genres = saleData[0]?.genres
-    // const tags = saleData.map((value) => {return value.tags})
     const tags = saleData[0]?.tags
     const gameFeatures = saleData[0]?.gameFeatures
     const imagesShowMore = saleData[0]?.images
-    // console.log(saleData)
+    const specifications = saleData[0]?.specifications
     return (
         <>
         <div className ={styles.container}>
             <div className={styles.about_game}>
-                <div className={styles.infomation_game}>
-                    <div className={styles.infomation_game__container}>
+                <div className={styles.nav_game}>
+                    <div className={styles.nav_game__container}>
                         <h1>
                             <span className={styles.title}> {saleData.map((value, ind) => {return value.title})} </span>
                         </h1>
-
                         {/* Thay rating vào từ backend */}
                         <HoverRating rating={3}/>
+                    </div>
+                </div>
 
-                        <ProductSlider data = {sliderImage}/>
+                <div className={styles.infomation_game}>
+                    <div className={styles.infomation_game__description__col0}>
+                        <div className={styles.slider__image}>
+                            <ProductSlider data = {sliderImage}/>
+                        </div>
 
-                        <div className= {styles.about_game__container}>
+                        <div className={styles.description}>
                             <span className={styles.about_game__description}>{saleData.map((value, ind) => {return value.aboutGame})}</span>
                         </div>
-                    </div>
-                </div>
-                
-                <div className={styles.type_game}>
-                    <div className={styles.type_game__container}>
-                        <div className = {styles.type_game__title}>Genres</div>
-                        <div className = {styles.type_game__list_feature}>
-                            <ListFeatures data= {genres}/>
+                        
+                        <div className={styles.type_game}>
+                            <div className={styles.type_game__container}>
+                                <div className = {styles.type_game__title}>Genres</div>
+                                <div className = {styles.type_game__list_feature}>
+                                    <ListFeatures data= {genres}/>
+                                </div>
+                            </div>
+                            <div className={styles.type_game__container}>
+                                <div className = {styles.type_game__title}>Features</div>
+                                <div className = {styles.type_game__list_feature}>
+                                    <ListFeatures data = {tags}/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className = {styles.showmore}>
+                            <ShowMore data = {
+                                <div>
+                                    {gameFeatures.map((el, ind) =>
+                                        {return <div className= {styles.showmore__content__text} key = {ind}>
+                                            {el}
+                                        </div>}
+                                    )}
+
+                                    <PictureShowMore data = {imagesShowMore}></PictureShowMore>
+                                </div>}>
+                            </ShowMore>
                         </div>
                     </div>
-                    <div className={styles.type_game__container}>
-                        <div className = {styles.type_game__title}>Features</div>
-                        <div className = {styles.type_game__list_feature}>
-                            <ListFeatures data = {tags}/>
-                        </div>
-                    </div>
-                </div>
-
-                <div className = {styles.showmore}>
-                    <ShowMore data = {
-                        <div>
-                            {gameFeatures.map((el, ind) =>
-                                {return <div className= {styles.showmore__content__text} key = {ind}>
-                                    {el}
-                                </div>}
-                            )}
-
-                            <PictureShowMore data = {imagesShowMore}></PictureShowMore>
-                        </div>}>
-                        
-                        
-                    </ShowMore>
                     
+                    <aside className={styles.infomation_game__description__col1}>
+                        <div className={styles.payment}>
+                            <PaymentComponent data = {saleData[0]}/>
+                        </div>
+                    </aside>
                 </div>
+
+                <div className={styles.infomation_game}>
+                    <div className={styles.infomation_game__description}>
+                        <div className={styles.specifications}>
+                            <div className={styles.title}>Specifications</div>
+                            <div className={styles.specifications__table}>
+                                <SpecificationTable data = {specifications}></SpecificationTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                
             </div>
-            
         </div>
-        </>
+        <Footer/>
+    </>
         
     );
 }
