@@ -269,13 +269,15 @@ function initial() {
       "https://cdn1.epicgames.com/salesEvent/salesEvent/amogusportrait_1200x1600-66ad0e4d363e1c92f9f8aae67a96dd31?h=480&quality=medium&resize=1&w=360",
     cardTagline:
       "Play with 4-15 players online or via local WiFi as you attempt to prepare your spaceship for departure, but beware as one or more random players among the Crew are Impostors bent on killing everyone!",
+    logo: 
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-ic1-400x400-78897c653ffe.png?h=270&quality=medium&resize=1&w=480",
     mainPrice: 4.99,
     discountPercentage: 0,
     discountedPrice: 4.99,
     developer: "Innersloth",
     publisher: "Innersloth",
-    releaseDate: "2018-11-16",
-    platform: ["Windows"],
+    releaseDate: "2018-11-13",
+    platform: ["Windows", "Macbooks"],
     genres: ["Casual"],
     features: [
       "Online Multi-Player",
@@ -317,6 +319,52 @@ function initial() {
       "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-04-1920x1080-af409ccadf66.jpg?h=720&quality=medium&resize=1&w=1280",
       "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-04-1920x1080-af409ccadf66.jpg?h=720&quality=medium&resize=1&w=1280",
     ],
+    specifications: {
+      "Configurations": {
+        "Windows": {
+          "Minimum": {
+            "OS": "Window 10 x 32bit",
+            "Processor": "Intel i3-4330",
+            "Memory" : "1 GB RAM",
+            "Storage": "250 MB",
+            "DirectX": "Version 10",
+            "Graphics": "Intel HD Graphic 4600"
+          },
+          "Recommended": {
+            "OS": "Window 10 x 64bit",
+            "Processor": "Intel i3-4330",
+            "Memory" : "4 GB RAM",
+            "Storage": "250 MB",
+            "DirectX": "Version 10",
+            "Graphics": "Nvidia GTX 650"
+          },
+        },
+        
+        "Macbook": {
+          "Minimum": {
+            "OS": "Macbook 10 x 32bit",
+            "Processor": "Intel i3-4330",
+            "Memory" : "1 GB RAM",
+            "Storage": "250 MB",
+            "DirectX": "Version 10",
+            "Graphics": "Intel HD Graphic 4600"
+          },
+          "Recommended": {
+            "OS": "Macbook 10 x 64bit",
+            "Processor": "Intel i3-4330",
+            "Memory" : "4 GB RAM",
+            "Storage": "250 MB",
+            "DirectX": "Version 10",
+            "Graphics": "Nvidia GTX 650"
+          },
+        },
+      },
+      "Login": true,
+      "Languages Supported":{
+        "Audio": ["English"],
+        "Text": ["English", "Portuguese - Brazil", "Spanish - Latin America", "Spanish - Spain", "Korean", "Russian"]
+      }
+    },
   });
 
   Game.create({
