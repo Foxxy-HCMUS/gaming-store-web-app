@@ -269,13 +269,15 @@ function initial() {
       "https://cdn1.epicgames.com/salesEvent/salesEvent/amogusportrait_1200x1600-66ad0e4d363e1c92f9f8aae67a96dd31?h=480&quality=medium&resize=1&w=360",
     cardTagline:
       "Play with 4-15 players online or via local WiFi as you attempt to prepare your spaceship for departure, but beware as one or more random players among the Crew are Impostors bent on killing everyone!",
+    logo: 
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-ic1-400x400-78897c653ffe.png?h=270&quality=medium&resize=1&w=480",
     mainPrice: 4.99,
     discountPercentage: 0,
     discountedPrice: 4.99,
     developer: "Innersloth",
     publisher: "Innersloth",
-    releaseDate: "2018-11-16",
-    platform: ["Windows"],
+    releaseDate: "2018-11-13",
+    platform: ["Windows", "Macbooks"],
     genres: ["Casual"],
     features: [
       "Online Multi-Player",
@@ -299,15 +301,70 @@ function initial() {
       "Vote to eliminate the most suspicious Crewmate.",
     ],
     heroImages: [
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_9f4a3c6b8f3a2c8f2c1d4f6b9a9b4e8d7c6e5d2a.1920x1080.jpg",
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_3a9b3c8f7d1b2c1e2f4d5f1e9a6b4e8d7c6e5d2a.1920x1080.jpg",
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_1a9b3c8f7d1b2c1e2f4d5f1e9a6b4e8d7c6e5d2a.1920x1080.jpg",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g1a-00-1920x1080-3c552a5212ff.jpg",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g1a-02-1920x1080-0729ec4e1291.jpg",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g1a-03-1920x1080-2b74d07d4ea1.jpg",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-00-1920x1080-fb38dc819940.jpg?h=720&quality=medium&resize=1&w=1280",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-01-1920x1080-76030aaebf7c.jpg?h=720&quality=medium&resize=1&w=1280",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-02-1920x1080-caa3acd91a4a.jpg?h=720&quality=medium&resize=1&w=1280",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-03-1920x1080-738e4ef8ea93.jpg?h=720&quality=medium&resize=1&w=1280",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-04-1920x1080-af409ccadf66.jpg?h=720&quality=medium&resize=1&w=1280",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-04-1920x1080-af409ccadf66.jpg?h=720&quality=medium&resize=1&w=1280",
     ],
     images: [
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_9f4a3c6b8f3a2c8f2c1d4f6b9a9b4e8d7c6e5d2a.600x338.jpg",
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_3a9b3c8f7d1b2c1e2f4d5f1e9a6b4e8d7c6e5d2a.600x338.jpg",
-      "https://cdn.cloudflare.steamstatic.com/steam/apps/945360/ss_1a9b3c8f7d1b2c1e2f4d5f1e9a6b4e8d7c6e5d2a.600x338.jpg",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-00-1920x1080-fb38dc819940.jpg?h=720&quality=medium&resize=1&w=1280",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-01-1920x1080-76030aaebf7c.jpg?h=720&quality=medium&resize=1&w=1280",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-02-1920x1080-caa3acd91a4a.jpg?h=720&quality=medium&resize=1&w=1280",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-03-1920x1080-738e4ef8ea93.jpg?h=720&quality=medium&resize=1&w=1280",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-04-1920x1080-af409ccadf66.jpg?h=720&quality=medium&resize=1&w=1280",
+      "https://cdn2.unrealengine.com/egs-amongus-innersloth-g2-04-1920x1080-af409ccadf66.jpg?h=720&quality=medium&resize=1&w=1280",
     ],
+    specifications: {
+      "Configurations": {
+        "Windows": {
+          "Minimum": {
+            "OS": "Window 10 x 32bit",
+            "Processor": "Intel i3-4330",
+            "Memory" : "1 GB RAM",
+            "Storage": "250 MB",
+            "DirectX": "Version 10",
+            "Graphics": "Intel HD Graphic 4600"
+          },
+          "Recommended": {
+            "OS": "Window 10 x 64bit",
+            "Processor": "Intel i3-4330",
+            "Memory" : "4 GB RAM",
+            "Storage": "250 MB",
+            "DirectX": "Version 10",
+            "Graphics": "Nvidia GTX 650"
+          },
+        },
+        
+        "Macbook": {
+          "Minimum": {
+            "OS": "Macbook 10 x 32bit",
+            "Processor": "Intel i3-4330",
+            "Memory" : "1 GB RAM",
+            "Storage": "250 MB",
+            "DirectX": "Version 10",
+            "Graphics": "Intel HD Graphic 4600"
+          },
+          "Recommended": {
+            "OS": "Macbook 10 x 64bit",
+            "Processor": "Intel i3-4330",
+            "Memory" : "4 GB RAM",
+            "Storage": "250 MB",
+            "DirectX": "Version 10",
+            "Graphics": "Nvidia GTX 650"
+          },
+        },
+      },
+      "Login": true,
+      "Languages Supported":{
+        "Audio": ["English"],
+        "Text": ["English", "Portuguese - Brazil", "Spanish - Latin America", "Spanish - Spain", "Korean", "Russian"]
+      }
+    },
   });
 
   Game.create({

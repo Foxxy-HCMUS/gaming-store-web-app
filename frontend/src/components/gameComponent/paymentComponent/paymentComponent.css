@@ -1,0 +1,115 @@
+.payment__container{
+    display: flex;
+    flex-direction: column;
+}
+
+.payment__logo_game{
+    padding: 10px;
+    overflow:hidden;
+    display: flex;
+    justify-content: center;
+} 
+.picture {
+    width: 50%;
+    height: 50%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+}
+.payment__logo_game img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.payment__price{
+    zoom: 1.5;
+}
+
+.payment__btns{
+    display:flex;
+    flex-direction: column;
+}
+
+.payment__btn__wrapper{
+    display:flex;
+}
+
+.payment__btn{
+    width: 100%;
+    margin-top:10px;
+    min-width: auto;
+}
+
+.btn__buy_now{
+    height: 50px;
+    background-color: rgb(0, 116, 228);
+    border: none;
+    font-weight: 500;
+    padding: 0 20px;
+    border-radius: 4px;
+}
+
+.btn__add_cart, .btn__add_wishlist{
+    height: 50px;
+    background: none;
+    border: solid #fff 1px;
+    font-weight: 500;
+    padding: 0 20px;
+    border-radius: 4px;
+}
+
+.btn__add_wishlist{
+    height: 35px;
+}
+
+.btn__add_cart:hover, .btn__add_wishlist:hover{
+    background: #494949 
+}
+
+.payment__btn span{
+    letter-spacing: 1px;
+    font-size: 14px;
+    line-height: 15px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.btn__buy_now:hover{
+    background-color: rgb(46, 137, 221)
+}
+
+.payment__list_infos{
+    display: flex;
+    flex-direction: column;
+}
+
+.payment__item{
+    margin-top: 13px;
+    height: 30px;
+    border-bottom: .5px solid #545454;
+}
+
+.payment__item__wrapper{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 20px;
+    line-height: 20px;
+
+}
+
+.payment__item__title{
+    color: #b9b9b9;
+    font-size: 18px;
+}
+
+.payment__item__value{
+    font-size: 18px;
+    display: flex;
+    flex-direction: row;
+}
+
+.payment__item__value__platform span{
+    margin-left: 5px;
+}

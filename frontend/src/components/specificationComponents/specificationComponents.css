@@ -1,0 +1,79 @@
+.specification{
+    background : rgb(32, 32, 32);
+    border-radius: 5px;
+    padding: 20px 40px;
+}
+
+
+.specification__platform__list__btns{
+    line-height: 100px;
+    height: 100px;
+    border-bottom: 1px solid #b9b9b9;
+    display: flex;
+    flex-direction: row;
+}
+
+.specification__platform__btn{
+    background: none;
+    border: none;
+    height: 100px;
+    flex: 1;
+}
+
+.specification__platform__btn:hover .specification__platform__btn__title{
+    color: #fff;
+}
+
+.specification__platform__btn:hover{
+    border-bottom: 1px solid #fff;
+}
+
+.specification__platform__btn__title{
+    color: #b9b9b9; 
+    font-size: 20px;
+}
+
+.specification__platform__btn .active{
+    color: #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.specification__wrapper{
+    display: flex;
+}
+
+.specification__login, .specification__supported{
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.specification__supported__audio, .specification__supported__text{
+    flex-direction: row;
+}
+
+.specification__title{
+    color: #b9b9b9;
+    font-size: 16px;
+    letter-spacing: 1px;
+
+    &:after{
+        content: ":";
+        margin-right: 0.5em;
+    }
+}
+
+.specification__value{
+    margin-right: 0.5em;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 1px;
+    &:after{
+        content: ",";
+    }
+}
+
+.specification__value:last-child{
+    &:after{
+        content: "";
+    }
+}

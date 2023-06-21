@@ -157,7 +157,7 @@ import DistributionPage from "./pages/DistributionPage";
 import SupportPage from "./pages/SupportPage";
 import NavBar from "./components/navBar";
 
-import LanguageContext from "./LanguageContext";
+// import LanguageContext from "./LanguageContext";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import SigninPage from './pages/SigninPage';
@@ -165,8 +165,9 @@ import SigninPage from './pages/SigninPage';
 import { fetchUserData } from "./store/slices/rootSlice";
 import { fetchUser } from "./store/slices/authSlice";
 import { Alert, Snackbar } from "@mui/material";
+import GamePage  from "./pages/GamePage/GamePage";
 // import theme from "./components/customTheme/customTheme";
-import BrowsePage from './pages/BrowsePage/BrowsePage';
+// import BrowsePage from './pages/BrowsePage/BrowsePage';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -245,11 +246,14 @@ export default function App() {
 
           <Route path="/register" element={<Register />} />
         
-          <Route exact path="/browse" element={<BrowsePage />} />
+          {/* <Route exact path="/browse" element={<BrowsePage />} /> */}
           
           {/* <Route exact path="/games/:id">
           <GamePage />
         </Route> */}
+
+        {/* <Route path = "/games/:id" element={<GamePage/>}/> */}
+        <Route path = "/:id" element={<GamePage _id = {location.pathname.replace('/','')}/>}/>
 
           {/* <Route exact path="/wishlist">
           <WishlistPage />

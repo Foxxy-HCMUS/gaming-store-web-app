@@ -114,7 +114,8 @@ const MainCardContainer = ({ data, title }) => {
           return (
             <div key={i} styles={styles.card}>
               <Link
-                to={`/games/${val?.id}`}
+                // to={`/games/${val?.id}`}
+                to = {`/${val?.id}`}
                 style={{ pointerEvents: "visiblePainted" }}
               >
                 <GameCard

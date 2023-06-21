@@ -38,6 +38,9 @@ module.exports = (sequelize, Sequelize) => {
       releaseDate: {
         type: Sequelize.STRING
       },
+      logo:{
+        type: Sequelize.STRING
+      },
       platform: {
         type: Sequelize.JSON       
       },
@@ -73,7 +76,10 @@ module.exports = (sequelize, Sequelize) => {
       },
       reviews: {
         type: Sequelize.JSON
-      }
+      },
+      specifications: {
+        type: Sequelize.JSON
+      },
     });
   
     return Game;

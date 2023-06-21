@@ -1,4 +1,4 @@
-import { useEffect, useInsertionEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { addToWishlist } from "../../../store/actions";
 import { addToWishlist, fetchUserData, removeFromWishlist } from "../../../store/slices/rootSlice";
@@ -16,7 +16,7 @@ const GameCard = (props) => {
   const [isWishlisted, setWishlisted] = useState(false);
   const [wishlist, setWishlist] = useState([]);
 
-  const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);
+  const isAuthenticated = useSelector((state) => state.auth.isLoggedIn); // check Signed in 
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(fetchUserData()).then((userData) => {
@@ -36,7 +36,7 @@ const GameCard = (props) => {
   }, [wishlist]);
 
   const navigate = useNavigate();
-
+  
   const handleWishlist = (e) => {
       e.preventDefault();
       if (!isAuthenticated) {
@@ -57,6 +57,7 @@ const GameCard = (props) => {
       <div className={styles.image_div}>
         <img src={props.image} alt={props.title} />
         <div onClick={handleWishlist} className={styles.icon}>
+          {/* icon */}
                 <img src={!isWishlisted ? "/icons/add_to_wishlist.svg" :
                         "/icons/already_in_wishlist.svg" } alt="icon" />
                 </div>

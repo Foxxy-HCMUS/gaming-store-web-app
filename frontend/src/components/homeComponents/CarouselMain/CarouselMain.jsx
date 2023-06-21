@@ -39,7 +39,7 @@ const CarouselMain = () => {
       >
         {carouselData.map((el, i) => {
           return (
-            <Link to={`/games/${el?.id}`} key={i}>
+            <Link to={`/${el?.id}`} key={i}>
               <div>
                 <img src={el?.thumbnails} alt="" className="image" />
                 <div className="legend" id="legend">
