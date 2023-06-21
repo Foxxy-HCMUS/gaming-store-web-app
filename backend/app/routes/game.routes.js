@@ -15,6 +15,8 @@ module.exports = app => {
     // Retrieve all published Games
     router.get("/", games.findAllPublished);
 
+    router.get("/filters", games.fiterGames);
+
     // Retrieve a single Game with id
     router.get("/:id", games.findOne);
 
@@ -26,6 +28,7 @@ module.exports = app => {
 
     // Delete all Games
     router.delete("/", games.deleteAll);
+
 
     app.use('/games', router);
 

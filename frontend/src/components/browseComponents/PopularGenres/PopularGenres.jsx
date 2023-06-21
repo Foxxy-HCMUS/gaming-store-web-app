@@ -3,6 +3,9 @@ import TopCategorySlider from "../../topCategorySlider";
 import styles from "./PopularGenres.module.css";
 import Slider from "react-slick";
 import { Link } from "react-router-dom";
+import "./styles.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Card = ({ image, title }) => {
   return (
@@ -82,7 +85,7 @@ const PopularGenres = () => {
         <Slider ref={ref} {...settings} className={styles.container}>
             {data.map((val, i) => {
               return (
-                <div key={i} styles={styles.cards}>
+                <div key={i} className={styles.cards}>
                   <Link
                     to={`/games/${val?.id}`}
                     style={{ pointerEvents: "visiblePainted" }}

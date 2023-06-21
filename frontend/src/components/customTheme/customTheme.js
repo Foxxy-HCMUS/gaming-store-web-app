@@ -11,7 +11,7 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "Brutal Type",
+    fontFamily: "Inter, sans-serif",
   },
 });
 
