@@ -10,6 +10,7 @@ import Login from "./pages/SigninPage/SigninPage";
 import Register from "./pages/SignupPage/register.component";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
+import CartPage from "./pages/CartPages";
 import Profile from "./pages/ProfilePage/profile.component";
 import BoardUser from "./pages/ProfilePage/board-user.component";
 import BoardModerator from "./pages/ProfilePage/board-moderator.component";
@@ -258,6 +259,7 @@ export default function App() {
           {/* <Route exact path="/wishlist">
           <WishlistPage />
         </Route> */}
+        <Route path = "/cart" element = {<CartPage/>}></Route>
         </Routes>
       </div>
     </>

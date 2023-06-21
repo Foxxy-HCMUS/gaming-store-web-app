@@ -35,11 +35,18 @@ const PaymentComponent = props =>{
   
     const navigate = useNavigate();
   
-    const handleWishlist = (e) => {
+    function handleSignIn(e){
         e.preventDefault();
-        if (!isAuthenticated) {
+        if (!isAuthenticated){
             navigate("/signin");
         }
+        else{
+            navigate("/cart")
+        }
+    }
+
+    const handleWishlist = (e) => {
+        handleSignIn(e);
         // console.log(data.id, " before: " ,isWishlisted)
         if (!isWishlisted){
           dispatch(addToWishlist(data.id));
@@ -72,13 +79,11 @@ const PaymentComponent = props =>{
                         </button>
                     </div>
                     <div>
-                        <Link to = {`/cart`}>
-                            <div className="payment__btn__wrapper payment__btn__add_cart">
-                                <button className="payment__btn btn__add_cart">
-                                    <span>View in Cart</span>
-                                </button>
-                            </div>
-                        </Link>
+                        <div className="payment__btn__wrapper payment__btn__add_cart">
+                            <button className="payment__btn btn__add_cart" onClick = {handleSignIn}>
+                                <span>View in Cart</span>
+                            </button>
+                        </div>   
                     </div>
 
                     <div>

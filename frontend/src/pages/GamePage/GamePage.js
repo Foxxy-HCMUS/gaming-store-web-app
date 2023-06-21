@@ -112,9 +112,6 @@ const GamePage = ({_id}) =>{
                         </div>
                     </div>
                 </div>
-
-                
-                
             </div>
         </div>
         <Footer/>
