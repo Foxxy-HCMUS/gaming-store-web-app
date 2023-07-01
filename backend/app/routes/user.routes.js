@@ -10,6 +10,10 @@ module.exports = app => {
 
     router.get("/user/profile", [authJwt.verifyToken], controller.fetchUser);
 
+    router.put("/user/update", [authJwt.verifyToken, authJwt.isAdmin], controller.updateUser);
+
+    router.delete("/user/remove", [authJwt.verifyToken, authJwt.isAdmin], controller.removeUser);
+    
     router.post("/user/username-availability", controller.checkUsernameAvailability);
 
     router.get("/mod", [authJwt.verifyToken, authJwt.isModerator], controller.moderatorBoard);
