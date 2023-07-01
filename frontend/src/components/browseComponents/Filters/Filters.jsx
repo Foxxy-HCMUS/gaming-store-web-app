@@ -13,7 +13,7 @@ const { useDispatch } = require("react-redux");
 const { filterData, searchGames } = require("../../../store/slices/rootSlice");
 const { BiSearch, BiCheck } = require("react-icons/bi");
 
-const Filters = () => {
+const Filters = ( {handleSearch, searchTerm } ) => {
   const dispatch = useDispatch();
 
   const [filter, setFilter] = useState({
@@ -128,16 +128,6 @@ const Filters = () => {
     }
   }, [filter, mounted]);
 
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearch = e => {
-    setSearchTerm(e.target.value);
-  };
-
-  useEffect(() => { 
-    const query = new URLSearchParams({term: searchTerm}).toString();
-    dispatch(searchGames(query));
-  }, [searchTerm]);
 
   return (
     <>

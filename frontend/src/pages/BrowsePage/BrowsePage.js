@@ -1,21 +1,23 @@
 import { IoFilterSharp } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GameCard from "../../components/browseComponents/GameCard/GameCard";
 import styles from "./BrowsePage.module.css";
 import { Link } from "react-router-dom";
 import PopularGenres from "../../components/browseComponents/PopularGenres/PopularGenres";
 import Footer from "../../components/footer";
 import Filters from "../../components/browseComponents/Filters/Filters";
-import { sortGames } from "../../store/slices/rootSlice";
+import { searchGames, setGames, sortGames } from "../../store/slices/rootSlice";
 import { useEffect, useState } from "react";
 
 const BrowsePage = () => {
+  const dispatch = useDispatch();
+
   const [data, setData] = useState(null);
 
   const [sortingModal, setSortingModalState] = useState(false);
   const originalData = useSelector((state) => state.games);
 
-  console.log(originalData)
+  // console.log(originalData)
   // rerender whenever data change
   useEffect(() => {
     setData([...originalData]);
@@ -56,6 +58,29 @@ const BrowsePage = () => {
   };
 
   const [activeSort, setActiveSort] = useState("All");
+
+
+  const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = e => {
+    setSearchTerm(e.target.value);
+  };
+
+  useEffect(() => { 
+    setLoading(true);
+    const query = new URLSearchParams({term: searchTerm}).toString();
+    (async () => {
+      try {
+        const result = await dispatch(searchGames(query));
+        setGames(result.data); 
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [searchTerm]);
 
   return (
     <>
@@ -133,6 +158,7 @@ const BrowsePage = () => {
                     </div>
                   ) : null}
                 </div>
+                
                 {/* <div
                   onClick={() => setFilterModal(true)}
                   className={styles.filters}
@@ -162,7 +188,7 @@ const BrowsePage = () => {
                       </div>
                     );
                   })
-                ) : (
+                ) : ( 
                   <div className={styles.error}>
                     <p className={styles.error_main}>No results found</p>
                   </div>
@@ -170,7 +196,7 @@ const BrowsePage = () => {
               </div>
             </div>
             <div className={styles.filter_desktop}>
-              <Filters />
+              <Filters searchTerm={searchTerm} handleSearch={handleSearch}/>
             </div>
           </div>
         </div>

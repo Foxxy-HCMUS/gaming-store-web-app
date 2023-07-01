@@ -126,7 +126,7 @@ export const filterData = createAsyncThunk(
 
 export const searchGames = createAsyncThunk(
   'games/search',
-  async (query, { getState }) => {
+  async (query, { getState, dispatch }) => {
     const { data } = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/games/search?${query}`,
       {
@@ -142,7 +142,7 @@ const gamesSlice = createSlice({
   name: 'games',
   initialState: [],
   reducers: {
-    getGames: (state, action) => {
+    setGames: (state, action) => {
       return action.payload;
     },
     sortGames: (state, action) => {
@@ -172,7 +172,7 @@ const gamesSlice = createSlice({
   },
 });
 
-export const { getGames, sortGames } = gamesSlice.actions;
+export const { setGames, sortGames } = gamesSlice.actions;
 
 export const addToWishlist = createAsyncThunk(
   'wishlist/add',
