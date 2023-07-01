@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 const { useDispatch } = require("react-redux");
-const { filterData } = require("../../../store/slices/rootSlice");
+const { filterData, searchGames } = require("../../../store/slices/rootSlice");
 const { BiSearch, BiCheck } = require("react-icons/bi");
 
 const Filters = () => {
@@ -128,6 +128,17 @@ const Filters = () => {
     }
   }, [filter, mounted]);
 
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearch = e => {
+    setSearchTerm(e.target.value);
+  };
+
+  useEffect(() => { 
+    const query = new URLSearchParams({term: searchTerm}).toString();
+    dispatch(searchGames(query));
+  }, [searchTerm]);
+
   return (
     <>
       <div className={styles.filter_cont}>
@@ -135,7 +146,12 @@ const Filters = () => {
           <span className={styles.heading}>Filters</span>
         </div>
         <div className={styles.search_box}>
-          <input type="text" placeholder="Keywords" />
+          <input 
+            type="text" 
+            placeholder="Keywords" 
+            value={searchTerm}
+            onChange={handleSearch}
+          />
         </div>
         <div className={styles.separate_line} />
         <div className={styles.filters}>

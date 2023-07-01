@@ -124,6 +124,20 @@ export const filterData = createAsyncThunk(
   }
 );
 
+export const searchGames = createAsyncThunk(
+  'games/search',
+  async (query, { getState }) => {
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/games/search?${query}`,
+      {
+        withCredentials: false,
+        headers: authHeader(getState()),
+      }
+    );
+    return data;
+  }
+);
+
 const gamesSlice = createSlice({
   name: 'games',
   initialState: [],
@@ -147,6 +161,12 @@ const gamesSlice = createSlice({
         return action.payload;
       })
       .addCase(filterData.rejected, (state, action) => {
+        console.log(action.error.message);
+      })
+      .addCase(searchGames.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(searchGames.rejected, (state, action) => {
         console.log(action.error.message);
       });
   },

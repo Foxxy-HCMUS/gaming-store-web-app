@@ -140,6 +140,28 @@ exports.fiterGames = async (req, res) => {
     }
 }
 
+exports.searchGames = async (req, res) => {
+    const { query } = req;
+    const params = new URLSearchParams(query);
+    const searchTerm = params.get("term");
+    const where = searchTerm
+        ? { title: { [Op.iLike]: `%${searchTerm.toLowerCase()}%` } }
+        : {};
+
+    try {
+      const data = await Game.findAll();
+      const searchData = data.filter(
+        item => item.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    //   console.log(searchData);
+      res.send(searchData);
+    } catch (err) {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving games."
+      });
+    }
+  };
+
 // Find a single game with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
