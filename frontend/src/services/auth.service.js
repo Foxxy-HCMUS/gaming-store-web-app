@@ -44,6 +44,13 @@ class AuthService {
   getCurrentUser() {
     return JSON.parse(sessionStorage.getItem('user'));;
   }
+
+  async getAdminBoard(token) {
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin`, {
+      headers: { "x-access-token": token },
+    });
+    return response;
+  }
 }
 
 export default new AuthService();

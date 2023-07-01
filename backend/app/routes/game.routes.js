@@ -1,4 +1,6 @@
 module.exports = app => {
+    const { authJwt } = require("../middlewares");
+
     const games = require("../controllers/game.controller.js");
 
     const router = require("express").Router();
@@ -10,7 +12,7 @@ module.exports = app => {
     router.get("/", games.findAllWithTitle);
 
     // Retrieve all Games
-    router.get("/", games.findAll);
+    router.get("/",games.findAll);
 
     // Retrieve all published Games
     router.get("/", games.findAllPublished);

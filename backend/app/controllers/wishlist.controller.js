@@ -21,3 +21,12 @@ exports.deleteFromWishlist = (req, res) => {
     .then(result => res.json(result))
     .catch(err => console.log(err));
 };
+
+exports.addToCart = (req, res) => {
+    Wishlist.create({ 
+        userId: req.user.id,
+        gameId: req.body.gameId
+      })
+      .then(cart => res.json(cart))
+      .catch(err => console.log(err)); 
+};

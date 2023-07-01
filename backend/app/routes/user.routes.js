@@ -16,11 +16,26 @@ module.exports = app => {
 
     router.get("/admin", [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
 
+    router.get("/admin/findall-user",[authJwt.verifyToken, authJwt.isAdmin], controller.findAllUser);
+
+    router.get("/admin/findall-userroles",[authJwt.verifyToken, authJwt.isAdmin], controller.findAllUserRoles);
+
+    // router.get("/admin/findall-only-user",[authJwt.verifyToken, authJwt.isAdmin], controller.findUserWithRoles);
+
     router.get("/wishlist", [authJwt.verifyToken], controller.getWishlist);
 
     router.post("/wishlist", [authJwt.verifyToken], controller.addToWishlist);
 
     router.delete("/wishlist", [authJwt.verifyToken], controller.removeFromWishlist);
+
+    router.post("/cart", [authJwt.verifyToken], controller.addToCart);
+
+    router.delete("/cart", [authJwt.verifyToken], controller.removeFromCart);
+
+    router.post("/wallet", [authJwt.verifyToken], controller.SubtractWallet);
+
+    // router.delete("/cart", [authJwt.verifyToken], controller.addToCart);
+
 
     app.use(function (req, res, next) {
         res.header(

@@ -169,6 +169,8 @@ import { Alert, Snackbar } from "@mui/material";
 import GamePage  from "./pages/GamePage/GamePage";
 // import theme from "./components/customTheme/customTheme";
 import BrowsePage from './pages/BrowsePage/BrowsePage';
+import WishlistPage from "./pages/WishlistPage";
+import AdminPage from "./pages/AdminPage";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -221,6 +223,21 @@ export default function App() {
 
     setSnackbarOpen(false);
   };
+
+  let admin = useSelector((state) => state.auth.user)
+  
+
+  const [isAdmin, setIsAdmin] = useState([])
+  useEffect(()=>{
+    if (admin === null){
+      admin = []
+    }
+    else{
+      
+    }
+    setIsAdmin(admin)
+    },[admin])
+
   return (
     // <ThemeProvider theme={theme}>
     <>
@@ -255,11 +272,16 @@ export default function App() {
 
         {/* <Route path = "/games/:id" element={<GamePage/>}/> */}
         <Route path = "/:id" element={<GamePage _id = {location.pathname.replace('/','')}/>}/>
-
+        {/* <Route path = "/games/:id" element={<GamePage />}/> */}
           {/* <Route exact path="/wishlist">
           <WishlistPage />
         </Route> */}
         <Route path = "/cart" element = {<CartPage/>}></Route>
+        <Route path = "/wishlist" element = {<WishlistPage/>}></Route>
+        {/* {
+          isAdmin[0] === 'ROLE_ADMIN' && isAdmin.length !== 0 && isAdmin !== null ? (<Route path = "/admin" element = {<AdminPage/>}/>) : ""
+        } */}
+        <Route path = "/admin" element = {<AdminPage/>}></Route>
         </Routes>
       </div>
     </>

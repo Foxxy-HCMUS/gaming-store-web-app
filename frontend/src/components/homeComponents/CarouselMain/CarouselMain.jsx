@@ -17,7 +17,7 @@ const titles = [
   ];
 
 const CarouselMain = () => {
-  const data = useSelector((state) => state.games);
+  const data = useSelector((state) => state.data.landingPageData);
   const carouselData = data.filter((el) => {
     if (titles.includes(el.title)) {
       return el;

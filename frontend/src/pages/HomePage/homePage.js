@@ -57,10 +57,16 @@ import CarouselMain from "../../components/homeComponents/CarouselMain/CarouselM
 import rootReducer from './../../store/reducer';
 import Footer from "../../components/footer";
 import MiniCardContainer from './../../components/homeComponents/MiniCardContainer/index';
+import { useEffect } from "react";
+import { fetchLandingPage } from "../../store/slices/dataSlice";
 
 const HomePage = () => {
-  // const landingPageData = useSelector((state) => state.data.landingPageData);
-  const landingPageData = useSelector((state) => state.games);
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(fetchLandingPage())
+  }, [dispatch])
+  const landingPageData = useSelector((state) => state.data.landingPageData);
+  // const landingPageData = useSelector((state) => state.games);
   const saleData = landingPageData.slice(0, 10);
   const recentlyUpdatedData = landingPageData.slice(5, 10);
   const newToStoreData = landingPageData.slice(10, 15);
