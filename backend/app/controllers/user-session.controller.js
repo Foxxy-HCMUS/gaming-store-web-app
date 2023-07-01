@@ -154,8 +154,10 @@ const db = require("../models");
 const Wishlist = db.wishlist;
 const User = db.user;
 const Game = db.game;
-const User_Roles = db.user_roles
+const Role = db.role;
+const UserRoles = db.user_roles;
 const sequelize = require("sequelize");
+const Op = db.Sequelize.Op;
 
 exports.allAccess = (req, res) => {
   res.status(200).send("Public Content.");
@@ -189,21 +191,29 @@ exports.fetchUser = async (req, res) => {
   });
 };
 
-exports.findAllUser = async (req, res) => {
-  User.findAll()
-      .then(data => {
-          res.send(data);
-      })
-      .catch(err => {
-          res.status(500).send({
-              message:
-                  err.message || "Some error occurred while retrieving games."
-          });
-      });
+exports.fetchAllUser = async (req, res) => {
+  User.findAll({
+    attributes: { exclude: ['password']},
+    include: [{
+      model: Role,
+      attributes: ['name'],
+      through: { attributes: [] }, // exclude User_Role join table from result set
+      // where: {
+      //   id: 1
+      // },
+      where: {
+        name: { [Op.like]: '%user%' }
+      },
+      required: true
+    },]
+  }).then((users) => {
+    res.status(200).send(users);
+  })
+  
 };
 
 exports.findAllUserRoles = async (req, res) =>{
-  User_Roles.findAll()
+  UserRoles.findAll()
       .then(data => {
           res.send(data);
       })

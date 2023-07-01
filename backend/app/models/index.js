@@ -26,20 +26,25 @@ db.refreshToken = require("./refreshToken.model.js")(sequelize, Sequelize);
 db.game = require("./game.model.js")(sequelize, Sequelize);
 db.order = require("./order.model.js")(sequelize, Sequelize);
 db.order_games = require("./order_games.model.js")(sequelize, Sequelize);
-// db.user_roles = require("./user_roles.model.js")(sequelize, Sequelize);
+User_Role = require("./user_roles.model.js")(sequelize, Sequelize);
 // db.wishlist = require("./wishlist.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
-    through: "user_roles",
-    foreignKey: "roleId",
-    otherKey: "userId"
+    through: User_Role,
+    // foreignKey: "roleId",
+    // otherKey: "userId"
 });
 
 db.user.belongsToMany(db.role, {
-    through: "user_roles",
-    foreignKey: "userId",
-    otherKey: "roleId"
+    through: User_Role,
+    // foreignKey: "userId",
+    // otherKey: "roleId"
 });
+
+User_Role.belongsTo(db.user);
+User_Role.belongsTo(db.role);
+
+db.user_roles = User_Role;
 
 db.refreshToken.belongsTo(db.user, {
     foreignKey: "userId", targetKey: "id"

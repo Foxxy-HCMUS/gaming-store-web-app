@@ -16,7 +16,7 @@ module.exports = app => {
 
     router.get("/admin", [authJwt.verifyToken, authJwt.isAdmin], controller.adminBoard);
 
-    router.get("/admin/findall-user",[authJwt.verifyToken, authJwt.isAdmin], controller.findAllUser);
+    router.get("/admin/fetch-user",[authJwt.verifyToken, authJwt.isAdmin], controller.fetchAllUser);
 
     router.get("/admin/findall-userroles",[authJwt.verifyToken, authJwt.isAdmin], controller.findAllUserRoles);
 
