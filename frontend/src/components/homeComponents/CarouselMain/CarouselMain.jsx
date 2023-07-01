@@ -18,12 +18,14 @@ const titles = [
 
 const CarouselMain = () => {
   const data = useSelector((state) => state.data.landingPageData);
-  const carouselData = data.filter((el) => {
-    if (titles.includes(el.title)) {
-      return el;
-    }
-    return false;
-  });
+  // const carouselData = data.filter((el) => {
+  //   if (titles.includes(el.title)) {
+  //     return el;
+  //   }
+  //   return false;
+  // });
+  const shuffledData = Array.from(data).sort(() => Math.random() - 0.5);
+  const carouselData = shuffledData.slice(0, 5);
 
   return (
     <div className={styles.main}>
@@ -81,7 +83,7 @@ const CarouselMain = () => {
       <div className={styles.bars}>
         {carouselData.map((el, i) => {
           return (
-            <Link key={i} to={`/games/${el?._id}`}>
+            <Link key={i} to={`/${el?.id}`}>
               <div className={styles.bar}>
                 <img src={el?.cardImage} alt="" />
                 <p>{el?.title}</p>
