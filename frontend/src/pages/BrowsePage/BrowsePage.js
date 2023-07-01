@@ -132,8 +132,6 @@ const BrowsePage = () => {
                       </p>
                     </div>
                   ) : null}
-
-                  
                 </div>
                 {/* <div
                   onClick={() => setFilterModal(true)}
@@ -149,7 +147,7 @@ const BrowsePage = () => {
                     return (
                       <div key={i} className={styles.card}>
                         <Link
-                          to={`/games/${val?.id}`}
+                          to={`/${val?.id}`}
                           style={{ pointerEvents: "visiblePainted" }}
                         >
                           <GameCard

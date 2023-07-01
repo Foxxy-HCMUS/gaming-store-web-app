@@ -49,6 +49,12 @@
 
 .specification__supported__audio, .specification__supported__text{
     flex-direction: row;
+    margin-top: 20px;
+}
+
+.specification__list__values{
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .specification__title{

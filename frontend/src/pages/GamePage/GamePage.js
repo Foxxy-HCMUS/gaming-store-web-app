@@ -12,9 +12,14 @@ import PictureShowMore from "../../components/showmoreComponent/pictureShowMore/
 import SpecificationTable from "../../components/specificationComponents/specificationComponents";
 import Footer from "../../components/footer/Footer";
 import PaymentComponent from "../../components/gameComponent/paymentComponent";
+import { fetchLandingPage } from "../../store/slices/dataSlice";
 
 const GamePage = ({_id}) =>{
     const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(fetchLandingPage())
+      }, [dispatch])
+
     const dataGetter = useSelector((state) => state.data.landingPageData);
     const [saleData, setSaleData] = useState([]);
     
@@ -102,19 +107,18 @@ const GamePage = ({_id}) =>{
                     </aside>
                 </div>
 
-                <div className={styles.infomation_game}>
-                    <div className={styles.infomation_game__description}>
-                        <div className={styles.specifications}>
-                            <div className={styles.title}>Specifications</div>
-                            <div className={styles.specifications__table}>
-                                <SpecificationTable data = {specifications}></SpecificationTable>
+                <div className={styles.wrapper}>
+                    <div className={styles.infomation_game2}>
+                        <div className={styles.infomation_game__description}>
+                            <div className={styles.specifications}>
+                                <div className={styles.title}>Specifications</div>
+                                <div className={styles.specifications__table}>
+                                    <SpecificationTable data = {specifications}></SpecificationTable>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                
-                
+                </div>                            
             </div>
         </div>
         <Footer/>

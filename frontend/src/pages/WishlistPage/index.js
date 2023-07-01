@@ -1,3 +1,3 @@
 import WishlistPage from "./WishlistPage";
 
-export default WishlistPage;
+export default WishlistPage

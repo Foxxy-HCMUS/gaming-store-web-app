@@ -61,10 +61,10 @@ import { useEffect } from "react";
 import { fetchLandingPage } from "../../store/slices/dataSlice";
 
 const HomePage = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchLandingPage()); 
-  }, [dispatch]);
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(fetchLandingPage())
+  }, [dispatch])
   const landingPageData = useSelector((state) => state.data.landingPageData);
   // const landingPageData = useSelector((state) => state.games);
   const saleData = landingPageData.slice(0, 10);

@@ -154,6 +154,7 @@ const db = require("../models");
 const Wishlist = db.wishlist;
 const User = db.user;
 const Game = db.game;
+const User_Roles = db.user_roles
 const sequelize = require("sequelize");
 
 exports.allAccess = (req, res) => {
@@ -183,9 +184,36 @@ exports.fetchUser = async (req, res) => {
       "wishlist": user.wishlist,
       "firstName": user.firstName,
       "lastName": user.lastName,
+      "wallet": user.wallet,
     });
   });
 };
+
+exports.findAllUser = async (req, res) => {
+  User.findAll()
+      .then(data => {
+          res.send(data);
+      })
+      .catch(err => {
+          res.status(500).send({
+              message:
+                  err.message || "Some error occurred while retrieving games."
+          });
+      });
+};
+
+exports.findAllUserRoles = async (req, res) =>{
+  User_Roles.findAll()
+      .then(data => {
+          res.send(data);
+      })
+      .catch(err => {
+          res.status(500).send({
+              message:
+                  err.message || "Some error occurred while retrieving games."
+          });
+      });
+}
 
 // check username availability
 exports.checkUsernameAvailability = async (req, res) => {
@@ -273,3 +301,89 @@ exports.removeFromWishlist = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+exports.addToCart = async (req, res) => {
+  const userId = req.userId;
+  const { gameId } = req.body;
+
+  try {
+    const user = await User.findOne({
+      where: { id: userId },
+    });
+    if (!user){
+      return res.status(404).json({ message: "User not found" });
+    }
+    // parse user.wishlist to turn it into array before appendding new game
+    const cart = JSON.parse(user.cart || "[]");
+    if (cart.includes(gameId)) {
+      return res.status(400).json({ message: "Product already in cart." });
+    }
+    const updatedCart = [...cart, gameId];
+    const updatedUser = await user.update({ cart: JSON.stringify(updatedCart)}, { returning: true });
+
+    // another way to update
+    // await user.addToWishlist(gameId);
+    res.status(200).json({ message: 'Product added to cart.', cart: updatedCart });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+exports.removeFromCart = async (req, res) => {
+  const userId = req.userId;
+  const { gameId } = req.body;
+
+  try {
+    const user = await User.findOne({
+      where: { id: userId },
+    });
+    if (!user){
+      return res.status(404).json({ message: "User not found" });
+    }
+    // parse user.wishlist to turn it into array before appendding new game
+    const cart = JSON.parse(user.cart || "[]");
+    if (!cart.includes(gameId)) {
+      return res.status(400).json({ message: "Game is not in cart." });
+    }
+    const updatedcart = cart.filter((id) => id !== gameId);
+    const updatedUser = await user.update({ 
+      cart: JSON.stringify(updatedcart)}, 
+    { returning: true });
+
+    // another way to update
+    // await user.addTocart(gameId);
+    res.status(200).json({ message: 'Product removed from cart.', cart: updatedcart });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+exports.SubtractWallet = async (req, res) =>{
+  const userId = req.userId
+  const { payment } = req.body
+  console.log(req.body)
+  try{
+    const user = await User.findOne({
+      where: { id: userId },
+    });
+    if (!user){
+      return res.status(404).json({ message: "User not found" });
+    }
+    const wallet = JSON.parse(user.wallet || 0);
+    if (wallet < payment){
+      return res.status(200).json({message: "Not enough money"});
+    }
+    else{
+      const updateWallet = payment;
+      const updateUser = await user.update({
+        wallet: JSON.stringify(updateWallet)
+      }, {returning: true});
+    }
+    res.status(200).json({message: "Wallet is subtracted"})
+  } catch(err){
+    console.error(err);
+    res.status(500).json({message: "Intercal server error"})
+  }
+}

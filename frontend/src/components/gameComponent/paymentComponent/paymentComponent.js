@@ -3,20 +3,19 @@ import "./paymentComponent.css"
 import PriceComponent from "../../priceComponent/PriceComponent";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToWishlist, fetchUserData, removeFromWishlist } from "../../../store/slices/rootSlice";
+import { addToCart, addToWishlist, fetchUserData, removeFromWishlist } from "../../../store/slices/rootSlice";
 
 
 const PaymentComponent = props =>{
-    const data = props.data 
+    const data = props.data
     const dispatch = useDispatch()
+    const platform = Object.keys(data.specifications["Configurations"])
 
     const [isWishlisted, setWishlisted] = useState(false)
     const [wishlist, setWishlist] = useState([]);
     const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);   
     
     useEffect(() => {
-        console.log("call check authen")
-        console.log(wishlist)
         if (isAuthenticated) {
           dispatch(fetchUserData()).then((userData) => {
             setWishlist(userData.payload.wishlist || []);
@@ -35,11 +34,15 @@ const PaymentComponent = props =>{
   
     const navigate = useNavigate();
   
-    const handleWishlist = (e) => {
+    function handleSignIn(e){
         e.preventDefault();
-        if (!isAuthenticated) {
+        if (!isAuthenticated){
             navigate("/signin");
         }
+    }
+
+    const handleWishlist = (e) => {
+        handleSignIn(e);
         // console.log(data.id, " before: " ,isWishlisted)
         if (!isWishlisted){
           dispatch(addToWishlist(data.id));
@@ -49,9 +52,12 @@ const PaymentComponent = props =>{
         }
         setWishlisted((prev) => !prev);
     };
-    
-    console.log(wishlist)
 
+    const handleCart = (e) => {
+        dispatch(addToCart(data.id))
+        navigate("/cart")
+    }
+    
     return(
         <>
             <div className="payment__container">
@@ -72,13 +78,11 @@ const PaymentComponent = props =>{
                         </button>
                     </div>
                     <div>
-                        <Link to = {`/cart`}>
-                            <div className="payment__btn__wrapper payment__btn__add_cart">
-                                <button className="payment__btn btn__add_cart">
-                                    <span>View in Cart</span>
-                                </button>
-                            </div>
-                        </Link>
+                        <div className="payment__btn__wrapper payment__btn__add_cart">
+                            <button className="payment__btn btn__add_cart" onClick = {handleCart}>
+                                <span>View in Cart</span>
+                            </button>
+                        </div>   
                     </div>
 
                     <div>
@@ -115,7 +119,7 @@ const PaymentComponent = props =>{
                             <li className="payment__item">
                                 <div className="payment__item__wrapper">
                                     <div className="payment__item__title">Platform</div>
-                                    <div className="payment__item__value payment__item__value__platform">{(data.platform != null || data.platform !== " ")? (data.platform.map((el,ind)=>{
+                                    <div className="payment__item__value payment__item__value__platform">{(platform != null || platform !== " ")? (platform.map((el,ind)=>{
                                         return (<span>{el}</span>)
                                     })): " "}</div>
                                 </div>

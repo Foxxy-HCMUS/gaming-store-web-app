@@ -5,7 +5,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchLandingPage = createAsyncThunk(
   "games/fetchGames",
-  async (userType, { getState }) => {
+  async (userType, { getState }) => { 
     const response = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/games`,
       {

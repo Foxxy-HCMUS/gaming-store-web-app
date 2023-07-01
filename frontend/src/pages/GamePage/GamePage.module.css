@@ -22,13 +22,14 @@
 
 .infomation_game__description__col0{
     width: calc(100% - 400px);
+    
 }
 
 .infomation_game__description__col1{
     flex-shrink: 0;
     -webkit-box-flex: 0;
     flex-grow: 0;
-    width: 100%;
+    width: 400px;
     flex: 1;
 }
 
@@ -52,7 +53,7 @@
 .type_game{
     display: flex;
     flex-direction: row;
-    width:100%;
+    width: 100%;
     align-items: stretch;
     justify-content: space-between;
     -webkit-box-align: stretch;
@@ -95,9 +96,18 @@
     padding-bottom: 5px;
 }
 
+.wrapper{
+    width: calc(100% - 400px);
+}
+
+.infomation_game2{
+    
+}
 
 .specifications{
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
 
     .specifications__table{
         margin-top: 30px;
