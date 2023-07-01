@@ -15,6 +15,7 @@ const BrowsePage = () => {
   const [sortingModal, setSortingModalState] = useState(false);
   const originalData = useSelector((state) => state.games);
 
+  console.log(originalData)
   // rerender whenever data change
   useEffect(() => {
     setData([...originalData]);

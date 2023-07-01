@@ -94,7 +94,7 @@ function parseQuery(query) {
     }
 
     // Extract the "features" property from the query string
-    const features = params.get("features");    
+    let features = params.get("features");    
     if (features) {
         features = features.split(",");
         filter.features = {
@@ -103,7 +103,7 @@ function parseQuery(query) {
     }
 
     // Extract the "genres" property from the query string
-    const genres = params.get("genres");
+    let genres = params.get("genres");
     if (genres) {
         genres = genres.split(",");
         filter.genres = {

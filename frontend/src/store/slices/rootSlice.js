@@ -72,11 +72,11 @@ export const filterData = createAsyncThunk(
     const { data } = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/games/filters?${query}`,
       {
-        withCredentials: true,
+        // withCredentials: true,
         headers: authHeader(getState()),
       }
     );
-    return data.data;
+    return data;
   }
 );
 

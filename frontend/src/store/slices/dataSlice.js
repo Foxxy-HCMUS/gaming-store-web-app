@@ -1,13 +1,16 @@
 import axios from "axios";
+import userService from '../../services/user.service';
+import authHeader from '../../services/auth-header';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchGames = createAsyncThunk(
+export const fetchLandingPage = createAsyncThunk(
   "games/fetchGames",
-  async (userType) => {
+  async (userType, { getState }) => {
     const response = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/games`,
       {
-        withCredentials: true,
+        // withCredentials: true,
+        // headers: authHeader(getState()),
       }
     );
     return response;
@@ -29,16 +32,16 @@ const dataSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchGames.pending, (state, action) => {
+      .addCase(fetchLandingPage.pending, (state, action) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchGames.fulfilled, (state, action) => {
+      .addCase(fetchLandingPage.fulfilled, (state, action) => {
         state.loading = false;
         state.games = action.payload;
         state.landingPageData = action.payload.data;
       })
-      .addCase(fetchGames.rejected, (state, action) => {
+      .addCase(fetchLandingPage.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });
