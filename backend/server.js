@@ -42,6 +42,7 @@ app.use((req, res, next) => {
 require("./app/routes/user.routes")(app);
 require("./app/routes/auth.routes")(app);
 require("./app/routes/game.routes")(app);
+require("./app/routes/order.routes")(app);
 
 // // ``` SIgn in SIgn up
 // const bcrypt = require("bcrypt");

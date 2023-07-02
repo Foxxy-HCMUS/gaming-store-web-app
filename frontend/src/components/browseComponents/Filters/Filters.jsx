@@ -30,7 +30,7 @@ const Filters = ( {handleSearch, searchTerm } ) => {
         if (checked) {
           return {
             ...prev,
-            price: value,
+            price: prev.price === value ? "" : value,
           };
         } else {
           return {
@@ -38,6 +38,7 @@ const Filters = ( {handleSearch, searchTerm } ) => {
             price: "",
           };
         }
+
       }
 
       if (id === "features") {
@@ -81,7 +82,7 @@ const Filters = ( {handleSearch, searchTerm } ) => {
       }
 
       if (id === "platform") {
-        console.log("test");
+        // console.log("test");
         if (checked) {
           return {
             ...prev,
@@ -172,7 +173,7 @@ const Filters = ( {handleSearch, searchTerm } ) => {
                     <input
                       className={styles.checkbox_input}
                       value="1"
-                      type="radio"
+                      type="checkbox"
                       name="price"
                       onChange={(e) => Sorting(e)}
                     />
@@ -185,14 +186,14 @@ const Filters = ( {handleSearch, searchTerm } ) => {
                   </div>
                   <div className={styles.checkbox}>
                     <input
-                      value="750"
-                      type="radio"
+                      value="50"
+                      type="checkbox"
                       name="price"
                       onChange={(e) => Sorting(e)}
                       className={styles.checkbox_input}
                     />
                     <div className={styles.checkbox_label}>
-                      <span>Under Rs. 750.00</span>
+                      <span>Under Rs. 50.00</span>
                       <span className={styles.check}>
                         <BiCheck />
                       </span>
@@ -201,14 +202,14 @@ const Filters = ( {handleSearch, searchTerm } ) => {
 
                   <div className={styles.checkbox}>
                     <input
-                      value="1500"
-                      type="radio"
+                      value="100"
+                      type="checkbox"
                       name="price"
                       onChange={(e) => Sorting(e)}
                       className={styles.checkbox_input}
                     />
                     <div className={styles.checkbox_label}>
-                      <span>Under Rs. 1,500.00</span>
+                      <span>Under Rs. 100.00</span>
                       <span className={styles.check}>
                         <BiCheck />
                       </span>
@@ -217,14 +218,14 @@ const Filters = ( {handleSearch, searchTerm } ) => {
 
                   <div className={styles.checkbox}>
                     <input
-                      value="2500"
-                      type="radio"
+                      value="200"
+                      type="checkbox"
                       name="price"
                       onChange={(e) => Sorting(e)}
                       className={styles.checkbox_input}
                     />
                     <div className={styles.checkbox_label}>
-                      <span>Under Rs. 2,500.00</span>
+                      <span>Under Rs. 200.00</span>
                       <span className={styles.check}>
                         <BiCheck />
                       </span>
