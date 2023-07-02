@@ -75,7 +75,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       reviews: {
-        type: Sequelize.JSON
+        type: Sequelize.INTEGER // check lun hàm get order chứ :) 
       },
       specifications: {
         type: Sequelize.JSON

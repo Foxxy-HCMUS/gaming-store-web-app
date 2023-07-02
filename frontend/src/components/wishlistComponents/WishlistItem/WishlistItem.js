@@ -20,7 +20,7 @@ const WishlistItem = props => {
     }
 
     useEffect(()=>{
-        if (cart !== null || cart !== []){
+        if (cart !== null && cart !== []){
             if(cart.includes(gameInfo.id)){
                 setIsAdded(true)
             }

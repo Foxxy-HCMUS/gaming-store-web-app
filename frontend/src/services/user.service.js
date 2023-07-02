@@ -58,8 +58,7 @@ class UserService {
       headers: { 'x-access-token': accessToken },
     });
     return response;
-  }
-
+  } 
   // async getAllUserRole(accessToken){
   //   const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/findall-only-user`, {
   //     headers: { 'x-access-token': accessToken },

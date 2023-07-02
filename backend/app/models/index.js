@@ -64,16 +64,19 @@ db.user.hasMany(db.order, {
     sourceKey: "id"
 });
 
-// db.order.belongsToMany(db.game, { 
-//     through: 'OrderGames',
-//     foreignKey: 'orderId',
-//     otherKey: 'gameId',
-// });
-// db.game.belongsToMany(db.order, { 
-//     through: 'OrderGames',
-//     foreignKey: 'gameId',
-//     otherKey: 'orderId',
-// });
+db.order.hasMany(db.order_games, {
+    foreignKey: 'orderId',
+});
+db.order_games.belongsTo(db.order, {
+foreignKey: 'orderId',
+});
+
+db.order_games.belongsTo(db.game, { 
+    foreignKey: 'gameId',
+});
+db.game.hasMany(db.order_games, { 
+    foreignKey: 'gameId',
+});
 
 
 db.ROLES = ["user", "admin", "moderator"];

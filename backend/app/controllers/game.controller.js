@@ -186,10 +186,10 @@ exports.findOne = (req, res) => {
 // Update a game by the id in the request
 exports.update = (req, res) => {
     const id = req.params.id;
-
-    Game.update(req.body, {
-        where: { id: id }
-    })
+    // console.log(req.body.game)
+    Game.update(req.body.game, {
+        where: { id: id },
+        returning: true})
         .then(num => {
             if (num == 1) {
                 res.send({

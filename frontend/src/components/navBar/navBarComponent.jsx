@@ -412,6 +412,10 @@ const NavBar = () => {
                       <ListItemButton sx={{ pointerEvents: 'auto' }} onClose={handleMenuClose}>
                         PROFILE
                       </ListItemButton>
+                        <ListItemButton to="/libraries" sx={{ pointerEvents: 'auto' }} onClose={handleMenuClose}>
+                            LIBRARIES
+                        </ListItemButton>
+                      
                       <ListItemButton onClick={handleLogout} sx={{ pointerEvents: 'auto' }} onClose={handleMenuClose}>
                         SIGN OUT
                       </ListItemButton>

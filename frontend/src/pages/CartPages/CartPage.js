@@ -23,7 +23,7 @@ const CartPage = () => {
     // const [cartID, setCardID] = useState([])
     const dataGetter = useSelector((state) => state.data.landingPageData)
     const userData = useSelector((state)=> state.user.userData)
-    const [wallet, setWallet] = useState(0)
+    const [wallet, setWallet] = useState([])
 
     useEffect(()=>{
         setWallet(userData.wallet)

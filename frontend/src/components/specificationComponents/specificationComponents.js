@@ -8,7 +8,7 @@ const SpecificationTable = props =>{
     const supportedLanguage = specifications["Languages Supported"]
     const platforms = Object.keys(configurations).reverse()
     // console.log(platform[0])
-    const [platform, setPlatform] = useState(platforms[0])
+    const [platform, setPlatform] = useState(platforms[0]) 
     const [configs, setConfigs] = useState(configurations[platform])
     let activeElement = new Array(platform.length).fill(false)
     activeElement[0] = true

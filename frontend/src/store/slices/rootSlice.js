@@ -278,6 +278,59 @@ export const addToOrders = createAsyncThunk(
   }
 );
 
+export const makeOrder = createAsyncThunk(
+  'orders/',
+  async ({userId, games}, {getState, dispatch})=>{
+    await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/order`,
+      {
+        userId: userId,
+        games: games,
+      },
+      {
+        // withCredentials: true,
+        headers: authHeader(getState())
+      }
+    )
+    return;
+  }
+)
+
+export const getOrders = createAsyncThunk(
+  'orders/get',
+  async ({ userId }, {getState, dispatch})=>{
+    const {da} = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/order/${userId}`,
+      // {
+      //   userId: userId,
+      // },
+      {
+        withCredentials: true,
+        // headers: authHeader(getState()) 
+        heades: { "Content-Type": "Application/json"}
+      }
+    );
+    return da;
+  }
+)
+
+
+export const updateGame = createAsyncThunk(
+  'game/:id',
+  async (game, {getState, dispatch}) =>{
+    await axios.put(
+      `${process.env.REACT_APP_BACKEND_URL}/games/${game.id}`,
+      {
+        game
+      },
+      {
+        params: {id: game.id},
+        headers:authHeader(getState())
+      }
+    )
+  }
+)
+
 const wishlistSlice = createSlice({
     name: 'wishlist',
     initialState: [],
@@ -303,6 +356,13 @@ const wishlistSlice = createSlice({
           return orders;
         })
         .addCase(addToOrders.rejected, (state, action) => {
+          console.log(action.error.message);
+        })
+        .addCase(getOrders.fulfilled, (state, action) => {
+          const { orders } = action.payload;
+          return orders;
+        })
+        .addCase(getOrders.rejected, (state, action) => {
           console.log(action.error.message);
         })
         .addCase(SubtractWallet.fulfilled, (state, action) => {

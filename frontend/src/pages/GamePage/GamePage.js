@@ -13,6 +13,7 @@ import SpecificationTable from "../../components/specificationComponents/specifi
 import Footer from "../../components/footer/Footer";
 import PaymentComponent from "../../components/gameComponent/paymentComponent";
 import { fetchLandingPage } from "../../store/slices/dataSlice";
+import { fetchUserData } from "../../store/slices/rootSlice";
 
 const GamePage = ({_id}) =>{
     const dispatch = useDispatch();
@@ -63,7 +64,7 @@ const GamePage = ({_id}) =>{
                 <div className={styles.infomation_game}>
                     <div className={styles.infomation_game__description__col0}>
                         <div className={styles.slider__image}>
-                            <ProductSlider data = {sliderImage}/>
+                            <ProductSlider data = {sliderImage}/>   
                         </div>
 
                         <div className={styles.description}>

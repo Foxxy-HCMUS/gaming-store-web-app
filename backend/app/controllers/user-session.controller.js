@@ -430,15 +430,10 @@ exports.SubtractWallet = async (req, res) =>{
       return res.status(404).json({ message: "User not found" });
     }
     const wallet = JSON.parse(user.wallet || 0);
-    if (wallet < payment){
-      return res.status(200).json({message: "Not enough money"});
-    }
-    else{
-      const updateWallet = payment;
-      const updateUser = await user.update({
-        wallet: JSON.stringify(updateWallet)
-      }, {returning: true});
-    }
+    const updateWallet = payment;
+    const updateUser = await user.update({
+      wallet: JSON.stringify(updateWallet)
+    }, {returning: true});
     res.status(200).json({message: "Wallet is subtracted"})
   } catch(err){
     console.error(err);

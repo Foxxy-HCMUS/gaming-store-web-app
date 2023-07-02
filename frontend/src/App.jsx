@@ -171,6 +171,7 @@ import GamePage  from "./pages/GamePage/GamePage";
 import BrowsePage from './pages/BrowsePage/BrowsePage';
 import WishlistPage from "./pages/WishlistPage";
 import AdminPage from "./pages/AdminPage";
+import CheckPage from "./pages/CheckoutPage";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -193,13 +194,7 @@ export default function App() {
 
   // const { isLoggedIn } = useSelector((state) => state.auth);
   // console.log(isLoggedIn);
-  useEffect(() => {
-    // dispatch(fetchUser());
-    // if (isLoggedIn) {
-    //   dispatch(fetchUserData());  
-    // }
-    dispatch(fetchGames());
-  }, [dispatch]);
+  
 
   // const [language, setLanguage] = useState("en");
 
@@ -282,6 +277,10 @@ export default function App() {
           isAdmin[0] === 'ROLE_ADMIN' && isAdmin.length !== 0 && isAdmin !== null ? (<Route path = "/admin" element = {<AdminPage/>}/>) : ""
         } */}
         <Route path = "/admin" element = {<AdminPage/>}></Route>
+
+        <Route path = "/checkout" element = {
+          <CheckPage/>
+        }></Route>
         </Routes>
       </div>
     </>
