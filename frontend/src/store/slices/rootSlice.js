@@ -23,6 +23,42 @@ export const fetchUserData = createAsyncThunk(
   }
 );
 
+export const fetchAdminBoard = createAsyncThunk(
+  'admin/fetch',
+  async (_, { getState }) => {
+    const { accessToken } = selectUser(getState());
+    const data = await userService.getAdminBoard(accessToken);
+    return data;
+  } 
+)
+
+export const fetchAllUserForAdmin = createAsyncThunk(
+  'admin/fetch',
+  async (_, { dispatch, getState }) => {
+    const { accessToken } = selectUser(getState());
+    const data = await userService.getUserDataForAdmin(accessToken);
+    return {"ALL_USER": data.data}
+  } 
+);
+
+export const fetchAllUserRolesForAdmin = createAsyncThunk(
+  'admin/fetch',
+  async (_, { dispatch, getState }) => {
+    const { accessToken } = selectUser(getState());
+    const data = await userService.getUserRolesDataForAdmin(accessToken);
+    return {"ALL_USER_ROLES": data.data}
+  } 
+);
+
+// export const fetchOnlyUserForAdmin = createAsyncThunk(
+//   'admin/fetch',
+//   async (_, { dispatch, getState }) => {
+//     const { accessToken } = selectUser(getState());
+//     const data = await userService.getAllUserRole(accessToken);
+//     return {"USER_ROLE": data.data}
+//   } 
+// );
+
 const userSlice = createSlice({
   name: 'user',
   initialState: initialState,
@@ -44,6 +80,14 @@ const userSlice = createSlice({
         state.userData = action.payload;
       })
       .addCase(fetchUserData.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+      })
+      .addCase(fetchAdminBoard.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.adminData = action.payload;
+      })
+      .addCase(fetchAdminBoard.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
       });
@@ -72,11 +116,25 @@ export const filterData = createAsyncThunk(
     const { data } = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/games/filters?${query}`,
       {
-        withCredentials: true,
+        withCredentials: false,
         headers: authHeader(getState()),
       }
     );
-    return data.data;
+    return data;
+  }
+);
+
+export const searchGames = createAsyncThunk(
+  'games/search',
+  async (query, { getState, dispatch }) => {
+    const { data } = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/games/search?${query}`,
+      {
+        withCredentials: false,
+        headers: authHeader(getState()),
+      }
+    );
+    return data;
   }
 );
 
@@ -84,7 +142,7 @@ const gamesSlice = createSlice({
   name: 'games',
   initialState: [],
   reducers: {
-    getGames: (state, action) => {
+    setGames: (state, action) => {
       return action.payload;
     },
     sortGames: (state, action) => {
@@ -104,11 +162,17 @@ const gamesSlice = createSlice({
       })
       .addCase(filterData.rejected, (state, action) => {
         console.log(action.error.message);
+      })
+      .addCase(searchGames.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(searchGames.rejected, (state, action) => {
+        console.log(action.error.message);
       });
   },
 });
 
-export const { getGames, sortGames } = gamesSlice.actions;
+export const { setGames, sortGames } = gamesSlice.actions;
 
 export const addToWishlist = createAsyncThunk(
   'wishlist/add',
@@ -144,6 +208,58 @@ export const removeFromWishlist = createAsyncThunk(
     return dispatch(fetchUserData());
   }
 );
+
+export const addToCart = createAsyncThunk(
+  'cart/add',
+  async (id, { getState, dispatch }) => {
+    await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/cart`,
+      {
+        gameId: id,
+      },
+      {
+        // withCredentials: true,
+        headers: authHeader(getState()),
+      }
+    );
+    dispatch(fetchUserData());
+    return getState().user;
+  }
+);
+
+export const removeFromCart = createAsyncThunk(
+  'cart/remove',
+  async (id, { getState, dispatch }) => {
+    await axios.delete(
+      `${process.env.REACT_APP_BACKEND_URL}/cart`,
+        {data: {
+          gameId: id,
+        },
+        headers: 
+            // withCredentials: true,
+            authHeader(getState()),
+    }
+    );
+    return dispatch(fetchUserData());
+  }
+);
+
+export const SubtractWallet = createAsyncThunk(
+  'wallet/subtract',
+  async (payment, {getState, dispatch})=>{
+    await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/wallet`,
+        {
+          payment: payment
+        },
+        {
+          headers: authHeader(getState()),
+        }
+    );
+    dispatch(fetchUserData());
+    return getState().user;
+  }
+)
 
 export const addToOrders = createAsyncThunk(
   'orders/add',
@@ -187,6 +303,12 @@ const wishlistSlice = createSlice({
           return orders;
         })
         .addCase(addToOrders.rejected, (state, action) => {
+          console.log(action.error.message);
+        })
+        .addCase(SubtractWallet.fulfilled, (state, action) => {
+          return ;
+        })
+        .addCase(SubtractWallet.rejected, (state, action) => {
           console.log(action.error.message);
         });
     },

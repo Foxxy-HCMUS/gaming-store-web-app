@@ -1,0 +1,22 @@
+.configuration__listItems{
+    display:flex;
+    flex-direction: column;
+}
+
+.configuration__item{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.configuration__item__title{
+    color: #b9b9b9;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.configuration__item__value{
+    letter-spacing: 1px;
+    font-size: 16px;
+    color: #fff;
+}

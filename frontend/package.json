@@ -27,7 +27,9 @@
     "react-validation": "^3.0.7",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
+    "sass": "^1.63.5",
     "slick-carousel": "^1.8.1",
+    "swiper": "^9.4.1",
     "use-debounce": "^9.0.4",
     "validator": "^13.9.0",
     "web-vitals": "^2.1.4"
@@ -38,7 +40,13 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8080",
+  "options": {
+    "allowedHosts": [
+      "localhost",
+      "localhost."
+    ],
+    "proxy": "http://localhost:8080"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
