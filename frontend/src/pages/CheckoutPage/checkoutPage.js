@@ -3,7 +3,7 @@ import styles from "./checkoutPage.module.css";
 import PaymentWay from "../../components/checkoutComponent/paymentWayComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLandingPage } from "../../store/slices/dataSlice";
-import { SubtractWallet, fetchUserData, makeOrder } from "../../store/slices/rootSlice";
+import { SubtractWallet, fetchUserData, makeOrder, removeFromCart } from "../../store/slices/rootSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWallet } from "@fortawesome/free-solid-svg-icons";
 import Typography from '@mui/material/Typography';
@@ -79,10 +79,14 @@ const CheckPage = () =>{
             order.push({"id": Number(el.id)})
         })
 
-
-        console.log(order)
         dispatch(makeOrder({'userId': Number(userData.id), 'games': order}))
-        // window.location.reload()
+        setWallet(wallet - total)
+
+        order.map((el)=>{
+            dispatch(removeFromCart(el["id"]))
+        }
+        )
+        window.location.reload()
     }
 
     return (
@@ -176,8 +180,6 @@ const CheckPage = () =>{
                                                     fullWidth
                                                     autoComplete="cc-number"
                                                     variant="standard"
-                                                    value = {value}
-                                                    onChange = {handleChange}
                                                 />
                                                 </Grid>
                                                 <Grid item xs={12} md={6}>
@@ -193,12 +195,13 @@ const CheckPage = () =>{
                                                 <Grid item xs={12} md={6}>
                                                 <TextField
                                                     required
-                                                    id="cvv"
-                                                    label="CVV"
-                                                    helperText="Last three digits on signature strip"
+                                                    id="Number of money"
+                                                    label="Money"
                                                     fullWidth
                                                     autoComplete="cc-csc"
                                                     variant="standard"
+                                                    value = {value}
+                                                    onChange={handleChange}
                                                 />
                                                 </Grid>
                                                 <Grid item xs={12}>

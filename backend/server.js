@@ -85,10 +85,10 @@ const Role = db.role;
 const Game = db.game;
 
 db.sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => {
     console.log("Synced db.");
-    // initial();
+    initial();
   })
   .catch((err) => {
     console.log("Failed to synced db: " + err.message);

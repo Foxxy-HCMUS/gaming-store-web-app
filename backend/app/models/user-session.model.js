@@ -37,7 +37,7 @@ module.exports = (sequelize, Sequelize) => {
       // },
       wallet: {
         type: Sequelize.FLOAT,
-        defaultValue: 10000,
+        defaultValue: 0,
       }
     },
   );

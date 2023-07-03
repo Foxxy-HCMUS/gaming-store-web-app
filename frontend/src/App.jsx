@@ -172,6 +172,8 @@ import BrowsePage from './pages/BrowsePage/BrowsePage';
 import WishlistPage from "./pages/WishlistPage";
 import AdminPage from "./pages/AdminPage";
 import CheckPage from "./pages/CheckoutPage";
+import LibrariesPage from "./pages/LibrariesPage/librariesPage";
+import { fetchLandingPage } from "./store/slices/dataSlice";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -179,6 +181,11 @@ export default function App() {
   const [showNavBar, setShowNavBar ] = useState(true);
   // console.log(location.pathname)
   const notShow = ["/signin", "/register", "/forgot-password", "/reset-password", "/verify-email"]
+
+  useEffect(()=>{
+    // dispatch(fetchUserData())
+    dispatch(fetchLandingPage())
+  },[dispatch])
 
   useEffect(() => {
     if (notShow.includes(location.pathname)) {
@@ -281,6 +288,11 @@ export default function App() {
         <Route path = "/checkout" element = {
           <CheckPage/>
         }></Route>
+
+        <Route path = "/libraries" element = {
+          <LibrariesPage/>
+        }></Route>
+
         </Routes>
       </div>
     </>

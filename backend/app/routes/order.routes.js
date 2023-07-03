@@ -5,9 +5,9 @@ module.exports = app => {
 
     const router = require("express").Router();
 
-    router.post("/",  order.makeOrder);
+    router.post("/", [authJwt.verifyToken],  order.makeOrder);
 
-    router.get("/:userId",  order.getOrders);
+    router.get("/:userId", [authJwt.verifyToken],  order.getOrders);
 
     app.use('/order', router);
 

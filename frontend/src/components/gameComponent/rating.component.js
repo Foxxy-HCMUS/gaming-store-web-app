@@ -5,27 +5,48 @@ import StarIcon from '@mui/icons-material/Star';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrders, updateGame } from '../../store/slices/rootSlice';
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 function getLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}, ${value}`;
 }
 
-export default function HoverRating({rating}) {
-  const [value, setValue] = React.useState(rating);
-  const [hover, setHover] = React.useState(3);
-
-  // var game = useSelector(state=> state.data.games.data[0])
-  // var newgame = {...game, reviews: 3};
-
+export default function HoverRating({data}) {
+  const [value, setValue] = useState(0);
+  const [hover, setHover] = useState(0);
   const dispatch = useDispatch()
+  const dataGame = data[0]
+  const [updateGames, setUpdateGames] = useState(dataGame)
+
+  useEffect(()=>{
+    console.log(updateGames["reviews"])
+    const reviewsGame = updateGames["reviews"]
+
+    if (reviewsGame === null || updateGame.length === 0){
+      const reviews = {rating: value, eval: 1}
+
+      setUpdateGames({...updateGames, reviews: reviews})
+    }
+    else{
+      const updateReviews = {
+        rating:Math.round(((updateGames["reviews"].rating*updateGames["reviews"].eval + value)/(updateGames["reviews"].eval+1))*10)/10,
+        eval: updateGames["reviews"].eval + 1
+      }
+      setUpdateGames({...updateGames, reviews: updateReviews})
+    }
+    console.log(updateGames["reviews"])
+    dispatch(updateGame(updateGames))
+  }, [value])
+
+
   // dispatch(updateGame(newgame))
 
-  useEffect(() => {
-    dispatch(getOrders({ userId: 1 }));
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getOrders({ userId: 1 }));
+  // }, [dispatch]);
 
 
-  console.log(rating)
+
   return (
     <Box
       sx={{

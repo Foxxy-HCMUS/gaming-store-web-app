@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 
 const initialState = {
     userData: {},
+    orders: [],
     status: 'idle',
     error: null,
   };
@@ -59,6 +60,23 @@ export const fetchAllUserRolesForAdmin = createAsyncThunk(
 //   } 
 // );
 
+export const getOrders = createAsyncThunk(
+  'orders/get',
+  async ({ userId }, {getState, dispatch})=>{
+    const res = await axios.get(
+      `${process.env.REACT_APP_BACKEND_URL}/order/${userId}`,
+      // {
+      //   userId: userId,
+      // },
+      {
+        // withCredentials: true,
+        headers: authHeader(getState())
+      }
+    ); 
+    return res.data;
+  }
+)
+
 const userSlice = createSlice({
   name: 'user',
   initialState: initialState,
@@ -90,6 +108,18 @@ const userSlice = createSlice({
       .addCase(fetchAdminBoard.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
+      })
+      .addCase(getOrders.fulfilled, (state, action) => {
+        // state.status = 'succeeded';
+        console.log(action.payload)
+
+        state.orders = action.payload
+        // const { orders } = action.payload;
+        // console.log(orders)
+        // return orders
+      })
+      .addCase(getOrders.rejected, (state, action) => {
+        console.log(action.error.message);
       });
   },
 });
@@ -296,23 +326,7 @@ export const makeOrder = createAsyncThunk(
   }
 )
 
-export const getOrders = createAsyncThunk(
-  'orders/get',
-  async ({ userId }, {getState, dispatch})=>{
-    const {da} = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/order/${userId}`,
-      // {
-      //   userId: userId,
-      // },
-      {
-        withCredentials: true,
-        // headers: authHeader(getState()) 
-        heades: { "Content-Type": "Application/json"}
-      }
-    );
-    return da;
-  }
-)
+
 
 
 export const updateGame = createAsyncThunk(
@@ -356,13 +370,6 @@ const wishlistSlice = createSlice({
           return orders;
         })
         .addCase(addToOrders.rejected, (state, action) => {
-          console.log(action.error.message);
-        })
-        .addCase(getOrders.fulfilled, (state, action) => {
-          const { orders } = action.payload;
-          return orders;
-        })
-        .addCase(getOrders.rejected, (state, action) => {
           console.log(action.error.message);
         })
         .addCase(SubtractWallet.fulfilled, (state, action) => {

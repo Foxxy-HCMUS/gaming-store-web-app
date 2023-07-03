@@ -23,6 +23,13 @@ const WishlistPage = () =>{
     const dataGetter = useSelector((state) => state.data.landingPageData)
     const [myWishlist, setMyWishlist] = useState([])
 
+    const [wallet, setWallet] = useState([])
+
+    useEffect(()=>{
+        setWallet(userData.wallet)
+    }, [userData.wallet]
+    )
+
     useEffect(()=>{
         const idWishlist = userData.wishlist
         if (idWishlist != null){
@@ -90,7 +97,7 @@ const WishlistPage = () =>{
                                     <span>My Wallet</span>
                                 </div>
                                 <div className={styles.wishlist__wallet__point}>
-                                    <span>&#8377;0.00</span>
+                                    <span>&#8377;{wallet}</span>
                                 </div>
                             </div>
                         </div>
