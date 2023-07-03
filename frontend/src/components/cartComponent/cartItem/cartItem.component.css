@@ -5,6 +5,10 @@
     border-radius: 5px;
 }
 
+.is__bought{
+    border: solid red 3px;
+}
+
 .cart_game__item__wrapper{
     display: flex;
     flex-direction: row;

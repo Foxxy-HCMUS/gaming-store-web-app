@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./MiniCardContainer.module.css";
 
 import MiniCard from "./MiniCard";
 
 const MiniCardContainer = ({ data, heading }) => {
+  const navigate = useNavigate()
   return (
     <>
       <div className={styles.main}>
@@ -13,7 +14,7 @@ const MiniCardContainer = ({ data, heading }) => {
               <p className={styles.heading}>{heading}</p>
             </div>
             <div className={styles.button_div}>
-              <button className={styles.button}>VIEW MORE</button>
+              <button className={styles.button} onClick={()=>{navigate("/browse")}}>VIEW MORE</button>
             </div>
           </div>
 

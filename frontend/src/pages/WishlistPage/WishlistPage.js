@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchLandingPage } from "../../store/slices/dataSlice";
 import { fetchGames, fetchUser } from "../../store/actions";
 import styles from "./WishlistPage.module.css"
-import { fetchUserData } from "../../store/slices/rootSlice";
+import { fetchUserData, getOrders } from "../../store/slices/rootSlice";
 import WishlistItemWrapper from "../../components/wishlistComponents/WishlistItemWrapper";
 import Filters from "../../components/browseComponents/Filters/Filters";
 
@@ -31,9 +31,11 @@ const WishlistPage = () =>{
     )
 
     useEffect(()=>{
-        const idWishlist = userData.wishlist
+        var idWishlist = userData.wishlist
         if (idWishlist != null){
-            const wishlist = dataGetter.filter((features) => idWishlist.includes(features.id.toString()))
+            idWishlist = idWishlist.slice(1,-1).split(',').map(str=>{return parseInt(str,10)})
+            const wishlist = dataGetter.filter((features) => idWishlist.includes(features.id))
+            console.log(wishlist)
             setMyWishlist(wishlist)
         }
     }, [userData.wishlist])

@@ -49,10 +49,12 @@ const LibrariesPage = () => {
     }, [orders, dataGetter])
     const navigate = useNavigate()
     
-    const downloadImage = (e)=>{
-        const { thumbnails } = e.target
-        console.log(e.target)
-    }
+    // const downloadImage = (e)=>{
+    //     // const { thumbnails } = e.target
+    //     // console.log(e.target)
+    //     e.preventDefault();
+    //     saveAs(url, "image.png")
+    // }
 
 
     if (myLibraries!=null && myLibraries.length !== 0){
@@ -77,18 +79,20 @@ const LibrariesPage = () => {
                                                     </div>
                                                     <div className={styles.libraries__item__btns}>
                                                     
-                                                        <button className={styles.libraries__btn__download} onClick={downloadImage}>
+                                                        <button className={styles.libraries__btn__download} onClick={() => {saveAs(el.thumbnails, "image.png")}}>
                                                             Download
                                                         </button>
                                                         <button className={styles.libraries__btn__info} >
                                                             <Link
                                                                 to = {`/${el.id}`}
                                                                 style={{
-                                                                    "color": "#000"
+                                                                    "color": "#000",
+                                                                    "width" : "100%",
+                                                                    "height" : "70px",
                                                                 }
                                                                 }
                                                             >
-                                                                <span>Infomation Game</span>
+                                                                <span>Game Infomation</span>
                                                             </Link>
                                                         </button>
                                                     </div>

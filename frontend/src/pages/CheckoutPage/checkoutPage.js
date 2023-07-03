@@ -3,7 +3,7 @@ import styles from "./checkoutPage.module.css";
 import PaymentWay from "../../components/checkoutComponent/paymentWayComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLandingPage } from "../../store/slices/dataSlice";
-import { SubtractWallet, fetchUserData, makeOrder, removeFromCart } from "../../store/slices/rootSlice";
+import { SubtractWallet, fetchUserData, makeOrder, removeFromCart, removeFromWishlist } from "../../store/slices/rootSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faWallet } from "@fortawesome/free-solid-svg-icons";
 import Typography from '@mui/material/Typography';
@@ -33,8 +33,20 @@ const CheckPage = () =>{
 
     useEffect(()=>{
         setWallet(userData.wallet)
-        setMyCart(dataGetter.filter((features) => userData.cart.includes(features.id.toString())))
     }, [userData.wallet])
+
+    useEffect(()=>{
+        var idCart = userData.cart
+        if(dataGetter!=null && idCart != null){
+            idCart = idCart.slice(1,-1).split(',').map(str=>{return parseInt(str,10)})
+            const cartData = dataGetter.filter((features) => idCart.includes(features.id))
+            console.log(cartData)
+            setMyCart(cartData);
+        }
+        else{
+            setMyCart([])
+        }
+    }, [userData.cart])
     
     useEffect(()=>{
         let price = 0, discountedPrice = 0
@@ -77,15 +89,12 @@ const CheckPage = () =>{
         let order =[]
         myCart.forEach((el)=>{
             order.push({"id": Number(el.id)})
+
+            dispatch(removeFromCart(el["id"]))
         })
 
         dispatch(makeOrder({'userId': Number(userData.id), 'games': order}))
         setWallet(wallet - total)
-
-        order.map((el)=>{
-            dispatch(removeFromCart(el["id"]))
-        }
-        )
         window.location.reload()
     }
 
@@ -122,7 +131,10 @@ const CheckPage = () =>{
                                             </div>
                                         </div>
                                     <div className={styles.product__place_order}>
-                                        <button className={styles.product__place_order__btn} onClick={HandleCheckout}>Place Order</button>
+                                        {
+                                            total > wallet?  <button disabled className={styles.product__place_order__btn} onClick={HandleCheckout}>Place Order</button>:
+                                            <button className={styles.product__place_order__btn} onClick={HandleCheckout}>Place Order</button>
+                                        }
                                     </div>
                                 </div>
                             </div>

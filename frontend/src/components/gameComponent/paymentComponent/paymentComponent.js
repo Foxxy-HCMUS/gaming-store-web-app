@@ -3,7 +3,8 @@ import "./paymentComponent.css"
 import PriceComponent from "../../priceComponent/PriceComponent";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, addToWishlist, fetchUserData, removeFromWishlist } from "../../../store/slices/rootSlice";
+import { addToCart, addToWishlist, fetchUserData, getOrders, removeFromWishlist } from "../../../store/slices/rootSlice";
+import { library } from "@fortawesome/fontawesome-svg-core";
 
 
 const PaymentComponent = props =>{
@@ -13,7 +14,38 @@ const PaymentComponent = props =>{
 
     const [isWishlisted, setWishlisted] = useState(false)
     const [wishlist, setWishlist] = useState([]);
-    const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);   
+    const isAuthenticated = useSelector((state) => state.auth.isLoggedIn);
+
+    const userData = useSelector(state => state.user.userData)   
+
+
+    useEffect(()=>{
+        async function fetchData() {
+            await dispatch(getOrders({ userId: userData.id }));
+          }
+          fetchData();
+    },[dispatch, userData])
+
+    const orders = useSelector(state => state.user.orders)
+    const dataGetter = useSelector((state) => state.data.landingPageData)
+    const [isInLibrary, setIsInLibrary] = useState(false)
+
+    useEffect(() =>{
+        const gameOrdered = orders.map((el) => {
+            var gameId_list = []
+            const gameId =  el.order_games.map((el)=>{
+                gameId_list.push(el.gameId)
+            })
+            return gameId_list
+        }).flat(1)
+        // console.log(gameOrdered)
+        // console.log(dataGetter)
+        if(dataGetter!=null && gameOrdered != null){
+            if(gameOrdered.includes(data.id))
+            setIsInLibrary(true)
+        }
+
+    }, [orders, dataGetter])
     
     useEffect(() => {
         if (isAuthenticated) {
@@ -54,8 +86,17 @@ const PaymentComponent = props =>{
     };
 
     const handleCart = (e) => {
-        dispatch(addToCart(data.id))
-        navigate("/cart")
+        if(!isAuthenticated){
+            navigate("/signin")
+        }
+        else{
+            dispatch(addToCart(data.id))
+            navigate("/cart")
+        }
+    }
+
+    const handleInLibrary = (e) =>{
+        navigate("/libraries")
     }
     
     return(
@@ -73,16 +114,29 @@ const PaymentComponent = props =>{
 
                 <div className="payment__btns">
                     <div className="payment__btn__wrapper payment__btn__buy_now">
-                        <button className="payment__btn btn__buy_now">
-                            <span>Buy Now</span>
-                        </button>
+                        
+                        {
+                            isInLibrary === true?
+                            (
+                            <button className="payment__btn btn__buy_now" onClick={handleInLibrary}>
+                                <span>In Libraries</span>
+                            </button>):
+                            
+                            (<button className="payment__btn btn__buy_now">
+                                            <span>Buy Now</span>
+                                        </button>)
+                        }
+                        
                     </div>
                     <div>
-                        <div className="payment__btn__wrapper payment__btn__add_cart">
+                        {
+                            !isInLibrary? (<div className="payment__btn__wrapper payment__btn__add_cart">
                             <button className="payment__btn btn__add_cart" onClick = {handleCart}>
                                 <span>View in Cart</span>
                             </button>
-                        </div>   
+                        </div>   ) :(<div></div>)
+                        }
+                        
                     </div>
 
                     <div>

@@ -83,7 +83,15 @@ const HomePage = () => {
   .map((data) => data.game);
   
   const newToStoreData = landingPageData.slice(10, 15);
-  const mostPopularData = landingPageData.slice(10, 15);
+  // const mostPopularData = landingPageData.slice(10, 15);
+  const mostPopularDataWithRatings = landingPageData.map(game => {
+    const rating = game.reviews ? game.reviews.rating : 0;
+    return { ...game, rating };
+  });
+
+  const sortedData = mostPopularDataWithRatings.sort((a, b) => b.rating - a.rating);
+
+  const mostPopularData = sortedData.slice(0, 10);
 
   const secondaryCardData1 = landingPageData.filter((el) => {
     if (el.title === "Genshin Impact" || el.title === "Among Us" || el.title === "Fortnite") {
@@ -131,14 +139,14 @@ const HomePage = () => {
 
                   <li className={styles.miniCardContainer}>
                     <MiniCardContainer
-                      data={mostPopularData}
+                      data={newToStoreData}
                       heading="Top Sellers"
                     />
                   </li>
 
                   <li className={styles.miniCardContainer}>
                     <MiniCardContainer
-                      data={mostPopularData}
+                      data={newToStoreData}
                       heading="Holiday Sale"
                     />
                   </li>

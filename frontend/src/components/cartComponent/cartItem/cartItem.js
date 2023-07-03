@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./cartItem.component.css"
 import PriceComponent from "../../priceComponent/PriceComponent";
-import { addToWishlist, removeFromCart } from "../../../store/slices/rootSlice";
-import { useDispatch } from "react-redux";
+import { addToWishlist, getOrders, removeFromCart } from "../../../store/slices/rootSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
@@ -25,7 +25,7 @@ const CartItem = props => {
 
     return(
         <>
-            <div className="cart_game__item__container">
+            <div className={`cart_game__item__container`}>
                 <div className="cart_game__item__wrapper">
                     <div className="cart_game__item__img">
                         <img src={gameInfo.cardImage} alt=""/>

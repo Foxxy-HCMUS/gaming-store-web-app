@@ -171,6 +171,7 @@ import GamePage  from "./pages/GamePage/GamePage";
 import BrowsePage from './pages/BrowsePage/BrowsePage';
 import WishlistPage from "./pages/WishlistPage";
 import AdminPage from "./pages/AdminPage";
+import UserProfilePage from "./pages/UserProfilePage";
 import CheckPage from "./pages/CheckoutPage";
 import LibrariesPage from "./pages/LibrariesPage/librariesPage";
 import { fetchLandingPage } from "./store/slices/dataSlice";
@@ -292,6 +293,13 @@ export default function App() {
         <Route path = "/libraries" element = {
           <LibrariesPage/>
         }></Route>
+
+        <Route path="/user/profile" element={<UserProfilePage/>}></Route>
+        <Route path="*" element={
+          <div>
+            404 NOT FOUND
+          </div>
+        }/>
 
         </Routes>
       </div>

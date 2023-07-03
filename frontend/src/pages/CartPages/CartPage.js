@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./CartPage.module.css"
 import { useDispatch, useSelector} from "react-redux";
 import { fetchLandingPage } from "../../store/slices/dataSlice";
-import { SubtractWallet, fetchUserData } from "../../store/slices/rootSlice";
+import { SubtractWallet, fetchUserData, getOrders, removeFromCart } from "../../store/slices/rootSlice";
 import CartWrapper from "../../components/cartComponent/cartWrapper"
 import { useNavigate } from "react-router-dom";
 // import { SubtractWallet } from "../../../../backend/app/controllers/user-session.controller";
@@ -26,22 +26,11 @@ const CartPage = () => {
     const [wallet, setWallet] = useState([])
 
     useEffect(()=>{
-        setWallet(userData.wallet)
-    }, [userData.wallet])
-
-    // useEffect(()=>{
-    //     dispatch(fetchUserData()).then((userData)=>{
-    //         setCardID(userData.payload.cart || []);
-    //     }).catch((err)=>{
-
-    //     });
-    // }, [dispatch])
-
-
-    useEffect(()=>{
-        const idCart = userData.cart
+        var idCart = userData.cart
         if(dataGetter!=null && idCart != null){
-            const cartData = dataGetter.filter((features) => idCart.includes(features.id.toString()))
+            idCart = idCart.slice(1,-1).split(',').map(str=>{return parseInt(str,10)})
+            const cartData = dataGetter.filter((features) => idCart.includes(features.id))
+            console.log(cartData)
             setMyCart(cartData);
         }
         else{
@@ -49,12 +38,40 @@ const CartPage = () => {
         }
     }, [userData.cart])
 
+    useEffect(()=>{
+        setWallet(userData.wallet)
+    }, [userData.wallet])
+
     const [price, setPrice] = useState({
         "Price": 0,
         "Discount Price": 0,
         "Total": 0,
-
     })
+
+
+
+    useEffect(()=>{
+        async function fetchData() {
+            await dispatch(getOrders({ userId: userData.id }));
+          }
+          fetchData();
+    },[dispatch, userData])
+
+
+    const orders = useSelector(state => state.user.orders)
+
+    useEffect(() =>{
+        if(orders !==null && orders.lenght !== 0){
+            orders.map((el) => {
+                el.order_games.map((el)=>{
+                    removeFromCart(el.gameId)
+                })
+        })
+        }
+        
+    }, [orders, dataGetter, myCart])
+
+
 
     useEffect(()=>{
         let price = 0, discountedPrice = 0, total = 0;
@@ -125,9 +142,14 @@ const CartPage = () => {
 
                                     <div className={styles.cart_game__payment__btns}>
                                         <div className={styles.cart_game__payment__btn}>
-                                            <button className ={styles.cart_game__payment__checkout} onClick={handleCart}>
+                                            {
+                                                myCart.length===0?<button disabled className ={styles.cart_game__payment__checkout} onClick={handleCart}>
+                                                <span>Checkout</span>
+                                            </button>:<button className ={styles.cart_game__payment__checkout} onClick={handleCart}>
                                                 <span>Checkout</span>
                                             </button>
+                                            }
+                                            
                                         </div>
                                     </div>
                                 </div>

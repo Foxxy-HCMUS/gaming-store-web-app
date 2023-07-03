@@ -33,15 +33,8 @@ const GamePage = ({_id}) =>{
         setSaleData(filteredData);
       }, [dataGetter, _id]);    
     // Initialize value
-      console.log(saleData)
-    if(saleData === [] || saleData === null || saleData.length === 0){
-        return (
-        <>
-            <div> </div>
-        </>
-        )
-    }
-    else {
+    //   console.log(saleData)
+    if(saleData !== [] && saleData !== null && saleData.length !== 0){
         const sliderImage = saleData[0]?.heroImages
         const genres = saleData[0]?.genres
         const tags = saleData[0]?.tags
@@ -127,6 +120,9 @@ const GamePage = ({_id}) =>{
         </>
             
         );
+    }
+    else {
+        return(<div></div>)
     }
    
 }

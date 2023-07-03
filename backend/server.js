@@ -1102,7 +1102,7 @@ function initial() {
       "https://cdn2.unrealengine.com/egs-thewitcher3wildhuntcompleteedition-cdprojektred-g1a-07-1920x1080-7dce3a5550fc.jpg",
       "https://cdn2.unrealengine.com/egs-thewitcher3wildhuntcompleteedition-cdprojektred-g1a-08-1920x1080-c0c3c14a519f.jpg",
     ],
-    image: [
+    images: [
       "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/extras/ABOUT_600x225_EN.png?t=1675178392",
       "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/extras/Updated_600x255__EN.png?t=1675178392",
       "https://cdn.cloudflare.steamstatic.com/steam/apps/292030/extras/Monster_Slayer_600x255_EN.png?t=1675178392",

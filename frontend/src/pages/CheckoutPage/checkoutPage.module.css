@@ -221,3 +221,12 @@
     }
 }
 
+
+button:disabled,
+button[disabled]{
+    background: #545454;
+
+    &:hover{
+        background: #545454
+    }
+}

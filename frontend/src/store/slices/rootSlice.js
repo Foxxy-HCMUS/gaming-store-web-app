@@ -111,7 +111,7 @@ const userSlice = createSlice({
       })
       .addCase(getOrders.fulfilled, (state, action) => {
         // state.status = 'succeeded';
-        console.log(action.payload)
+        // console.log(action.payload)
 
         state.orders = action.payload
         // const { orders } = action.payload;

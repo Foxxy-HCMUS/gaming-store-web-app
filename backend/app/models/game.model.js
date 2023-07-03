@@ -75,7 +75,8 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       reviews: {
-        type: Sequelize.JSON
+        type: Sequelize.JSON,
+        defaultValue: {rating: 0, evaluate: -1}
       },
       specifications: {
         type: Sequelize.JSON
