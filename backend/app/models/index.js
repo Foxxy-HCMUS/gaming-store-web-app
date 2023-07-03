@@ -21,6 +21,7 @@ db.sequelize = sequelize;
 
 // db.tutorials = require("./tutorial.model.js")(sequelize, Sequelize);
 db.user = require("./user-session.model.js")(sequelize, Sequelize).User;
+db.admin = require("./admin.model.js")(sequelize, Sequelize).Admin
 db.role = require("./role.model.js")(sequelize, Sequelize);
 db.refreshToken = require("./refreshToken.model.js")(sequelize, Sequelize);
 db.game = require("./game.model.js")(sequelize, Sequelize);
@@ -53,6 +54,23 @@ db.refreshToken.belongsTo(db.user, {
 db.user.hasOne(db.refreshToken, {
     foreignKey: "userId", sourceKey: "id"
 });
+//-------
+db.role.belongsToMany(db.admin, {
+    through: User_Role,
+    // foreignKey: "roleId",
+    // otherKey: "userId"
+});
+
+User_Role.belongsTo(db.admin);
+
+db.refreshToken.belongsTo(db.admin, {
+    foreignKey: "adminId", targetKey: "id"
+});
+
+db.admin.hasOne(db.refreshToken, {
+    foreignKey: "adminId", sourceKey: "id"
+});
+//-------
 
 // db.wishlist.belongsTo(db.user);
 // db.wishlist.belongsTo(db.game);

@@ -167,13 +167,13 @@ exports.userBoard = (req, res) => {
   res.status(200).send("User Content.");
 };
 
-exports.adminBoard = (req, res) => {
-  res.status(200).send("Admin Content.");
-};
+// exports.adminBoard = (req, res) => {
+//   res.status(200).send("Admin Content.");
+// };
 
-exports.moderatorBoard = (req, res) => {
-  res.status(200).send("Moderator Content.");
-};
+// exports.moderatorBoard = (req, res) => {
+//   res.status(200).send("Moderator Content.");
+// };
 
 exports.fetchUser = async (req, res) => {
   User.findByPk(req.userId).then((user) => {
@@ -190,88 +190,6 @@ exports.fetchUser = async (req, res) => {
     });
   });
 };
-
-exports.updateUser = async (req, res) => {
-  const id = req.params.id;
-
-    User.update(req.body, {
-        where: { id: id }
-    })
-        .then(num => {
-            if (num == 1) {
-                res.send({
-                    message: "User was updated successfully."
-                });
-            } else {
-                res.send({
-                    message: `Cannot update User with id=${id}.`
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Error updating User with id=" + id
-            });
-  });
-};  
-
-exports.removeUser = (req, res) => {
-  const id = req.params.id;
-
-  User.destroy({
-      where: {id: id}
-  })
-      .then(num => {
-          if(num == 1){
-              res.send({
-                  message: "User was deleted successfully!"
-              });
-          } else {
-              res.send({
-                  message: `Cannot remove User with id=${id}. Maybe Game was not found!`
-              });
-          }
-      })
-      .catch( err => {
-          res.status(500).send({
-              message: "Could not remove User with id=" + id
-          })
-      })
-};
-
-exports.fetchAllUser = async (req, res) => {
-  User.findAll({
-    attributes: { exclude: ['password']},
-    include: [{
-      model: Role,
-      attributes: ['name'],
-      through: { attributes: [] }, // exclude User_Role join table from result set
-      // where: {
-      //   id: 1
-      // },
-      where: {
-        name: { [Op.like]: '%user%' }
-      },
-      required: true
-    },]
-  }).then((users) => {
-    res.status(200).send(users);
-  })
-  
-};
-
-exports.findAllUserRoles = async (req, res) =>{
-  UserRoles.findAll()
-      .then(data => {
-          res.send(data);
-      })
-      .catch(err => {
-          res.status(500).send({
-              message:
-                  err.message || "Some error occurred while retrieving games."
-          });
-      });
-}
 
 // check username availability
 exports.checkUsernameAvailability = async (req, res) => {

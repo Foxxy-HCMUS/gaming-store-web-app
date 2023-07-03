@@ -39,6 +39,7 @@ app.use((req, res, next) => {
   next();
 });
 
+require("./app/routes/admin.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/auth.routes")(app);
 require("./app/routes/game.routes")(app);
