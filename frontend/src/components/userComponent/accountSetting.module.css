@@ -1,0 +1,109 @@
+.mainhead1{
+    color: var(--main-gray);
+    font-size: 30px;
+    font-weight: 300;
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+
+.mainhead2{
+    color: var(--main-gray);
+    font-size: 20px;
+    font-weight: 100;
+}
+  
+.mainbutton1{
+    background: none;
+    border: 1px solid var(--main-gray);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 1rem;
+    cursor: pointer;
+    color: var(--main-gray);
+}
+  
+  
+.mainbutton1:hover {
+    background-color: var(--main-gray);
+    color: white;
+    transform: scale(1.1);
+    transition: all 0.6s ease-in-out;
+}
+
+.accountsetting h2 {
+    color: gray;
+}
+
+.accountsetting {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.accountsetting h1 {
+    padding: 10px 20px;
+}
+
+.accountsetting .form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.accountsetting .form .form_group {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin: 10px;
+}
+
+.accountsetting .form .form_group label {
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 5px;
+    color: gray;
+}
+
+.accountsetting .form .form_group input {
+    padding: 10px 20px;
+    border: 1px solid rgb(207, 207, 207);
+    border-radius: 5px;
+    outline: none;
+    /* background-color: rgb(246, 246, 246); */
+}
+
+.accountsetting .form .form_group input:focus {
+    border: 1px solid gray;
+}
+
+@media (max-width: 800px){
+    .accountsettings .form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 10px 20px;
+    }
+
+    .accountsettings .form .form-group{
+        display: flex;
+        flex-direction: column;
+        width: 97%;
+        margin: 10px;
+    }
+    .accountsettings h1{
+        font-size: 20px;
+    }
+    .accountsettings .form .form-group label{
+        font-size: 16px;
+        font-weight: 300;
+        margin-bottom: 5px;
+    }
+} 

@@ -1,0 +1,38 @@
+.marketing_card{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #2d2d2d;
+    border-radius: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 680px;
+}
+
+.marketing_card__image{
+    display:flex;
+    width: 100%;
+    justify-content: center
+}
+
+.marketing_card__image img{
+    width: 80%;
+}
+
+.marketing_cart__title{
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    font-size: 40px;
+}
+
+.marketing_cart__title span{
+    text-align: center;
+}
+
+.marketing_cart__content{
+    /* display:flex; */
+    text-align: center;
+    color: #fff;
+    font-size: 25px;
+    margin-top: 15px;
+}

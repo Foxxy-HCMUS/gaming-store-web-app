@@ -11,7 +11,6 @@ const LibrariesPage = () => {
     const dispatch = useDispatch()
     // dispatch(getOrders({userId : 1}))
     useEffect(()=>{
-        console.log("oke")
         dispatch(fetchLandingPage())
         dispatch(fetchUserData())
     }, [dispatch])
@@ -39,8 +38,7 @@ const LibrariesPage = () => {
             })
             return gameId_list
         }).flat(1)
-        console.log(gameOrdered)
-        console.log(dataGetter)
+
         if(dataGetter!=null && gameOrdered != null){
             const libraries = dataGetter.filter((feature) => gameOrdered.includes(feature.id))
             setMyLibraries(libraries)

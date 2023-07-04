@@ -204,6 +204,23 @@ const gamesSlice = createSlice({
 
 export const { setGames, sortGames } = gamesSlice.actions;
 
+export const addGames = createAsyncThunk(
+  'seller/send',
+  async (game, { getState, dispatch }) => {
+    await axios.post(
+      `${process.env.REACT_APP_BACKEND_URL}/games/create`,
+      game,
+      {
+        // withCredentials: true,
+        // headers: authHeader(getState()),
+      }
+    );
+    // dispatch(fetchUserData());
+    // return getState().user;
+      return;
+  }
+);
+
 export const addToWishlist = createAsyncThunk(
   'wishlist/add',
   async (id, { getState, dispatch }) => {
@@ -325,9 +342,6 @@ export const makeOrder = createAsyncThunk(
     return;
   }
 )
-
-
-
 
 export const updateGame = createAsyncThunk(
   'game/:id',

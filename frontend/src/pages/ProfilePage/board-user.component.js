@@ -1,43 +1,30 @@
 import React, { Component } from "react";
+import { useParams } from "react-router-dom";
+import Footer from "../../components/footer";
+import SideBar from "../../components/userComponent/sideBar";
+import styles from "./board-user.module.css";
+import AccountSetting from "../../components/userComponent/accountSetting";
+import ChangePassword from "../../components/userComponent/changePassword";
+import YourOrders from "../../components/userComponent/yourOrders";
 
-import UserService from "../../services/user.service";
-
-export default class BoardUser extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      content: ""
-    };
-  }
-
-  componentDidMount() {
-    UserService.getUserBoard().then(
-      response => {
-        this.setState({
-          content: response.data
-        });
-      },
-      error => {
-        this.setState({
-          content:
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString()
-        });
-      }
-    );
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <header className="jumbotron">
-          <h3>{this.state.content}</h3>
-        </header>
+const ProfilePage = () => {
+  const { activepage } = useParams();
+  // alert(activatePage);
+  return (
+    <div className={styles.userprofile}>
+      <div className={styles.userprofilein}>
+        <div className={styles.left}> 
+          <SideBar activepage={activepage}/>
+        </div> 
+        <div className={styles.right}>
+          {activepage === "accountsetting" && <AccountSetting />}
+          {activepage === "changepassword" && <ChangePassword />}
+          {activepage === 'yourorders' && <YourOrders/>}
+        </div>    
       </div>
-    );
-  }
+      <Footer />
+    </div>
+  );
 }
+
+export default ProfilePage;

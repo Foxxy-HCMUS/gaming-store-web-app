@@ -175,6 +175,8 @@ import UserProfilePage from "./pages/UserProfilePage";
 import CheckPage from "./pages/CheckoutPage";
 import LibrariesPage from "./pages/LibrariesPage/librariesPage";
 import { fetchLandingPage } from "./store/slices/dataSlice";
+import ProfilePage from "./pages/ProfilePage/board-user.component";
+import SellerPage from "./pages/SellerPage";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -293,8 +295,20 @@ export default function App() {
         <Route path = "/libraries" element = {
           <LibrariesPage/>
         }></Route>
+        
+        <Route path = "/profile" element = {
+          <ProfilePage/>
+        }>
+        </Route>
+
+        <Route path = "/distribution" element = {
+          <DistributionPage/>
+        }>
+        </Route>
+        <Route path = "/seller" element = {<SellerPage/>}></Route>
 
         <Route path="/user/profile" element={<UserProfilePage/>}></Route>
+        <Route path="/profile/:activepage" element ={<ProfilePage/>}></Route>
         <Route path="*" element={
           <div>
             404 NOT FOUND
