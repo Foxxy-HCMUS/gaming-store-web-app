@@ -57,14 +57,14 @@ const DistributionPage = () => {
                             <DistributionComponent 
                                     image = {"https://cdn2.unrealengine.com/epic-games-payment-methods-18cc6135990f.svg"}
                                     title = {"Worldwide E-Commerce"}
-                                    content = {"Epic's payment service supports 76 payment methods with 47 regional currencies and more on the way."} 
+                                    content = {"PlayArchive's payment service supports 76 payment methods with 47 regional currencies and more on the way."} 
                             />
                     </div>
 
                     <div className={styles.component}>
                             <DistributionComponent 
                                     image = {"https://cdn2.unrealengine.com/epic-games-wallet-2af74bb47a7a.svg"}
-                                    title = {"Epic Wallet"}
+                                    title = {"PlayArchive Wallet"}
                                     content = {"Users can load up their Wallet with funds to spend on products and services in the store, now available in more than 140 countries."} 
                             />
                     </div>
@@ -73,7 +73,7 @@ const DistributionPage = () => {
                             <DistributionComponent 
                                     image = {"https://cdn2.unrealengine.com/game-ratings-localization-and-affliate-network-benefits-a931a6cb27b8.svg"}
                                     title = {"Additional Benefits"}
-                                    content = {"Easy IARC ratings in Epic Developer Portal, request no-cost localization for store pages and activate our Support-A-Creator affiliate network."} 
+                                    content = {"Easy IARC ratings in Play Archive Developer Portal, request no-cost localization for store pages and activate our Support-A-Creator affiliate network."} 
                             />
                     </div>
                 </div>

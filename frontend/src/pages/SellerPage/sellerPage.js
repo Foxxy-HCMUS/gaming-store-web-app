@@ -522,7 +522,7 @@ const SellerPage = () => {
                                 value={data.platform}
                                 onChange={handleInput}
                                 name="platform"
-                                error={errors.platform !== ""}
+                                error={errors.platform!==""}
                                 helperText={errors.platform}
                                 />
                             </ThemeProvider>

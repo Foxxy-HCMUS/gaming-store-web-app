@@ -258,7 +258,12 @@ function initial() {
       "With all new graphical and technical enhancements for deeper immersion",
     ],
     heroImages: [
-      "https://cdn2.unrealengine.com/egs-cyhttps://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fheather%2Fhome%2FEGS_RockstarGames_RedDeadRedemption2_G1A_00-1920x1080-308f101576da37225c889173094f373f2afc56c1.jpgberpunk2077-cdprojektred-g1a-04-02-24-22-1920x1080-e44528f4fa16.jpg",
+      "https://cdn.akamai.steamstatic.com/steam/apps/1174180/ss_668dafe477743f8b50b818d5bbfcec669e9ba93e.600x338.jpg?t=1671485009",
+      "https://cdn.akamai.steamstatic.com/steam/apps/1174180/ss_66b553f4c209476d3e4ce25fa4714002cc914c4f.600x338.jpg?t=1671485009",
+      "https://cdn.akamai.steamstatic.com/steam/apps/1174180/ss_bac60bacbf5da8945103648c08d27d5e202444ca.600x338.jpg?t=1671485009",
+      "https://cdn.akamai.steamstatic.com/steam/apps/1174180/ss_4ce07ae360b166f0f650e9a895a3b4b7bf15e34f.600x338.jpg?t=1671485009",
+      "https://cdn.akamai.steamstatic.com/steam/apps/1174180/ss_d1a8f5a69155c3186c65d1da90491fcfd43663d9.600x338.jpg?t=1671485009"
+
     ],
     images: [
       "https://cdn2.unrealengine.com/Diesel%2Fproductv2%2Fheather%2Fhome%2FEGS_RockstarGames_RedDeadRedemption2_G1A_01-1920x1080-8a72c86b8fed73f57311d0d1ba456e6964f0aaa2.jpg?h=720&quality=medium&resize=1&w=1280",
@@ -1648,6 +1653,235 @@ function initial() {
       }
     },
   });
+
+  Game.create({
+    id: 16,
+    title: "SCARY AND DOT",
+    description:
+      "One gray evening, a feeling of hunger forced you to leave your cozy one-room apartment and walk to the nearest grocery store. However, it looks like it's already closed… Good thing the new diner that has opened near your house is open 24 hours a day…",
+    thumbnails:
+      "https://cdn1.epicgames.com/spt-assets/f9e77f0082e849119631777db0485411/scary-and-dot-logo-ousp2.png?h=270&quality=medium&resize=1&w=480",
+    cardImage:
+      "https://cdn1.epicgames.com/spt-assets/f9e77f0082e849119631777db0485411/scary-and-dot-c0zzb.png?h=480&quality=medium&resize=1&w=360",
+    cardTagline: "SCARY AND DOT",
+    logo:
+      "https://cdn1.epicgames.com/spt-assets/f9e77f0082e849119631777db0485411/scary-and-dot-logo-ousp2.png?h=270&quality=medium&resize=1&w=480",
+    mainPrice: 60,
+    discountPercentage: 30,
+    discountedPrice: 42,
+    developer: "Wombat Games",
+    publisher: "Wombat Games",
+    releaseDate: "2023-06-28",
+    platform: ["Windows"],
+    genres: ["Action","First Person","Horror"],
+    features: [
+      "Single-player",
+    ],
+    tags: ["Action","First Person","Horror"],
+    aboutGame:
+      "The Settlers®: New Allies is a real-time strategy game developed by Blue Byte and published by Ubisoft. In the game, players must build and manage a medieval settlement while competing against other players for resources and territory.",
+    gameFeatures: [
+      "Story: You are the lucky resident of a five-story panel house located on the very outskirts of the town. One gray evening, a feeling of hunger has forced you to leave your cozy one-room apartment and walk to the nearest grocery store. However, it seems that the store closed early today for some reason… What a good thing that the new diner that recently opened near your house is open 24 hours a day…",
+      "Gameplay: This is a classic first person horror game. The main thing you will be doing in this game is exploring the location, looking for items needed for the passage. But you need to be careful, because you are not the only one, who wanders among the rusty garages and shabby panel houses in this dark night… If you hear eerie, heartbreaking laughter or see flickering red eyes somewhere in the darkness, you better run, because it probably saw you too! You don't have any weapons, so when faced with danger, all you have to do is run and hide.",
+      "Atmosphere: This game briefly transports you to a canonical post-Soviet courtyard. The broken asphalt, the rusted-out cars that have been parked here forever, and the paneled five-story buildings propping up the dark night sky with their roofs.",
+    ],
+    heroImages: [
+      "https://cdn1.epicgames.com/spt-assets/f9e77f0082e849119631777db0485411/scary-and-dot-ijvuq.jpg",
+      "https://cdn1.epicgames.com/spt-assets/f9e77f0082e849119631777db0485411/scary-and-dot-1at7l.jpg",
+      "https://cdn1.epicgames.com/spt-assets/f9e77f0082e849119631777db0485411/scary-and-dot-6h684.jpg",
+      "https://cdn1.epicgames.com/spt-assets/f9e77f0082e849119631777db0485411/scary-and-dot-1sf4r.jpg",
+      "https://cdn1.epicgames.com/spt-assets/f9e77f0082e849119631777db0485411/scary-and-dot-zxxrh.jpg",
+      "https://cdn1.epicgames.com/spt-assets/f9e77f0082e849119631777db0485411/scary-and-dot-1eqiw.jpg",
+    ],
+    images  : [
+      "https://cdn1.epicgames.com/spt-assets/f9e77f0082e849119631777db0485411/scary-and-dot-y70mc.jpg?h=720&quality=medium&resize=1&w=1280",
+    ],
+    specifications: {
+      "Configurations": {
+        "Windows": {
+          "Minimum": {
+            "OS": "Windows 10 (x64 bit only)",
+            "Processor": "Intel i3-6100 or AMD Ryzen 3 1200",
+            "Memory" : "8 GB RAM",
+            "Storage": "150 GB",
+            "DirectX": "DirectX 11",
+            "Graphics": "NVIDIA GeForce GTX 950 or AMD Radeon 550"
+          },
+          "Recommended": {
+            "OS": "Windows 10 (x64 bit only)",
+            "Processor": "Intel Core i5 3570K or AMD Ryzen 3 1300x",
+            "Memory" : "8 GB RAM",
+            "Storage": "150 GB",
+            "DirectX": "DirectX 11",
+            "Graphics": "NVIDIA GeForce GTX 970 or AMD RX 470"
+          },
+        },
+      },
+      "Login": true,
+      "Languages Supported":{
+        "Audio": ["English", "French", "German"],
+        "Text": ["English", "French", "Italian", "German", "Spanish", "Czech", "Polish", "Russian", "Portuguese (Brazilian)", "Japanese", "Korean", "Traditional Chinese", 
+                "Simplified Chinese"]
+      }
+    },
+  });
+
+  Game.create({
+    id: 17,
+    title: "A Space for the Unbound",
+    description:
+      "A slice-of-life adventure game with beautiful pixelart set in the late 90s rural Indonesia that tells a story about overcoming anxiety, depression, and the relationship between a boy and a girl with supernatural powers",
+    thumbnails:
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-logo-qyhus.png?h=270&quality=medium&resize=1&w=480",
+    cardImage:
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-1oj8p.png?h=480&quality=medium&resize=1&w=360",
+    cardTagline: "A Space for the Unbound",
+    logo:
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-logo-qyhus.png?h=270&quality=medium&resize=1&w=480",
+    mainPrice: 449,
+    discountPercentage: 20,
+    discountedPrice: 359.2,
+    developer: "Mojiken Studio",
+    publisher: "Toge Productions",
+    releaseDate: "2023-06-28",
+    platform: ["Windows"],
+    genres: ["Adventure","Indie","Retro"],
+    features: [
+      "Single-player",
+    ],
+    tags: ["Adventure","Indie","Retro"],
+    aboutGame:
+      "A slice-of-life adventure game with beautiful pixelart set in the late 90s rural Indonesia that tells a story about overcoming anxiety, depression, and the relationship between a boy and a girl with supernatural powers",
+    gameFeatures: [
+      "HIGH SCHOOL IS ENDING AND THE WORLD IS ENDING WITH IT!",
+      "A Space for the Unbound is a slice-of-life adventure game with beautiful pixel art set in the late 90s rural Indonesia that tells a story about overcoming anxiety, depression, and the relationship between a boy and a girl with supernatural powers.",
+      "Follow two high school sweethearts, Atma and Raya, on a journey of self-discovery at the end of their high school years. When a mysteriously supernatural power is suddenly unleashed threatening their existence, they must explore and investigate their town to uncover hidden secrets, face the end of the world, and perhaps learn more about each other.",
+      "Set in a small town inspired by 90s era rural Indonesia, A Space for the Unbound presents an endearing story-driven experience with a vibrant environment waiting to be explored."
+    ],
+    heroImages: [
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-jyqm4.jpg",
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-1caod.jpg",
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-19v8h.jpg",
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-1xnmt.jpg",
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-dkml8.jpg",
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-ftd7a.jpg",
+    ],
+    images  : [
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-1ixeq.png",
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-1mb0t.jpg",
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-lmltd.png",
+      "https://cdn1.epicgames.com/spt-assets/d9b1a1e71a464889b7cc604b1849fb9b/a-space-for-the-unbound-tkdfv.png"
+    ],
+    specifications: {
+      "Configurations": {
+        "Windows": {
+          "Minimum": {
+            "OS": "Windows 10 (x64 bit only)",
+            "Processor": "Intel i3-6100 or AMD Ryzen 3 1200",
+            "Memory" : "8 GB RAM",
+            "Storage": "150 GB",
+            "DirectX": "DirectX 11",
+            "Graphics": "NVIDIA GeForce GTX 950 or AMD Radeon 550"
+          },
+          "Recommended": {
+            "OS": "Windows 10 (x64 bit only)",
+            "Processor": "Intel Core i5 3570K or AMD Ryzen 3 1300x",
+            "Memory" : "8 GB RAM",
+            "Storage": "150 GB",
+            "DirectX": "DirectX 11",
+            "Graphics": "NVIDIA GeForce GTX 970 or AMD RX 470"
+          },
+        },
+      },
+      "Login": true,
+      "Languages Supported":{
+        "Audio": ["English", "French", "German"],
+        "Text": ["English", "French", "Italian", "German", "Spanish", "Czech", "Polish", "Russian", "Portuguese (Brazilian)", "Japanese", "Korean", "Traditional Chinese", 
+                "Simplified Chinese"]
+      }
+    },
+  });
+
+  Game.create({
+    id: 18,
+    title: "When the Past was Around",
+    description:
+      "When the Past was Around is an adventure point-and-click puzzle game about love, moving on, letting go, and the joy and pain of everything in between.",
+    thumbnails:
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-logo-1koia.png?h=270&quality=medium&resize=1&w=480",
+    cardImage:
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-1t1ac.png?h=480&quality=medium&resize=1&w=360",
+    cardTagline: "When the Past was Around",
+    logo:
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-logo-1koia.png?h=270&quality=medium&resize=1&w=480",
+    mainPrice: 179,
+    discountPercentage: 30,
+    discountedPrice: 125.3,
+    developer: "Mojiken Studio",
+    publisher: "Toge Productions",
+    releaseDate: "2023-06-28",
+    platform: ["Windows"],
+    genres: ["Puzzle"],
+    features: [
+      "Single-player",
+    ],
+    tags: ["Puzzle"],
+    aboutGame:
+      "When the Past was Around is an adventure point-and-click puzzle game about love, moving on, letting go, and the joy and pain of everything in between.",
+    gameFeatures: [
+      "From Brigitta Rena, the creator of A Raven Monologue and She & The Light Bearer. When the Past was Around is an adventure point-and-click puzzle game about love, moving on, letting go, and the joy and pain of everything in between.",
+      'This is the story of Eda, a girl in her early 20s.',
+     ' Like anyone in her age, she’s lost.',
+      'She lost her way in the journey to achieve her dreams.',
+      'She lost her way in the journey to find love.',
+      'That until she met The Owl.',
+      'The man that would help her burn her passion,',
+      'the man that would help her find the spark in a relationship,',
+      'and also the man that would teach her about heartbreak.',
+      'The game tells a bittersweet tale between a girl and her lover in a surreal world consisting of disjointed rooms from memories and time. With each gathered clue, solved puzzles, and unlocked door, the girl will find her way, unraveling the secrets between her and her lover, the secrets which she used to know.'
+    ],
+    heroImages: [
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-m1jdj.png",
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-qqa0o.png",
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-1nqgo.png",
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-mgfl7.png?h=270&quality=medium&resize=1&w=480",
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-mgfl7.png",
+    ],
+    images  : [
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-1nqgo.png",
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-mgfl7.png?h=270&quality=medium&resize=1&w=480",
+      "https://cdn1.epicgames.com/spt-assets/5fc1f7aca6af455f8112f93e27499950/when-the-past-was-around-mgfl7.png",
+    ],
+    specifications: {
+      "Configurations": {
+        "Windows": {
+          "Minimum": {
+            "OS": "Windows 10 (x64 bit only)",
+            "Processor": "Intel i3-6100 or AMD Ryzen 3 1200",
+            "Memory" : "8 GB RAM",
+            "Storage": "150 GB",
+            "DirectX": "DirectX 11",
+            "Graphics": "NVIDIA GeForce GTX 950 or AMD Radeon 550"
+          },
+          "Recommended": {
+            "OS": "Windows 10 (x64 bit only)",
+            "Processor": "Intel Core i5 3570K or AMD Ryzen 3 1300x",
+            "Memory" : "8 GB RAM",
+            "Storage": "150 GB",
+            "DirectX": "DirectX 11",
+            "Graphics": "NVIDIA GeForce GTX 970 or AMD RX 470"
+          },
+        },
+      },
+      "Login": true,
+      "Languages Supported":{
+        "Audio": ["English", "French", "German"],
+        "Text": ["English", "French", "Italian", "German", "Spanish", "Czech", "Polish", "Russian", "Portuguese (Brazilian)", "Japanese", "Korean", "Traditional Chinese", 
+                "Simplified Chinese"]
+      }
+    },
+  });
+  
 }
 
 // app.post("/api/auth/signup", async (req, res) => {
