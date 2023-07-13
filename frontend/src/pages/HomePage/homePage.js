@@ -57,14 +57,41 @@ import CarouselMain from "../../components/homeComponents/CarouselMain/CarouselM
 import rootReducer from './../../store/reducer';
 import Footer from "../../components/footer";
 import MiniCardContainer from './../../components/homeComponents/MiniCardContainer/index';
+import { useEffect } from "react";
+import { fetchLandingPage } from "../../store/slices/dataSlice";
 
 const HomePage = () => {
-  // const landingPageData = useSelector((state) => state.data.landingPageData);
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(fetchLandingPage())
+  }, [dispatch])
   const landingPageData = useSelector((state) => state.data.landingPageData);
-  const saleData = landingPageData.slice(0, 10);
-  const recentlyUpdatedData = landingPageData.slice(5, 10);
+  // const landingPageData = useSelector((state) => state.games);
+  const saleData = landingPageData.filter(game =>
+    (game.discountedPrice !== game.mainPrice) || (game.discountedPrice === 0));
+  
+  const today = new Date();
+  const recentlyUpdatedData = landingPageData
+  .map((game) => {
+    const releaseDate = new Date(Date.parse(game.releaseDate));
+    const timeDiff = Math.abs(releaseDate - today);
+    const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return { game, diffDays };
+  })
+  .sort((a, b) => a.diffDays - b.diffDays)
+  .filter((data, index) => index < 10)
+  .map((data) => data.game);
+  
   const newToStoreData = landingPageData.slice(10, 15);
-  const mostPopularData = landingPageData.slice(10, 15);
+  // const mostPopularData = landingPageData.slice(10, 15);
+  const mostPopularDataWithRatings = landingPageData.map(game => {
+    const rating = game.reviews ? game.reviews.rating : 0;
+    return { ...game, rating };
+  });
+
+  const sortedData = mostPopularDataWithRatings.sort((a, b) => b.rating - a.rating);
+
+  const mostPopularData = sortedData.slice(0, 10);
 
   const secondaryCardData1 = landingPageData.filter((el) => {
     if (el.title === "Genshin Impact" || el.title === "Among Us" || el.title === "Fortnite") {
@@ -112,14 +139,14 @@ const HomePage = () => {
 
                   <li className={styles.miniCardContainer}>
                     <MiniCardContainer
-                      data={mostPopularData}
+                      data={newToStoreData}
                       heading="Top Sellers"
                     />
                   </li>
 
                   <li className={styles.miniCardContainer}>
                     <MiniCardContainer
-                      data={mostPopularData}
+                      data={newToStoreData}
                       heading="Holiday Sale"
                     />
                   </li>

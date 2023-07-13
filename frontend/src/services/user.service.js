@@ -39,9 +39,32 @@ class UserService {
     return axios.get(API_URL + 'mod', { headers: authHeader() });
   }
 
-  getAdminBoard() {
-    return axios.get(API_URL + 'admin', { headers: authHeader() });
+  async getAdminBoard(accessToken) {
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin`, {
+      headers: { 'x-access-token': accessToken },
+    });
+    return response;
   }
+
+  async getUserDataForAdmin(accessToken){
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/findall-user`, {
+      headers: { 'x-access-token': accessToken },
+    });
+    return response;
+  }
+
+  async getUserRolesDataForAdmin(accessToken){
+    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/findall-userroles`, {
+      headers: { 'x-access-token': accessToken },
+    });
+    return response;
+  } 
+  // async getAllUserRole(accessToken){
+  //   const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/admin/findall-only-user`, {
+  //     headers: { 'x-access-token': accessToken },
+  //   });
+  //   return response;
+  // }
 }
 
 export default new UserService();

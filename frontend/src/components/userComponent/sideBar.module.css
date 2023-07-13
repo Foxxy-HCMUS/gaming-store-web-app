@@ -1,0 +1,43 @@
+.sidebar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar .s1 , .sidebar .s2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.usersidebar .s1 svg {
+    width: 50px;
+    height: 50px;
+    color: gray;
+}
+
+.usersidebar .s2 svg {
+    width: 50px;
+    height: 50px;
+    color: rgb(255, 255, 255);
+}
+
+.sidebar .s1:hover {
+    background-color: rgb(246, 246, 246);
+    border-radius: 5px;
+    cursor: pointer;
+    color: black;
+}
+
+.sidebar .s2:hover {
+    color: black;
+}
+
+.sidebar .s2 {
+    background-color: rgb(246, 246, 246);
+    border-radius: 5px;
+    cursor: pointer;
+    color: grey;
+}

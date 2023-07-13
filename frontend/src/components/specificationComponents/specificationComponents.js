@@ -8,7 +8,7 @@ const SpecificationTable = props =>{
     const supportedLanguage = specifications["Languages Supported"]
     const platforms = Object.keys(configurations).reverse()
     // console.log(platform[0])
-    const [platform, setPlatform] = useState(platforms[0])
+    const [platform, setPlatform] = useState(platforms[0]) 
     const [configs, setConfigs] = useState(configurations[platform])
     let activeElement = new Array(platform.length).fill(false)
     activeElement[0] = true
@@ -51,15 +51,15 @@ const SpecificationTable = props =>{
                     <div className="specification__supported specification__wrapper">
                         <div className="specification__supported__audio specification__wrapper">
                             <div className="specification__title specification__audio__title">Audio</div>
-                            <ul className="specification__wrapper specification__list__values specification__audio__list__values">{supportedLanguage["Audio"].map((el, ind)=>{
+                            <ul className="specification__list__values specification__audio__list__values">{supportedLanguage["Audio"].map((el, ind)=>{
                                 return <li className="specification__value specification__audio__value">{el}</li>
                             })}</ul>
                         </div>
                         <div className="specification__supported__text specification__wrapper">
-                        <div className="specification__title specification__text__title">Text</div>
-                            <ul className="specification__wrapper specification__list__values specification__text__list__values">{supportedLanguage["Text"].map((el, ind)=>{
-                                return <li className="specification__value specification__text__value">{el}</li>
-                            })}</ul>
+                            <div className="specification__title specification__text__title">Text</div>
+                                <ul className="specification__list__values specification__text__list__values">{supportedLanguage["Text"].map((el, ind)=>{
+                                    return <li className="specification__value specification__text__value">{el}</li>
+                                })}</ul>
                         </div>
                     </div>
                 </div>

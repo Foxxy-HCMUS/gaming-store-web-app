@@ -15,7 +15,7 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
         },
         orderTotal: {
-            type: Sequelize.FLOAT,
+            type: Sequelize.DECIMAL(8,2),
             allowNull: false,
         },
         orderPayment: {

@@ -409,9 +409,16 @@ const NavBar = () => {
                     className={styles.popover_user}
                   > 
                     <List> 
-                      <ListItemButton sx={{ pointerEvents: 'auto' }} onClose={handleMenuClose}>
+                      <ListItemButton to="/profile" sx={{ pointerEvents: 'auto' }} onClose={handleMenuClose}>
                         PROFILE
                       </ListItemButton>
+                      <ListItemButton to="/libraries" sx={{ pointerEvents: 'auto' }} onClose={handleMenuClose}>
+                          LIBRARIES
+                      </ListItemButton>
+                      <ListItemButton to = "/seller" sx={{ pointerEvents: 'auto' }} onClose={handleMenuClose}>
+                        SELLER
+                      </ListItemButton>
+                      
                       <ListItemButton onClick={handleLogout} sx={{ pointerEvents: 'auto' }} onClose={handleMenuClose}>
                         SIGN OUT
                       </ListItemButton>

@@ -35,6 +35,10 @@ module.exports = (sequelize, Sequelize) => {
       // order: {
       //   type: Sequelize.JSON,
       // },
+      wallet: {
+        type: Sequelize.FLOAT,
+        defaultValue: 0,
+      }
     },
   );
 

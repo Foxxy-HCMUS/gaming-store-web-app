@@ -10,6 +10,7 @@ import Login from "./pages/SigninPage/SigninPage";
 import Register from "./pages/SignupPage/register.component";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
+import CartPage from "./pages/CartPages";
 import Profile from "./pages/ProfilePage/profile.component";
 import BoardUser from "./pages/ProfilePage/board-user.component";
 import BoardModerator from "./pages/ProfilePage/board-moderator.component";
@@ -18,8 +19,8 @@ import BoardAdmin from "./pages/ProfilePage/board-admin.component";
 import SubNavbar from "./components/subNavbar/sub-navbar.component";
 import { useDispatch, useSelector } from "react-redux";
 
-// import { fetchGames, fetchUser } from "./store/actions";
-import { fetchGames } from "./store/slices/dataSlice";
+// import { fetchGames } from "./store/slices/dataSlice";
+import { fetchGames } from "./store/slices/rootSlice";
 
 // class App extends Component {
 //   constructor(props) {
@@ -167,7 +168,15 @@ import { fetchUser } from "./store/slices/authSlice";
 import { Alert, Snackbar } from "@mui/material";
 import GamePage  from "./pages/GamePage/GamePage";
 // import theme from "./components/customTheme/customTheme";
-// import BrowsePage from './pages/BrowsePage/BrowsePage';
+import BrowsePage from './pages/BrowsePage/BrowsePage';
+import WishlistPage from "./pages/WishlistPage";
+import AdminPage from "./pages/AdminPage";
+import UserProfilePage from "./pages/UserProfilePage";
+import CheckPage from "./pages/CheckoutPage";
+import LibrariesPage from "./pages/LibrariesPage/librariesPage";
+import { fetchLandingPage } from "./store/slices/dataSlice";
+import ProfilePage from "./pages/ProfilePage/board-user.component";
+import SellerPage from "./pages/SellerPage";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -175,6 +184,11 @@ export default function App() {
   const [showNavBar, setShowNavBar ] = useState(true);
   // console.log(location.pathname)
   const notShow = ["/signin", "/register", "/forgot-password", "/reset-password", "/verify-email"]
+
+  useEffect(()=>{
+    // dispatch(fetchUserData())
+    dispatch(fetchLandingPage())
+  },[dispatch])
 
   useEffect(() => {
     if (notShow.includes(location.pathname)) {
@@ -190,13 +204,7 @@ export default function App() {
 
   // const { isLoggedIn } = useSelector((state) => state.auth);
   // console.log(isLoggedIn);
-  useEffect(() => {
-    // dispatch(fetchUser());
-    // if (isLoggedIn) {
-    //   dispatch(fetchUserData());  
-    // }
-    dispatch(fetchGames());
-  }, [dispatch]);
+  
 
   // const [language, setLanguage] = useState("en");
 
@@ -220,6 +228,21 @@ export default function App() {
 
     setSnackbarOpen(false);
   };
+
+  let admin = useSelector((state) => state.auth.user)
+  
+
+  const [isAdmin, setIsAdmin] = useState([])
+  useEffect(()=>{
+    if (admin === null){
+      admin = []
+    }
+    else{
+      
+    }
+    setIsAdmin(admin)
+    },[admin])
+
   return (
     // <ThemeProvider theme={theme}>
     <>
@@ -246,7 +269,7 @@ export default function App() {
 
           <Route path="/register" element={<Register />} />
         
-          {/* <Route exact path="/browse" element={<BrowsePage />} /> */}
+          <Route exact path="/browse" element={<BrowsePage />} />
           
           {/* <Route exact path="/games/:id">
           <GamePage />
@@ -254,10 +277,44 @@ export default function App() {
 
         {/* <Route path = "/games/:id" element={<GamePage/>}/> */}
         <Route path = "/:id" element={<GamePage _id = {location.pathname.replace('/','')}/>}/>
-
+        {/* <Route path = "/games/:id" element={<GamePage />}/> */}
           {/* <Route exact path="/wishlist">
           <WishlistPage />
         </Route> */}
+        <Route path = "/cart" element = {<CartPage/>}></Route>
+        <Route path = "/wishlist" element = {<WishlistPage/>}></Route>
+        {/* {
+          isAdmin[0] === 'ROLE_ADMIN' && isAdmin.length !== 0 && isAdmin !== null ? (<Route path = "/admin" element = {<AdminPage/>}/>) : ""
+        } */}
+        <Route path = "/admin" element = {<AdminPage/>}></Route>
+
+        <Route path = "/checkout" element = {
+          <CheckPage/>
+        }></Route>
+
+        <Route path = "/libraries" element = {
+          <LibrariesPage/>
+        }></Route>
+        
+        <Route path = "/profile" element = {
+          <ProfilePage/>
+        }>
+        </Route>
+
+        <Route path = "/distribution" element = {
+          <DistributionPage/>
+        }>
+        </Route>
+        <Route path = "/seller" element = {<SellerPage/>}></Route>
+
+        <Route path="/user/profile" element={<UserProfilePage/>}></Route>
+        <Route path="/profile/:activepage" element ={<ProfilePage/>}></Route>
+        <Route path="*" element={
+          <div>
+            404 NOT FOUND
+          </div>
+        }/>
+
         </Routes>
       </div>
     </>
