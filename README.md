@@ -1,5 +1,6 @@
 # gaming-store-web-app
 This is the final project for the Introduction to Software Engineering course.
+<i class="fa-brands fa-trello"></i> [](https://trello.com/b/jES6YGRt/c%C3%B4ng-ngh%E1%BB%87-ph%E1%BA%A7n-m%E1%BB%81m)
 
 Run project by: 
 ```
